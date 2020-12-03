@@ -1,3 +1,56 @@
 <resources>
-    <string name="app_name">MustachePawsFP</string>
+    <string name="app_name">УсыЛапы</string>
+
+    <string name="string_ad">Объявления</string>
+    <string name="string_filter">Фильтры</string>
+
+    <string name="empty" />
+    <string name="post_error">Cound not retrieve data</string>
+
+    <!--  Login/SignUp activities  -->
+    <string name="username">логин</string>
+    <string name="firstname">имя</string>
+    <string name="lastname">фамилия</string>
+    <string name="email">электронная почта</string>
+    <string name="phonenumber">телефон</string>
+    <string name="password">пароль</string>
+    <string name="password_confirm">подтверждение пароля</string>
+    <string name="login">Войти</string>
+    <string name="sign_up">Регистрация</string>
+    <string name="no_account">Нет аккаунта?</string>
+    <string name="register">Зарегистрироваться!</string>
+    <string name="login_error_msg">Ошибка в комбинации имя пользователя-пароль</string>
+    <string name="signup_error_msg">Ошибка при регистрации</string>
+    <string name="username_empty_error">Имя пользователя не может быть пустым</string>
+
+    <string name="public_post">Опубликовать</string>
+    <string name="description">Описание</string>
+    <string name="image_link">Ссылка</string>
+
+
+    <!--  Toolbar menu  -->
+    <string name="menu_logout">Выйти</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="create_post">Create post</string>
+    <string name="my_profile">My profile</string>
+    <string name="take_photo">Take photo</string>
+
+    <string-array name="type_animals_list">
+        <item>Кот</item>
+        <item>Кошка</item>
+        <item>Собака(мальчик)</item>
+        <item>Собака(девочка)</item>
+        <item>Черепаха</item>
+        <item>Кролик</item>
+    </string-array>
+
+    <string-array name="type_help_list">
+        <item>Передержка</item>
+        <item>Транспорт</item>
+        <item>Корм</item>
+        <item>Мед. помошь</item>
+        <item>Хозяин</item>
+    </string-array>
+
 </resources>
