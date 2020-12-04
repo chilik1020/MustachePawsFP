@@ -1,33 +1,17 @@
 package com.chilik1020.mustachepawsfp.ui.login
 
-//import com.chilik1020.mustachepaws.Screens
-//import com.chilik1020.mustachepaws.presenters.LoginPresenterImpl
-//import com.chilik1020.mustachepaws.utils.APPSCOPE
-//import com.chilik1020.mustachepaws.views.LoginView
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.chilik1020.mustachepaws.ui.base.BackButtonListener
 import com.chilik1020.mustachepawsfp.R
 import kotlinx.android.synthetic.main.fragment_login.*
 
-//import moxy.MvpAppCompatFragment
-//import moxy.presenter.InjectPresenter
-//import ru.terrakok.cicerone.Router
-//import toothpick.ktp.KTP
-//import javax.inject.Inject
+class LoginFragment : Fragment() {
 
-class LoginFragment : Fragment(), View.OnClickListener, BackButtonListener {
-
-//    @Inject
-//    lateinit var router: Router
-//
-//    @InjectPresenter
-//    lateinit var presenter : LoginPresenterImpl
+    lateinit var viewModel: LoginViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,23 +19,15 @@ class LoginFragment : Fragment(), View.OnClickListener, BackButtonListener {
         savedInstanceState: Bundle?
     ) = inflater.inflate(R.layout.fragment_login, container, false)
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        btnLogin.setOnClickListener(this)
-        btnSignUp.setOnClickListener(this)
-    }
-
-    override fun onClick(v: View) {
-        when (v.id) {
-            R.id.btnLogin -> {
-                val username = tietUsernameLoginF.text.toString()
-                val password = tietPasswordLoginF.text.toString()
-//                presenter.executeLogin(username, password)
-            }
-
-            R.id.btnSignUp -> navigateToSignUpFragment()
+        btnLogin.setOnClickListener {
+            val username = tietUsernameLoginF.text.toString()
+            val password = tietPasswordLoginF.text.toString()
+            viewModel.executeLogin(username, password)
         }
+        btnSignUp.setOnClickListener { navigateToSignUpFragment() }
+        viewModel.viewState.observe(this) { render(it) }
     }
 
     private fun render(state: LoginViewState) {
@@ -92,14 +68,8 @@ class LoginFragment : Fragment(), View.OnClickListener, BackButtonListener {
     }
 
     private fun navigateToSignUpFragment() {
-//        router.navigateTo(Screens.SignUpScreen())
     }
 
     private fun navigateToPostListFragment() {
-//        router.replaceScreen(Screens.PostListScreen())
-    }
-
-    override fun onBackPressed() {
-//        router.exit()
     }
 }

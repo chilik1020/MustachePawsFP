@@ -1,10 +1,4 @@
-package com.chilik1020.mustachepaws.ui.fragments
-
-//import com.chilik1020.mustachepawsfp.R
-//import com.chilik1020.mustachepaws.Screens
-//import com.chilik1020.mustachepaws.presenters.SignUpPresenterImpl
-//import com.chilik1020.mustachepaws.utils.APPSCOPE
-//import com.chilik1020.mustachepaws.views.SignUpView
+package com.chilik1020.mustachepawsfp.ui.signup
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,21 +7,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.chilik1020.mustachepawsfp.R
-import com.chilik1020.mustachepawsfp.ui.signup.SignUpViewState
 import kotlinx.android.synthetic.main.fragment_sign_up.*
 
-//import moxy.MvpAppCompatFragment
-//import moxy.presenter.InjectPresenter
-//import ru.terrakok.cicerone.Router
-//import toothpick.ktp.KTP
-//import javax.inject.Inject
+class SignUpFragment : Fragment() {
 
-class SignUpFragment : Fragment(), View.OnClickListener {
-//    @Inject
-//    lateinit var router: Router
-//
-//    @InjectPresenter
-//    lateinit var presenter: SignUpPresenterImpl
+    lateinit var viewModel: SignUpViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,20 +21,16 @@ class SignUpFragment : Fragment(), View.OnClickListener {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        btnSignUp.setOnClickListener(this)
-    }
-
-    override fun onClick(v: View) {
-        when (v.id) {
-            R.id.btnSignUp -> {
-//                presenter.executeSignUp(
-//                    tietUsernameSignUpF.text.toString(),
-//                    tietEmailSignUpF.text.toString(),
-//                    tietPasswordSignUpF.text.toString(),
-//                    tietConfirmPasswordSignUpF.text.toString()
-//                )
-            }
+        btnSignUp.setOnClickListener {
+            viewModel.executeSignUp(
+                tietUsernameSignUpF.text.toString(),
+                tietEmailSignUpF.text.toString(),
+                tietPasswordSignUpF.text.toString(),
+                tietConfirmPasswordSignUpF.text.toString()
+            )
         }
+
+        viewModel.viewState.observe(this) { render(it) }
     }
 
     private fun render(state: SignUpViewState) {
@@ -101,6 +81,6 @@ class SignUpFragment : Fragment(), View.OnClickListener {
     }
 
     private fun navigateToPostListFragment() {
-//        router.replaceScreen(Screens.PostListScreen())
+
     }
 }
