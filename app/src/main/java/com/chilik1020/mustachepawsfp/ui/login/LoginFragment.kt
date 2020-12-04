@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.chilik1020.mustachepawsfp.R
 import com.chilik1020.mustachepawsfp.databinding.FragmentLoginBinding
+import com.chilik1020.mustachepawsfp.ui.signup.SignUpFragment
 
 class LoginFragment : Fragment() {
 
@@ -76,6 +78,10 @@ class LoginFragment : Fragment() {
     }
 
     private fun navigateToSignUpFragment() {
+        requireActivity().supportFragmentManager.beginTransaction()
+            .add(R.id.fragment_container, SignUpFragment())
+            .addToBackStack(null)
+            .commit()
     }
 
     private fun navigateToPostListFragment() {
