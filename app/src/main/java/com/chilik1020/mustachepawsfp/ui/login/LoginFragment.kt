@@ -6,27 +6,33 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.chilik1020.mustachepawsfp.R
-import kotlinx.android.synthetic.main.fragment_login.*
+import com.chilik1020.mustachepawsfp.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {
 
+    lateinit var binding: FragmentLoginBinding
     lateinit var viewModel: LoginViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ) = inflater.inflate(R.layout.fragment_login, container, false)
+    ): View? {
+        binding = FragmentLoginBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        btnLogin.setOnClickListener {
-            val username = tietUsernameLoginF.text.toString()
-            val password = tietPasswordLoginF.text.toString()
-            viewModel.executeLogin(username, password)
+        with(binding) {
+            btnLogin.setOnClickListener {
+                val username = tietUsernameLoginF.text.toString()
+                val password = tietPasswordLoginF.text.toString()
+                viewModel.executeLogin(username, password)
+            }
+            btnSignUp.setOnClickListener { navigateToSignUpFragment() }
         }
-        btnSignUp.setOnClickListener { navigateToSignUpFragment() }
+
         viewModel.viewState.observe(this) { render(it) }
     }
 
@@ -34,7 +40,7 @@ class LoginFragment : Fragment() {
         resetViews()
         when (state) {
             is LoginViewState.LoginLoadingState -> {
-                pbLoginLoading.visibility = View.VISIBLE
+                binding.pbLoginLoading.visibility = View.VISIBLE
             }
 
             is LoginViewState.LoggedState -> {
@@ -44,27 +50,29 @@ class LoginFragment : Fragment() {
             }
 
             is LoginViewState.LoginErrorState -> {
-                tilUsernameLoginF.error = state.message
-                tilPasswordLoginF.error = " "
+                binding.tilUsernameLoginF.error = state.message
+                binding.tilPasswordLoginF.error = " "
                 Toast.makeText(activity, state.message, Toast.LENGTH_LONG).show()
             }
 
             is LoginViewState.UsernameErrorState -> {
-                tilUsernameLoginF.error = state.message
+                binding.tilUsernameLoginF.error = state.message
                 Toast.makeText(activity, state.message, Toast.LENGTH_LONG).show()
             }
 
             is LoginViewState.PasswordErrorState -> {
-                tilPasswordLoginF.error = state.message
+                binding.tilPasswordLoginF.error = state.message
                 Toast.makeText(activity, state.message, Toast.LENGTH_LONG).show()
             }
         }
     }
 
     private fun resetViews() {
-        pbLoginLoading.visibility = View.GONE
-        tilUsernameLoginF.error = null
-        tilPasswordLoginF.error = null
+        with(binding) {
+            pbLoginLoading.visibility = View.GONE
+            tilUsernameLoginF.error = null
+            tilPasswordLoginF.error = null
+        }
     }
 
     private fun navigateToSignUpFragment() {
