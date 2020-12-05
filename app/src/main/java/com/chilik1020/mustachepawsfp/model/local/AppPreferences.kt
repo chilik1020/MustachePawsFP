@@ -14,27 +14,30 @@ class AppPreferences(private val preferences: SharedPreferences) {
 
     val userDetails: UserVO
         get() {
-            return UserVO(
-                preferences.getLong("ID", 0),
-                preferences.getString("USERNAME", null),
-                preferences.getString("FIRSTNAME", null),
-                preferences.getString("LASTNAME", null),
-                preferences.getString("EMAIL", null),
-                preferences.getString("PHONENUMBER", null),
-                preferences.getString("CREATED_AT", null)
-            )
+            with(preferences) {
+                return UserVO(
+                    getLong("ID", 0),
+                    getString("USERNAME", null),
+                    getString("FIRSTNAME", null),
+                    getString("LASTNAME", null),
+                    getString("EMAIL", null),
+                    getString("PHONENUMBER", null),
+                    getString("CREATED_AT", null)
+                )
+            }
         }
 
     fun storeUserDetails(user: UserVO) {
         val editor: SharedPreferences.Editor = preferences.edit()
-
-        editor.putLong("ID", user.id).apply()
-        editor.putString("USERNAME", user.username).apply()
-        editor.putString("FIRSTNAME", user.firstname).apply()
-        editor.putString("LASTNAME", user.lastname).apply()
-        editor.putString("EMAIL", user.email).apply()
-        editor.putString("PHONENUMBER", user.phoneNumber).apply()
-        editor.putString("CREATED_AT", user.createdAt).apply()
+        with(editor) {
+            putLong("ID", user.id).apply()
+            putString("USERNAME", user.username).apply()
+            putString("FIRSTNAME", user.firstname).apply()
+            putString("LASTNAME", user.lastname).apply()
+            putString("EMAIL", user.email).apply()
+            putString("PHONENUMBER", user.phoneNumber).apply()
+            putString("CREATED_AT", user.createdAt).apply()
+        }
     }
 
     fun clear() {
