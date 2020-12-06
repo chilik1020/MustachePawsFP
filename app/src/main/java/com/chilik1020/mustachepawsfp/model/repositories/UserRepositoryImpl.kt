@@ -8,12 +8,17 @@ import com.chilik1020.mustachepawsfp.model.remote.MustachePawsApi
 import io.reactivex.Observable
 import okhttp3.ResponseBody
 import retrofit2.Response
+import toothpick.ktp.delegate.inject
+import javax.inject.Inject
 
-class UserRepositoryImpl(
-    private val api: MustachePawsApi,
-    private val preferences: AppPreferences
-) :
-    UserRepository {
+class UserRepositoryImpl : UserRepository {
+
+    @Inject
+    lateinit var api: MustachePawsApi
+
+    @Inject
+    lateinit var preferences: AppPreferences
+
     override fun login(loginRequestObject: LoginRequestObject): Observable<Response<ResponseBody>> {
         return api.login(loginRequestObject)
     }

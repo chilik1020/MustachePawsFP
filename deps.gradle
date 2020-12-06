@@ -67,8 +67,20 @@ ext {
 
     def toothPickVersion = '3.1.0'
     toothPick = [
-            core    : "com.github.stephanenicolas.toothpick:ktp:$toothPickVersion",
-            compiler: "com.github.stephanenicolas.toothpick:toothpick-compiler:$toothPickVersion"
+            smoothie         : "com.github.stephanenicolas.toothpick:smoothie:$toothPickVersion",
+            androidx         : "com.github.stephanenicolas.toothpick:smoothie-androidx:$toothPickVersion",
+            lifecycle        : "com.github.stephanenicolas.toothpick:smoothie-lifecycle:$toothPickVersion",
+            lifecycle_ktp    : "com.github.stephanenicolas.toothpick:smoothie-lifecycle-ktp:$toothPickVersion",
+            viewmodel        : "com.github.stephanenicolas.toothpick:smoothie-lifecycle-viewmodel:$toothPickVersion",
+            viewmodel_ktp    : "com.github.stephanenicolas.toothpick:smoothie-lifecycle-viewmodel-ktp:$toothPickVersion",
+            smoothie_support : "com.github.stephanenicolas.toothpick:smoothie-support:$toothPickVersion",
+            core                  : "com.github.stephanenicolas.toothpick:toothpick:$toothPickVersion",
+            runtime          : "com.github.stephanenicolas.toothpick:toothpick-runtime:$toothPickVersion",
+            ktp                 : "com.github.stephanenicolas.toothpick:ktp:$toothPickVersion",
+            compiler         : "com.github.stephanenicolas.toothpick:toothpick-compiler:$toothPickVersion",
+            testing          : "com.github.stephanenicolas.toothpick:toothpick-testing:$toothPickVersion",
+            testing_junit4   : "com.github.stephanenicolas.toothpick:toothpick-testing-junit4:$toothPickVersion",
+            testing_junit5   : "com.github.stephanenicolas.toothpick:toothpick-testing-junit5:$toothPickVersion",
     ]
 
     def koinVersion = '2.2.1'

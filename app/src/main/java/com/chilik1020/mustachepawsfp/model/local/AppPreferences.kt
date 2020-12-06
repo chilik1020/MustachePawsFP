@@ -2,8 +2,12 @@ package com.chilik1020.mustachepawsfp.model.local
 
 import android.content.SharedPreferences
 import com.chilik1020.mustachepawsfp.model.entities.UserVO
+import javax.inject.Inject
 
-class AppPreferences(private val preferences: SharedPreferences) {
+class AppPreferences {
+
+    @Inject
+    lateinit var preferences: SharedPreferences
 
     val accessToken: String?
         get() = preferences.getString("ACCESS_TOKEN", null)

@@ -7,10 +7,12 @@ import com.chilik1020.mustachepawsfp.model.repositories.UserRepository
 import com.chilik1020.mustachepawsfp.utils.getMessageFromThrowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class LoginInteractorImpl(
-    private val userRepository: UserRepository
-) : LoginInteractor {
+class LoginInteractorImpl : LoginInteractor {
+
+    @Inject
+    lateinit var userRepository: UserRepository
 
     override lateinit var userDetails: UserVO
     override lateinit var accessToken: String
