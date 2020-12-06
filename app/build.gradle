@@ -37,7 +37,10 @@ dependencies {
     implementation kotlinDeps.kotlinStdlib
     implementation material
     implementation androidxDeps.values()
-    
+
+    implementation toothPick.core
+    kapt toothPick.compiler
+
     implementation rx.values()
     
     implementation okhttpLoggingInterceptor

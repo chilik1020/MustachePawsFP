@@ -56,7 +56,6 @@ ext {
             rxJava2  : "io.reactivex.rxjava2:rxjava:$rxJava2Version"
     ]
 
-
     def daggerVersion = '2.16'
     dagger = [
             runtime               : "com.google.dagger:dagger:$daggerVersion",
@@ -64,6 +63,12 @@ ext {
             androidSupport        : "com.google.dagger:dagger-android-support:$daggerVersion",
             compiler              : "com.google.dagger:dagger-compiler:$daggerVersion",
             androidSupportCompiler: "com.google.dagger:dagger-android-processor:$daggerVersion"
+    ]
+
+    def toothPickVersion = '3.1.0'
+    toothPick = [
+            core    : "com.github.stephanenicolas.toothpick:ktp:$toothPickVersion",
+            compiler: "com.github.stephanenicolas.toothpick:toothpick-compiler:$toothPickVersion"
     ]
 
     def koinVersion = '2.2.1'
