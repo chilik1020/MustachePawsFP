@@ -9,7 +9,8 @@ import androidx.fragment.app.Fragment
 import com.chilik1020.mustachepawsfp.R
 import com.chilik1020.mustachepawsfp.databinding.FragmentLoginBinding
 import com.chilik1020.mustachepawsfp.di.ApplicationScope
-import com.chilik1020.mustachepawsfp.di.ViewModelScope
+import com.chilik1020.mustachepawsfp.di.LoginModule
+import com.chilik1020.mustachepawsfp.di.LoginViewModelScope
 import com.chilik1020.mustachepawsfp.ui.signup.SignUpFragment
 import toothpick.ktp.KTP
 import toothpick.ktp.delegate.inject
@@ -39,8 +40,9 @@ class LoginFragment : Fragment() {
 
     private fun injectDependencies() {
         KTP.openScopes(ApplicationScope::class.java)
-            .openSubScope(ViewModelScope::class.java) {
+            .openSubScope(LoginViewModelScope::class.java) {
                 it.installViewModelBinding<LoginViewModel>(this)
+                    .installModules(LoginModule())
                     .closeOnViewModelCleared(this)
             }
             .closeOnDestroy(this)

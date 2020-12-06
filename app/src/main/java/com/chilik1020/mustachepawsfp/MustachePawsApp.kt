@@ -1,7 +1,9 @@
 package com.chilik1020.mustachepawsfp
 
 import android.app.Application
-import com.chilik1020.mustachepawsfp.di.*
+import com.chilik1020.mustachepawsfp.di.AppModule
+import com.chilik1020.mustachepawsfp.di.ApplicationScope
+import com.chilik1020.mustachepawsfp.di.NetworkModule
 import toothpick.Scope
 import toothpick.ktp.KTP
 
@@ -16,9 +18,7 @@ class MustachePawsApp : Application() {
         scope = KTP.openScope(ApplicationScope::class.java)
             .installModules(
                 AppModule(this),
-                NetworkModule(),
-                RepositoryModule(),
-                InteractorModule()
+                NetworkModule()
             )
     }
 
