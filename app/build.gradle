@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
 
@@ -23,14 +23,29 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
+    def retrofit_version = '2.4.0'
+    def okhttp3_logging = '3.8.0'
     implementation fileTree(dir: "libs", include: ["*.jar"])
 
     implementation kotlinDeps.kotlinStdlib
     implementation material
     implementation androidxDeps.values()
+    
+    implementation rx.values()
+    
+    implementation okhttpLoggingInterceptor
+    
+    implementation retrofit.runtime
+    implementation retrofit.adapterRxJava2
+    implementation retrofit.moshi
+    implementation retrofit.simpleXml
 
     testImplementation atsl.jUnit
     androidTestImplementation atsl.extJunit
