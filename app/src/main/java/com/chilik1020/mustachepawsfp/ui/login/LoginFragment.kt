@@ -8,24 +8,48 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.chilik1020.mustachepawsfp.R
 import com.chilik1020.mustachepawsfp.databinding.FragmentLoginBinding
+import com.chilik1020.mustachepawsfp.di.ApplicationScope
+import com.chilik1020.mustachepawsfp.di.LoginModule
+import com.chilik1020.mustachepawsfp.di.LoginViewModelScope
 import com.chilik1020.mustachepawsfp.ui.signup.SignUpFragment
+import toothpick.ktp.KTP
+import toothpick.ktp.delegate.inject
+import toothpick.smoothie.lifecycle.closeOnDestroy
+import toothpick.smoothie.viewmodel.closeOnViewModelCleared
+import toothpick.smoothie.viewmodel.installViewModelBinding
 
 class LoginFragment : Fragment() {
 
     lateinit var binding: FragmentLoginBinding
-    lateinit var viewModel: LoginViewModel
+    private val viewModel: LoginViewModel by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        injectDependencies()
+        initViews()
+    }
+
+    private fun injectDependencies() {
+        KTP.openScopes(ApplicationScope::class.java)
+            .openSubScope(LoginViewModelScope::class.java) {
+                it.installViewModelBinding<LoginViewModel>(this)
+                    .installModules(LoginModule())
+                    .closeOnViewModelCleared(this)
+            }
+            .closeOnDestroy(this)
+            .inject(this)
+    }
+
+    private fun initViews() {
         with(binding) {
             btnLogin.setOnClickListener {
                 val username = tietUsernameLoginF.text.toString()
@@ -35,7 +59,7 @@ class LoginFragment : Fragment() {
             btnSignUp.setOnClickListener { navigateToSignUpFragment() }
         }
 
-        viewModel.viewState.observe(this) { render(it) }
+        viewModel.viewState.observe(viewLifecycleOwner) { render(it) }
     }
 
     private fun render(state: LoginViewState) {
@@ -79,7 +103,7 @@ class LoginFragment : Fragment() {
 
     private fun navigateToSignUpFragment() {
         requireActivity().supportFragmentManager.beginTransaction()
-            .add(R.id.fragment_container, SignUpFragment())
+            .replace(R.id.fragment_container, SignUpFragment())
             .addToBackStack(null)
             .commit()
     }

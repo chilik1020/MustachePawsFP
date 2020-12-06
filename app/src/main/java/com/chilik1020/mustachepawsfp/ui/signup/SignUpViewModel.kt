@@ -11,13 +11,17 @@ import com.chilik1020.mustachepawsfp.utils.checkConfirmPasswordInSignUpForm
 import com.chilik1020.mustachepawsfp.utils.checkEmailInSignUpForm
 import com.chilik1020.mustachepawsfp.utils.checkPasswordInSignUpForm
 import com.chilik1020.mustachepawsfp.utils.checkUsernameInSignUpForm
+import javax.inject.Inject
 
-class SignUpViewModel(
-    private val interactor: SignUpInteractor,
-    private val preferences: AppPreferences
-) : ViewModel(),
+class SignUpViewModel : ViewModel(),
     AuthInteractor.OnAuthFinishedListener,
     SignUpInteractor.OnSignUpFinishedListener {
+
+    @Inject
+    lateinit var interactor: SignUpInteractor
+
+    @Inject
+    lateinit var preferences: AppPreferences
 
     private val viewStateMutable = MutableLiveData<SignUpViewState>()
     val viewState: LiveData<SignUpViewState>

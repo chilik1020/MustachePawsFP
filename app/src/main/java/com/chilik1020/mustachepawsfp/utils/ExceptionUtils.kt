@@ -20,7 +20,7 @@ fun getMessageFromThrowable(t: Throwable): String {
 
         is HttpException -> {
             Log.d(LOG_TAG, "EXCEPTION: type = HttpException.")
-            t.response().errorBody()?.string().toString()
+            t.response()?.errorBody()?.string().toString()
         }
 
         is TypeCastException -> {

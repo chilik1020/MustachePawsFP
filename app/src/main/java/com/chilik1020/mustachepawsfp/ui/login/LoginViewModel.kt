@@ -8,13 +8,17 @@ import com.chilik1020.mustachepawsfp.interactors.LoginInteractor
 import com.chilik1020.mustachepawsfp.model.local.AppPreferences
 import com.chilik1020.mustachepawsfp.utils.checkPasswordInLoginForm
 import com.chilik1020.mustachepawsfp.utils.checkUsernameInLoginForm
+import javax.inject.Inject
 
-class LoginViewModel(
-    private val interactor: LoginInteractor,
-    private val preferences: AppPreferences
-) : ViewModel(),
+class LoginViewModel : ViewModel(),
     AuthInteractor.OnAuthFinishedListener,
     LoginInteractor.OnDetailsRetrievalFinishedListener {
+
+    @Inject
+    lateinit var interactor: LoginInteractor
+
+    @Inject
+    lateinit var preferences: AppPreferences
 
     private val viewStateMutable = MutableLiveData<LoginViewState>()
     val viewState: LiveData<LoginViewState>

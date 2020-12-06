@@ -24,6 +24,11 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     buildFeatures {
         viewBinding true
     }
@@ -37,7 +42,13 @@ dependencies {
     implementation kotlinDeps.kotlinStdlib
     implementation material
     implementation androidxDeps.values()
-    
+
+    implementation toothPick.ktp
+    implementation toothPick.androidx
+    implementation toothPick.lifecycle_ktp
+    implementation toothPick.viewmodel_ktp
+    kapt toothPick.compiler
+
     implementation rx.values()
     
     implementation okhttpLoggingInterceptor

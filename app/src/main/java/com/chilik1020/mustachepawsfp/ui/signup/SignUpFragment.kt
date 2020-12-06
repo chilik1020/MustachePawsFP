@@ -7,11 +7,19 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.chilik1020.mustachepawsfp.databinding.FragmentSignUpBinding
+import com.chilik1020.mustachepawsfp.di.ApplicationScope
+import com.chilik1020.mustachepawsfp.di.SignUpModule
+import com.chilik1020.mustachepawsfp.di.SignUpViewModelScope
+import toothpick.ktp.KTP
+import toothpick.ktp.delegate.inject
+import toothpick.smoothie.lifecycle.closeOnDestroy
+import toothpick.smoothie.viewmodel.closeOnViewModelCleared
+import toothpick.smoothie.viewmodel.installViewModelBinding
 
 class SignUpFragment : Fragment() {
 
     lateinit var binding: FragmentSignUpBinding
-    lateinit var viewModel: SignUpViewModel
+    private val viewModel: SignUpViewModel by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,6 +32,22 @@ class SignUpFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        injectDependencies()
+        initViews()
+    }
+
+    private fun injectDependencies() {
+        KTP.openScopes(ApplicationScope::class.java)
+            .openSubScope(SignUpViewModelScope::class.java) {
+                it.installViewModelBinding<SignUpViewModel>(this)
+                    .installModules(SignUpModule())
+                    .closeOnViewModelCleared(this)
+            }
+            .closeOnDestroy(this)
+            .inject(this)
+    }
+
+    private fun initViews() {
         with(binding) {
             btnSignUp.setOnClickListener {
                 viewModel.executeSignUp(
@@ -33,10 +57,8 @@ class SignUpFragment : Fragment() {
                     tietConfirmPasswordSignUpF.text.toString()
                 )
             }
-
         }
-
-        viewModel.viewState.observe(this) { render(it) }
+        viewModel.viewState.observe(viewLifecycleOwner) { render(it) }
     }
 
     private fun render(state: SignUpViewState) {
