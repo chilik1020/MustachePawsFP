@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import com.chilik1020.mustachepawsfp.R
 import com.chilik1020.mustachepawsfp.databinding.FragmentLoginBinding
 import com.chilik1020.mustachepawsfp.di.ApplicationScope
 import com.chilik1020.mustachepawsfp.di.LoginModule
 import com.chilik1020.mustachepawsfp.di.LoginViewModelScope
-import com.chilik1020.mustachepawsfp.ui.signup.SignUpFragment
 import toothpick.ktp.KTP
 import toothpick.ktp.delegate.inject
 import toothpick.smoothie.lifecycle.closeOnDestroy
@@ -102,10 +102,8 @@ class LoginFragment : Fragment() {
     }
 
     private fun navigateToSignUpFragment() {
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, SignUpFragment())
-            .addToBackStack(null)
-            .commit()
+        Navigation.findNavController(binding.root)
+            .navigate(R.id.action_loginFragment_to_signUpFragment)
     }
 
     private fun navigateToPostListFragment() {

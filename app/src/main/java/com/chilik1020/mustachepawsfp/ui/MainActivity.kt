@@ -2,18 +2,19 @@ package com.chilik1020.mustachepawsfp.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import com.chilik1020.mustachepawsfp.R
-import com.chilik1020.mustachepawsfp.ui.login.LoginFragment
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var navController: NavController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .add(R.id.fragment_container, LoginFragment())
-                .commit()
-        }
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment)
+        navController.navigate(R.id.loginFragment)
     }
 }

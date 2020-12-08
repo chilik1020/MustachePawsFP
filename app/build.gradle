@@ -43,6 +43,9 @@ dependencies {
     implementation material
     implementation androidxDeps.values()
 
+    implementation navigation.fragmentKtx
+    implementation navigation.uiKtx
+
     implementation toothPick.ktp
     implementation toothPick.androidx
     implementation toothPick.lifecycle_ktp
