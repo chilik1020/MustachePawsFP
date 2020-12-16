@@ -1,20 +1,21 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
 
 android {
-
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.chilik1020.mustachepawsfp"
-        minSdkVersion 21
+        minSdkVersion 26
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -23,29 +24,23 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
-    buildFeatures {
-        viewBinding true
+    kotlinOptions {
+        jvmTarget = '1.8'
     }
 }
 
 dependencies {
     //Local libs
-    api project(':framework')
+    api project(':data')
     api project(':domain')
-    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation kotlinDeps.kotlinStdlib
-    implementation material
-    implementation androidxDeps.values()
-
-    implementation navigation.fragmentKtx
-    implementation navigation.uiKtx
+    implementation androidxDeps.coreKtx
 
     implementation toothPick.ktp
     implementation toothPick.androidx
@@ -53,17 +48,10 @@ dependencies {
     implementation toothPick.viewmodel_ktp
     kapt toothPick.compiler
 
-    implementation rx.values()
-
     implementation okhttpLoggingInterceptor
-
     implementation retrofit.runtime
     implementation retrofit.adapterRxJava2
     implementation retrofit.moshi
     implementation retrofit.simpleXml
-
-    testImplementation atsl.jUnit
-    androidTestImplementation atsl.extJunit
-    androidTestImplementation espresso.core
 
 }

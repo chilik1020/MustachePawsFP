@@ -7,11 +7,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import com.chilik1020.framework.di.ApplicationScope
+import com.chilik1020.framework.di.LoginViewModelScope
 import com.chilik1020.mustachepawsfp.R
 import com.chilik1020.mustachepawsfp.databinding.FragmentLoginBinding
-import com.chilik1020.mustachepawsfp.di.ApplicationScope
-import com.chilik1020.mustachepawsfp.di.LoginModule
-import com.chilik1020.mustachepawsfp.di.LoginViewModelScope
 import toothpick.ktp.KTP
 import toothpick.ktp.delegate.inject
 import toothpick.smoothie.lifecycle.closeOnDestroy
@@ -42,7 +41,7 @@ class LoginFragment : Fragment() {
         KTP.openScopes(ApplicationScope::class.java)
             .openSubScope(LoginViewModelScope::class.java) {
                 it.installViewModelBinding<LoginViewModel>(this)
-                    .installModules(LoginModule())
+//                    .installModules(LoginModule())
                     .closeOnViewModelCleared(this)
             }
             .closeOnDestroy(this)

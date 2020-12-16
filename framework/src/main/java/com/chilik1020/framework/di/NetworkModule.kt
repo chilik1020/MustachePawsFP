@@ -1,7 +1,7 @@
-package com.chilik1020.mustachepawsfp.di
+package com.chilik1020.framework.di
 
-import com.chilik1020.mustachepawsfp.model.remote.MustachePawsApi
-import com.chilik1020.mustachepawsfp.utils.BASE_URL
+import com.chilik1020.framework.remote.MustachePawsApi
+import com.chilik1020.framework.utils.BASE_URL
 import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

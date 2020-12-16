@@ -1,4 +1,4 @@
-package com.chilik1020.mustachepawsfp.di
+package com.chilik1020.framework.di
 
 @javax.inject.Scope
 @Retention(AnnotationRetention.RUNTIME)

@@ -1,9 +1,11 @@
 package com.chilik1020.mustachepawsfp
 
 import android.app.Application
-import com.chilik1020.mustachepawsfp.di.AppModule
-import com.chilik1020.mustachepawsfp.di.ApplicationScope
-import com.chilik1020.mustachepawsfp.di.NetworkModule
+import com.chilik1020.framework.di.AppModule
+import com.chilik1020.framework.di.ApplicationScope
+import com.chilik1020.framework.di.NetworkModule
+
+
 import toothpick.Scope
 import toothpick.ktp.KTP
 
