@@ -2,7 +2,7 @@ package com.chilik1020.domain.models
 
 class UserDomainModel(
     val id: Long,
-    val username: String?,
+    val username: String,
     val firstname: String?,
     val lastname: String?,
     val email: String?,
