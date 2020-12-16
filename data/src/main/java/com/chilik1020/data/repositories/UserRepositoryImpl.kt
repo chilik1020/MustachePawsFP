@@ -26,8 +26,8 @@ class UserRepositoryImpl : UserRepository {
         return remoteDataSource.login(loginRequestObject)
     }
 
-    override suspend fun echoUserDetails(): UserDomainModel {
-        return toDomainMapper.invoke(remoteDataSource.echoUserDetails())
+    override suspend fun echoUserDetails(token: String): UserDomainModel {
+        return toDomainMapper.invoke(remoteDataSource.echoUserDetails(token))
     }
 
     override suspend fun signUp(signUpRequestObject: SignUpRequestObject): UserDomainModel {
@@ -38,7 +38,7 @@ class UserRepositoryImpl : UserRepository {
         return localDataSource.saveAccessToken(token)
     }
 
-    override suspend fun getSavedToken(): String {
+    override suspend fun getSavedToken(): String? {
         return localDataSource.getSavedToken()
     }
 
@@ -46,7 +46,7 @@ class UserRepositoryImpl : UserRepository {
         return localDataSource.saveUserDetails(toDataMapper.invoke(userDomainModel))
     }
 
-    override suspend fun getSavedUserDetails(): UserDomainModel {
-        return toDomainMapper.invoke(localDataSource.getSavedUserDetails())
+    override suspend fun getSavedUserDetails(): UserDomainModel? {
+        return localDataSource.getSavedUserDetails()?.let(toDomainMapper)
     }
 }

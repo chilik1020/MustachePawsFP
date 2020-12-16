@@ -6,10 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.chilik1020.framework.di.ApplicationScope
+import com.chilik1020.framework.di.SignUpViewModelScope
 import com.chilik1020.mustachepawsfp.databinding.FragmentSignUpBinding
-import com.chilik1020.mustachepawsfp.di.ApplicationScope
-import com.chilik1020.mustachepawsfp.di.SignUpModule
-import com.chilik1020.mustachepawsfp.di.SignUpViewModelScope
 import toothpick.ktp.KTP
 import toothpick.ktp.delegate.inject
 import toothpick.smoothie.lifecycle.closeOnDestroy
@@ -40,7 +39,7 @@ class SignUpFragment : Fragment() {
         KTP.openScopes(ApplicationScope::class.java)
             .openSubScope(SignUpViewModelScope::class.java) {
                 it.installViewModelBinding<SignUpViewModel>(this)
-                    .installModules(SignUpModule())
+//                    .installModules(SignUpModule())
                     .closeOnViewModelCleared(this)
             }
             .closeOnDestroy(this)
