@@ -3,6 +3,7 @@ package com.chilik1020.mustachepawsfp.ui.signup
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.chilik1020.framework.di.ApplicationScope
 import com.chilik1020.mustachepawsfp.interactors.AuthInteractor
 import com.chilik1020.mustachepawsfp.interactors.SignUpInteractor
 import com.chilik1020.mustachepawsfp.model.entities.UserRequestObject
@@ -11,12 +12,15 @@ import com.chilik1020.mustachepawsfp.utils.checkConfirmPasswordInSignUpForm
 import com.chilik1020.mustachepawsfp.utils.checkEmailInSignUpForm
 import com.chilik1020.mustachepawsfp.utils.checkPasswordInSignUpForm
 import com.chilik1020.mustachepawsfp.utils.checkUsernameInSignUpForm
+import toothpick.ktp.KTP
 import javax.inject.Inject
 
 class SignUpViewModel : ViewModel(),
     AuthInteractor.OnAuthFinishedListener,
     SignUpInteractor.OnSignUpFinishedListener {
-
+init {
+    KTP.openScope(ApplicationScope::class.java).inject(this)
+}
     @Inject
     lateinit var interactor: SignUpInteractor
 

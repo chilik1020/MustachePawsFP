@@ -8,7 +8,6 @@ import com.chilik1020.mustachepawsfp.model.remote.MustachePawsApi
 import io.reactivex.Observable
 import okhttp3.ResponseBody
 import retrofit2.Response
-import toothpick.ktp.delegate.inject
 import javax.inject.Inject
 
 class UserRepositoryImpl : UserRepository {

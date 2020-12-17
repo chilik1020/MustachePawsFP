@@ -3,9 +3,8 @@ package com.chilik1020.mustachepawsfp
 import android.app.Application
 import com.chilik1020.framework.di.AppModule
 import com.chilik1020.framework.di.ApplicationScope
+import com.chilik1020.framework.di.DataModule
 import com.chilik1020.framework.di.NetworkModule
-
-
 import toothpick.Scope
 import toothpick.ktp.KTP
 
@@ -20,7 +19,8 @@ class MustachePawsApp : Application() {
         scope = KTP.openScope(ApplicationScope::class.java)
             .installModules(
                 AppModule(this),
-                NetworkModule()
+                NetworkModule(),
+                DataModule()
             )
     }
 

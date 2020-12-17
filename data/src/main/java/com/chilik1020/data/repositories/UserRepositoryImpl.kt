@@ -6,6 +6,7 @@ import com.chilik1020.data.sources.UserRemoteDataSource
 import com.chilik1020.domain.models.LoginRequestObject
 import com.chilik1020.domain.models.SignUpRequestObject
 import com.chilik1020.domain.models.UserDomainModel
+import com.chilik1020.domain.repositories.UserRepository
 import javax.inject.Inject
 
 class UserRepositoryImpl : UserRepository {
@@ -26,8 +27,8 @@ class UserRepositoryImpl : UserRepository {
         return remoteDataSource.login(loginRequestObject)
     }
 
-    override suspend fun echoUserDetails(token: String): UserDomainModel {
-        return toDomainMapper.invoke(remoteDataSource.echoUserDetails(token))
+    override suspend fun echoUserDetails(): UserDomainModel {
+        return toDomainMapper.invoke(remoteDataSource.echoUserDetails("token"))
     }
 
     override suspend fun signUp(signUpRequestObject: SignUpRequestObject): UserDomainModel {

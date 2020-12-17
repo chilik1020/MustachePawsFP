@@ -1,4 +1,4 @@
-package com.chilik1020.domain.usecase
+package com.chilik1020.domain.usecases
 
 interface PersistAccessTokenUseCase {
     suspend fun persistAccessToken(token: String)

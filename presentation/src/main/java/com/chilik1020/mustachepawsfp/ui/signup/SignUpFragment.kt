@@ -7,13 +7,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.chilik1020.framework.di.ApplicationScope
-import com.chilik1020.framework.di.SignUpViewModelScope
 import com.chilik1020.mustachepawsfp.databinding.FragmentSignUpBinding
 import toothpick.ktp.KTP
 import toothpick.ktp.delegate.inject
-import toothpick.smoothie.lifecycle.closeOnDestroy
-import toothpick.smoothie.viewmodel.closeOnViewModelCleared
-import toothpick.smoothie.viewmodel.installViewModelBinding
 
 class SignUpFragment : Fragment() {
 
@@ -23,7 +19,7 @@ class SignUpFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentSignUpBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -36,14 +32,15 @@ class SignUpFragment : Fragment() {
     }
 
     private fun injectDependencies() {
-        KTP.openScopes(ApplicationScope::class.java)
-            .openSubScope(SignUpViewModelScope::class.java) {
-                it.installViewModelBinding<SignUpViewModel>(this)
+        KTP.openScope(ApplicationScope::class.java).inject(this)
+//        KTP.openScopes(ApplicationScope::class.java)
+//            .openSubScope(SignUpViewModelScope::class.java) {
+//                it.installViewModelBinding<SignUpViewModel>(this)
 //                    .installModules(SignUpModule())
-                    .closeOnViewModelCleared(this)
-            }
-            .closeOnDestroy(this)
-            .inject(this)
+//                    .closeOnViewModelCleared(this)
+//            }
+//            .closeOnDestroy(this)
+//            .inject(this)
     }
 
     private fun initViews() {

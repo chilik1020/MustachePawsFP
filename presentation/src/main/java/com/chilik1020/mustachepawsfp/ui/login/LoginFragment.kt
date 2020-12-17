@@ -7,8 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import com.chilik1020.framework.di.ApplicationScope
-import com.chilik1020.framework.di.LoginViewModelScope
+import com.chilik1020.framework.di.*
 import com.chilik1020.mustachepawsfp.R
 import com.chilik1020.mustachepawsfp.databinding.FragmentLoginBinding
 import toothpick.ktp.KTP
@@ -41,7 +40,7 @@ class LoginFragment : Fragment() {
         KTP.openScopes(ApplicationScope::class.java)
             .openSubScope(LoginViewModelScope::class.java) {
                 it.installViewModelBinding<LoginViewModel>(this)
-//                    .installModules(LoginModule())
+                    .installModules(LoginModule())
                     .closeOnViewModelCleared(this)
             }
             .closeOnDestroy(this)

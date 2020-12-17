@@ -10,5 +10,13 @@ java {
 }
 
 dependencies {
+    //Local libs
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
     implementation kotlinDeps.kotlinStdlib
+    implementation toothPick.ktp
+    implementation toothPick.androidx
+    implementation toothPick.lifecycle_ktp
+    implementation toothPick.viewmodel_ktp
+    implementation toothPick.viewmodel_ktp
 }
