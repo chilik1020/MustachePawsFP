@@ -9,19 +9,12 @@ import com.chilik1020.domain.models.UserDomainModel
 import com.chilik1020.domain.repositories.UserRepository
 import javax.inject.Inject
 
-class UserRepositoryImpl : UserRepository {
-
-    @Inject
-    lateinit var localDataSource: UserLocalDataSource
-
-    @Inject
-    lateinit var remoteDataSource: UserRemoteDataSource
-
-    @Inject
-    lateinit var toDomainMapper: (UserDataModel) -> UserDomainModel
-
-    @Inject
-    lateinit var toDataMapper: (UserDomainModel) -> UserDataModel
+class UserRepositoryImpl @Inject constructor(
+    private val localDataSource: UserLocalDataSource,
+    private val remoteDataSource: UserRemoteDataSource,
+    private val toDomainMapper: (UserDataModel) -> UserDomainModel,
+    private val toDataMapper: (UserDomainModel) -> UserDataModel
+) : UserRepository {
 
     override suspend fun login(loginRequestObject: LoginRequestObject): String {
         return remoteDataSource.login(loginRequestObject)

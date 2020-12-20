@@ -15,5 +15,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation kotlinDeps.kotlinStdlib
-    implementation toothPick.ktp
+
+    api dagger.runtime
+    kapt dagger.compiler
 }

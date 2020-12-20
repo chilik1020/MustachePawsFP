@@ -37,21 +37,23 @@ dependencies {
     //Local libs
     api project(':data')
     api project(':domain')
+//    api project(':presentation')
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation kotlinDeps.kotlinStdlib
     implementation androidxDeps.coreKtx
 
-    implementation toothPick.ktp
-    implementation toothPick.androidx
-    implementation toothPick.lifecycle_ktp
-    implementation toothPick.viewmodel_ktp
-    kapt toothPick.compiler
+    api dagger.runtime
+    kapt dagger.compiler
+    api dagger.androidSupport
+    kapt dagger.androidSupportCompiler
 
     implementation okhttpLoggingInterceptor
     implementation retrofit.runtime
-    implementation retrofit.adapterRxJava2
-    implementation retrofit.moshi
-    implementation retrofit.simpleXml
+    implementation retrofit.adapterCoroutineJakeWharton
+    implementation retrofit.gson
 
+    testImplementation atsl.jUnit
+    androidTestImplementation atsl.extJunit
+    androidTestImplementation espresso.core
 }
