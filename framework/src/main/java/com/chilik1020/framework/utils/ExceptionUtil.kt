@@ -1,9 +1,9 @@
-package com.chilik1020.mustachepawsfp.utils
+package com.chilik1020.framework.utils
 
 import android.util.Log
-import retrofit2.HttpException
 import java.net.ConnectException
 import java.net.SocketTimeoutException
+import retrofit2.HttpException
 
 fun getMessageFromThrowable(t: Throwable): String {
     val message: String = when (t) {

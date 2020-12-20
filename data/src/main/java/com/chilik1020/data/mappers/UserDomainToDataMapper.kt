@@ -2,8 +2,9 @@ package com.chilik1020.data.mappers
 
 import com.chilik1020.data.models.UserDataModel
 import com.chilik1020.domain.models.UserDomainModel
+import javax.inject.Inject
 
-class UserDomainToDataMapper : (UserDomainModel) -> UserDataModel {
+class UserDomainToDataMapper @Inject constructor() : (UserDomainModel) -> UserDataModel {
     override fun invoke(user: UserDomainModel): UserDataModel {
         return UserDataModel(
             id = user.id,

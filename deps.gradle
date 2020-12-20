@@ -6,10 +6,10 @@ ext {
 
     def kotlinVersion = '1.4.10'
     kotlinDeps = [
-            kotlinGradlePlugin: "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion",
-            kotlinStdlib      : "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion",
-            kotlinAllopen     : "org.jetbrains.kotlin:kotlin-allopen:$kotlinVersion",
-            kotlinTest        : "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion"
+            kotlinGradlePlugin     : "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion",
+            kotlinStdlib           : "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion",
+            kotlinAllopen          : "org.jetbrains.kotlin:kotlin-allopen:$kotlinVersion",
+            kotlinTest             : "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion"
     ]
 
     def materialVersion = '1.2.1'
@@ -21,13 +21,17 @@ ext {
     def recyclerViewVersion = "1.1.0"
     def cardViewVersion = "1.0.0"
     def fragmentKtxVersion = '1.2.4'
+    def lifecycleVersion = "2.2.0"
     androidxDeps = [
             coreKtx         : "androidx.core:core-ktx:$coreKtxVersion",
             appCompat       : "androidx.appcompat:appcompat:$appCompatVersion",
             constraintlayout: "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion",
             recyclerView    : "androidx.recyclerview:recyclerview:$recyclerViewVersion",
             cardView        : "androidx.cardview:cardview:$cardViewVersion",
-            fragmentKtx     : "androidx.fragment:fragment-ktx:$fragmentKtxVersion"
+            fragmentKtx     : "androidx.fragment:fragment-ktx:$fragmentKtxVersion",
+            lifeCycle       : "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
+//            viewModel       : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion",
+//            liveData        : "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion",
     ]
 
     def navigationVersion = '2.3.0-alpha01'
@@ -56,31 +60,31 @@ ext {
             rxJava2  : "io.reactivex.rxjava2:rxjava:$rxJava2Version"
     ]
 
-    def daggerVersion = '2.16'
+    def daggerVersion = '2.28'
     dagger = [
             runtime               : "com.google.dagger:dagger:$daggerVersion",
+            compiler              : "com.google.dagger:dagger-compiler:$daggerVersion",
             android               : "com.google.dagger:dagger-android:$daggerVersion",
             androidSupport        : "com.google.dagger:dagger-android-support:$daggerVersion",
-            compiler              : "com.google.dagger:dagger-compiler:$daggerVersion",
             androidSupportCompiler: "com.google.dagger:dagger-android-processor:$daggerVersion"
     ]
 
     def toothPickVersion = '3.1.0'
     toothPick = [
-            smoothie         : "com.github.stephanenicolas.toothpick:smoothie:$toothPickVersion",
-            androidx         : "com.github.stephanenicolas.toothpick:smoothie-androidx:$toothPickVersion",
-            lifecycle        : "com.github.stephanenicolas.toothpick:smoothie-lifecycle:$toothPickVersion",
-            lifecycle_ktp    : "com.github.stephanenicolas.toothpick:smoothie-lifecycle-ktp:$toothPickVersion",
-            viewmodel        : "com.github.stephanenicolas.toothpick:smoothie-lifecycle-viewmodel:$toothPickVersion",
-            viewmodel_ktp    : "com.github.stephanenicolas.toothpick:smoothie-lifecycle-viewmodel-ktp:$toothPickVersion",
-            smoothie_support : "com.github.stephanenicolas.toothpick:smoothie-support:$toothPickVersion",
-            core                  : "com.github.stephanenicolas.toothpick:toothpick:$toothPickVersion",
-            runtime          : "com.github.stephanenicolas.toothpick:toothpick-runtime:$toothPickVersion",
-            ktp                 : "com.github.stephanenicolas.toothpick:ktp:$toothPickVersion",
-            compiler         : "com.github.stephanenicolas.toothpick:toothpick-compiler:$toothPickVersion",
-            testing          : "com.github.stephanenicolas.toothpick:toothpick-testing:$toothPickVersion",
-            testing_junit4   : "com.github.stephanenicolas.toothpick:toothpick-testing-junit4:$toothPickVersion",
-            testing_junit5   : "com.github.stephanenicolas.toothpick:toothpick-testing-junit5:$toothPickVersion",
+            smoothie        : "com.github.stephanenicolas.toothpick:smoothie:$toothPickVersion",
+            androidx        : "com.github.stephanenicolas.toothpick:smoothie-androidx:$toothPickVersion",
+            lifecycle       : "com.github.stephanenicolas.toothpick:smoothie-lifecycle:$toothPickVersion",
+            lifecycle_ktp   : "com.github.stephanenicolas.toothpick:smoothie-lifecycle-ktp:$toothPickVersion",
+            viewmodel       : "com.github.stephanenicolas.toothpick:smoothie-lifecycle-viewmodel:$toothPickVersion",
+            viewmodel_ktp   : "com.github.stephanenicolas.toothpick:smoothie-lifecycle-viewmodel-ktp:$toothPickVersion",
+            smoothie_support: "com.github.stephanenicolas.toothpick:smoothie-support:$toothPickVersion",
+            core            : "com.github.stephanenicolas.toothpick:toothpick:$toothPickVersion",
+            runtime         : "com.github.stephanenicolas.toothpick:toothpick-runtime:$toothPickVersion",
+            ktp             : "com.github.stephanenicolas.toothpick:ktp:$toothPickVersion",
+            compiler        : "com.github.stephanenicolas.toothpick:toothpick-compiler:$toothPickVersion",
+            testing         : "com.github.stephanenicolas.toothpick:toothpick-testing:$toothPickVersion",
+            testing_junit4  : "com.github.stephanenicolas.toothpick:toothpick-testing-junit4:$toothPickVersion",
+            testing_junit5  : "com.github.stephanenicolas.toothpick:toothpick-testing-junit5:$toothPickVersion",
     ]
 
     def koinVersion = '2.2.1'
@@ -94,7 +98,7 @@ ext {
             // Koin AndroidX Scope features
             androidxScope      : "org.koin:koin-androidx-scope:$koinVersion",
             // Koin AndroidX ViewModel features
-            androidxScope      : "org.koin:koin-androidx-viewmodel:$koinVersion",
+            androidxViewModel  : "org.koin:koin-androidx-viewmodel:$koinVersion",
             // Koin AndroidX Fragment features
             androidxFragment   : "org.koin:koin-androidx-fragment:$koinVersion",
             // Koin AndroidX WorkManager
@@ -115,13 +119,15 @@ ext {
     ]
 
     def retrofitVersion = '2.9.0'
+    def retrofitCoroutineAdapterVersion = '1.0.0'
     retrofit = [
-            runtime       : "com.squareup.retrofit2:retrofit:$retrofitVersion",
-            gson          : "com.squareup.retrofit2:converter-gson:$retrofitVersion",
-            mock          : "com.squareup.retrofit2:retrofit-mock:$retrofitVersion",
-            adapterRxJava2: "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion",
-            moshi         : "com.squareup.retrofit2:converter-moshi:$retrofitVersion",
-            simpleXml     : "com.squareup.retrofit2:converter-simplexml:$retrofitVersion"
+            runtime                    : "com.squareup.retrofit2:retrofit:$retrofitVersion",
+            gson                       : "com.squareup.retrofit2:converter-gson:$retrofitVersion",
+            mock                       : "com.squareup.retrofit2:retrofit-mock:$retrofitVersion",
+            adapterRxJava2             : "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion",
+            adapterCoroutineJakeWharton: "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-experimental-adapter:$retrofitCoroutineAdapterVersion",
+            moshi                      : "com.squareup.retrofit2:converter-moshi:$retrofitVersion",
+            simpleXml                  : "com.squareup.retrofit2:converter-simplexml:$retrofitVersion"
     ]
     def okHttpLoggingInterceptorVersion = '3.9.0'
     okhttpLoggingInterceptor = "com.squareup.okhttp3:logging-interceptor:$okHttpLoggingInterceptorVersion"

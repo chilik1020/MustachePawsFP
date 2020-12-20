@@ -1,14 +1,10 @@
 package com.chilik1020.mustachepawsfp.ui
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import com.chilik1020.framework.di.ApplicationScope
 import com.chilik1020.mustachepawsfp.R
-import com.chilik1020.mustachepawsfp.utils.LOG_TAG
-import toothpick.ktp.KTP
 
 class MainActivity : AppCompatActivity() {
 

@@ -6,10 +6,9 @@ import com.chilik1020.domain.models.LoginRequestObject
 import com.chilik1020.domain.models.SignUpRequestObject
 import javax.inject.Inject
 
-class UserRemoteDataSourceImpl : UserRemoteDataSource {
-
-    @Inject
-    lateinit var api: MustachePawsApi
+class UserRemoteDataSourceImpl @Inject constructor(
+    private val api: MustachePawsApi
+) : UserRemoteDataSource {
 
     override suspend fun login(loginRequestObject: LoginRequestObject): String {
         val response = api.login(loginRequestObject)

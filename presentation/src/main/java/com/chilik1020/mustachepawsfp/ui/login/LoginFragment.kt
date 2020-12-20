@@ -5,21 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import com.chilik1020.framework.di.*
 import com.chilik1020.mustachepawsfp.R
 import com.chilik1020.mustachepawsfp.databinding.FragmentLoginBinding
-import toothpick.ktp.KTP
-import toothpick.ktp.delegate.inject
-import toothpick.smoothie.lifecycle.closeOnDestroy
-import toothpick.smoothie.viewmodel.closeOnViewModelCleared
-import toothpick.smoothie.viewmodel.installViewModelBinding
+import com.chilik1020.mustachepawsfp.di.LoginScope
+import dagger.android.support.DaggerFragment
+import javax.inject.Inject
 
-class LoginFragment : Fragment() {
+class LoginFragment : DaggerFragment() {
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
 
     lateinit var binding: FragmentLoginBinding
-    private val viewModel: LoginViewModel by inject()
+
+    private lateinit var viewModel: LoginViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,22 +32,12 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        injectDependencies()
         initViews()
     }
 
-    private fun injectDependencies() {
-        KTP.openScopes(ApplicationScope::class.java)
-            .openSubScope(LoginViewModelScope::class.java) {
-                it.installViewModelBinding<LoginViewModel>(this)
-                    .installModules(LoginModule())
-                    .closeOnViewModelCleared(this)
-            }
-            .closeOnDestroy(this)
-            .inject(this)
-    }
-
     private fun initViews() {
+        viewModel = ViewModelProvider(this, viewModelFactory).get(LoginViewModel::class.java)
+
         with(binding) {
             btnLogin.setOnClickListener {
                 val username = tietUsernameLoginF.text.toString()
