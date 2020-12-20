@@ -4,6 +4,7 @@ import com.chilik1020.framework.remote.MustachePawsApi
 import com.chilik1020.framework.utils.BASE_URL
 import dagger.Module
 import dagger.Provides
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -32,6 +33,8 @@ class NetworkModule {
     @Singleton
     fun provideOkHttpClient(interceptor: HttpLoggingInterceptor): OkHttpClient =
         OkHttpClient.Builder()
+            .connectTimeout(2, TimeUnit.SECONDS)
+            .readTimeout(4, TimeUnit.SECONDS)
             .addInterceptor(interceptor)
             .build()
 
