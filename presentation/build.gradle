@@ -1,0 +1,64 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
+
+    defaultConfig {
+        applicationId "com.chilik1020.mustachepawsfp"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    //Local libs
+    api project(':framework')
+    api project(':domain')
+    api project(':data')
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+
+    implementation kotlinDeps.kotlinStdlib
+    implementation material
+    implementation androidxDeps.values()
+
+    implementation navigation.fragmentKtx
+    implementation navigation.uiKtx
+
+    api dagger.runtime
+    kapt dagger.compiler
+    api dagger.androidSupport
+    kapt dagger.androidSupportCompiler
+
+    implementation okhttpLoggingInterceptor
+    implementation retrofit.runtime
+    implementation retrofit.adapterCoroutineJakeWharton
+    implementation retrofit.gson
+
+    testImplementation atsl.jUnit
+    androidTestImplementation atsl.extJunit
+    androidTestImplementation espresso.core
+}

@@ -1,2 +1,5 @@
-include ':app'
+include ':framework'
+include ':data'
+include ':domain'
+include ':presentation'
 rootProject.name = "MustachePawsFP"
