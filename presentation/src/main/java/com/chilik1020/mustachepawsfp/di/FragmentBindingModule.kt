@@ -9,10 +9,9 @@ import dagger.android.support.AndroidSupportInjectionModule
 @Module(includes = [AndroidSupportInjectionModule::class])
 abstract class FragmentBindingModule {
 
-    @ContributesAndroidInjector(modules = [LoginModule::class])
+    @ContributesAndroidInjector
     abstract fun loginFragment(): LoginFragment
 
-    @SignUpScope
     @ContributesAndroidInjector
     abstract fun signUpFragment(): SignUpFragment
 }

@@ -8,6 +8,10 @@
 /.idea/workspace.xml
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
+/data/build/
+/domain/build/
+/presentation/build
+/framework/build
 .DS_Store
 /build
 /captures

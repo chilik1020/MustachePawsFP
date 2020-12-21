@@ -4,14 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import com.chilik1020.mustachepawsfp.databinding.FragmentSignUpBinding
+import com.chilik1020.mustachepawsfp.utils.hideKeyboard
+import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.DaggerFragment
+import javax.inject.Inject
 
 class SignUpFragment : DaggerFragment() {
 
-    //    @Inject
-//    lateinit var viewModelFactory: ViewModelProvider.Factory
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
     lateinit var binding: FragmentSignUpBinding
 
     private lateinit var viewModel: SignUpViewModel
@@ -27,13 +31,14 @@ class SignUpFragment : DaggerFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        //   viewModel = ViewModelProvider(this, viewModelFactory).get(SignUpViewModel::class.java)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(SignUpViewModel::class.java)
         initViews()
     }
 
     private fun initViews() {
         with(binding) {
             btnSignUp.setOnClickListener {
+                hideKeyboard()
                 viewModel.executeSignUp(
                     tietUsernameSignUpF.text.toString(),
                     tietEmailSignUpF.text.toString(),
@@ -53,33 +58,32 @@ class SignUpFragment : DaggerFragment() {
             }
 
             is SignUpViewState.SignUpFinishedState -> {
-                Toast.makeText(activity, "You have successfully registered!", Toast.LENGTH_LONG)
-                    .show()
+                showSnackBarMessage("You have successfully registered!")
                 navigateToPostListFragment()
             }
 
             is SignUpViewState.SignUpErrorState -> {
-                Toast.makeText(activity, state.message, Toast.LENGTH_LONG).show()
+                showSnackBarMessage(state.message)
             }
 
             is SignUpViewState.UsernameErrorState -> {
                 binding.tilUsernameSignUpF.error = state.message
-                Toast.makeText(activity, state.message, Toast.LENGTH_LONG).show()
+                showSnackBarMessage(state.message)
             }
 
             is SignUpViewState.EmailErrorState -> {
                 binding.tilEmailSignUpF.error = state.message
-                Toast.makeText(activity, state.message, Toast.LENGTH_LONG).show()
+                showSnackBarMessage(state.message)
             }
 
             is SignUpViewState.PasswordErrorState -> {
                 binding.tilPasswordSignUpF.error = state.message
-                Toast.makeText(activity, state.message, Toast.LENGTH_LONG).show()
+                showSnackBarMessage(state.message)
             }
 
             is SignUpViewState.ConfirmPasswordErrorState -> {
                 binding.tilConfirmPasswordSignUpF.error = state.message
-                Toast.makeText(activity, state.message, Toast.LENGTH_LONG).show()
+                showSnackBarMessage(state.message)
             }
         }
     }
@@ -96,5 +100,9 @@ class SignUpFragment : DaggerFragment() {
 
     private fun navigateToPostListFragment() {
 
+    }
+
+    private fun showSnackBarMessage(msg: String) {
+        Snackbar.make(binding.root, msg, Snackbar.LENGTH_SHORT).show()
     }
 }

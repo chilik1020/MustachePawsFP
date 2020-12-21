@@ -12,32 +12,23 @@ import javax.inject.Inject
 class UserRepositoryImpl @Inject constructor(
     private val localDataSource: UserLocalDataSource,
     private val remoteDataSource: UserRemoteDataSource,
-    private val toDomainMapper: (UserDataModel) -> UserDomainModel,
-    private val toDataMapper: (UserDomainModel) -> UserDataModel
+    private val toDomainMapper: (UserDataModel) -> UserDomainModel
 ) : UserRepository {
 
     override suspend fun login(loginRequestObject: LoginRequestObject): String {
+        val accessToken = remoteDataSource.login(loginRequestObject)
+        localDataSource.saveAccessToken(accessToken)
+        val userDetail = remoteDataSource.echoUserDetails(accessToken)
+        localDataSource.saveUserDetails(userDetail)
         return remoteDataSource.login(loginRequestObject)
-    }
-
-    override suspend fun echoUserDetails(): UserDomainModel {
-        return toDomainMapper.invoke(remoteDataSource.echoUserDetails("token"))
     }
 
     override suspend fun signUp(signUpRequestObject: SignUpRequestObject): UserDomainModel {
         return toDomainMapper.invoke(remoteDataSource.signUp(signUpRequestObject))
     }
 
-    override suspend fun saveAccessToken(token: String) {
-        return localDataSource.saveAccessToken(token)
-    }
-
-    override suspend fun getSavedToken(): String? {
-        return localDataSource.getSavedToken()
-    }
-
-    override suspend fun saveUserDetails(userDomainModel: UserDomainModel) {
-        return localDataSource.saveUserDetails(toDataMapper.invoke(userDomainModel))
+    override suspend fun logout() {
+        localDataSource.clear()
     }
 
     override suspend fun getSavedUserDetails(): UserDomainModel? {

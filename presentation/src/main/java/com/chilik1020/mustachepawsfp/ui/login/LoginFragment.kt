@@ -1,6 +1,7 @@
 package com.chilik1020.mustachepawsfp.ui.login
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +10,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.chilik1020.mustachepawsfp.R
 import com.chilik1020.mustachepawsfp.databinding.FragmentLoginBinding
-import com.chilik1020.mustachepawsfp.di.LoginScope
+import com.chilik1020.mustachepawsfp.utils.LOG_TAG
+import com.chilik1020.mustachepawsfp.utils.hideKeyboard
+import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
@@ -40,6 +43,7 @@ class LoginFragment : DaggerFragment() {
 
         with(binding) {
             btnLogin.setOnClickListener {
+                hideKeyboard()
                 val username = tietUsernameLoginF.text.toString()
                 val password = tietPasswordLoginF.text.toString()
                 viewModel.executeLogin(username, password)
@@ -58,25 +62,24 @@ class LoginFragment : DaggerFragment() {
             }
 
             is LoginViewState.LoggedState -> {
-                Toast.makeText(activity, "You have successfully logged in!", Toast.LENGTH_LONG)
-                    .show()
+                showSnackBarMessage("You have successfully logged in!")
                 navigateToPostListFragment()
             }
 
             is LoginViewState.LoginErrorState -> {
                 binding.tilUsernameLoginF.error = state.message
                 binding.tilPasswordLoginF.error = " "
-                Toast.makeText(activity, state.message, Toast.LENGTH_LONG).show()
+                showSnackBarMessage(state.message)
             }
 
             is LoginViewState.UsernameErrorState -> {
                 binding.tilUsernameLoginF.error = state.message
-                Toast.makeText(activity, state.message, Toast.LENGTH_LONG).show()
+                showSnackBarMessage(state.message)
             }
 
             is LoginViewState.PasswordErrorState -> {
                 binding.tilPasswordLoginF.error = state.message
-                Toast.makeText(activity, state.message, Toast.LENGTH_LONG).show()
+                showSnackBarMessage(state.message)
             }
         }
     }
@@ -95,5 +98,9 @@ class LoginFragment : DaggerFragment() {
     }
 
     private fun navigateToPostListFragment() {
+    }
+
+    private fun showSnackBarMessage(msg: String) {
+        Snackbar.make(binding.root, msg, Snackbar.LENGTH_SHORT).show()
     }
 }

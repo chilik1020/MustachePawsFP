@@ -51,4 +51,8 @@ class UserLocalDataSourceImpl @Inject constructor(
             )
         }
     }
+
+    override suspend fun clear() {
+        preferences.edit().clear().apply()
+    }
 }
