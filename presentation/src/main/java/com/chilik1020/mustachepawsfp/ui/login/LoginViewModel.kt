@@ -26,7 +26,13 @@ class LoginViewModel @Inject constructor() : ViewModel() {
         viewStateMutable.value = LoginViewState.LoginLoadingState
 
         viewModelScope.launch {
-            loginUseCase.login(LoginRequestObject(username, password))
+            try {
+                loginUseCase.login(LoginRequestObject(username, password))
+                viewStateMutable.value = LoginViewState.LoggedState
+            } catch (ex: Exception) {
+                viewStateMutable.value = LoginViewState.LoginErrorState(ex.message.toString())
+            }
+
         }
     }
 

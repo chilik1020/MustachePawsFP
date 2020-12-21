@@ -3,19 +3,20 @@ package com.chilik1020.mustachepawsfp.ui.signup
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.chilik1020.domain.models.SignUpRequestObject
+import com.chilik1020.domain.usecases.SignUpUseCase
 import com.chilik1020.mustachepawsfp.utils.checkConfirmPasswordInSignUpForm
 import com.chilik1020.mustachepawsfp.utils.checkEmailInSignUpForm
 import com.chilik1020.mustachepawsfp.utils.checkPasswordInSignUpForm
 import com.chilik1020.mustachepawsfp.utils.checkUsernameInSignUpForm
 import javax.inject.Inject
+import kotlinx.coroutines.launch
 
 class SignUpViewModel @Inject constructor() : ViewModel() {
 
-//    @Inject
-//    lateinit var interactor: SignUpInteractor
-//
-//    @Inject
-//    lateinit var preferences: AppPreferences
+    @Inject
+    lateinit var signUpUseCase: SignUpUseCase
 
     private val viewStateMutable = MutableLiveData<SignUpViewState>()
     val viewState: LiveData<SignUpViewState>
@@ -24,17 +25,24 @@ class SignUpViewModel @Inject constructor() : ViewModel() {
     fun executeSignUp(username: String, email: String, password: String, confirmPassword: String) {
         if (!isSignUpFormCorrect(username, email, password, confirmPassword)) return
 
+        val signUpRequestObject = SignUpRequestObject(
+            username,
+            "",
+            "",
+            email,
+            "",
+            password
+        )
+
         viewStateMutable.value = SignUpViewState.SignUpLoadingState
-//        interactor.signUp(
-//            UserRequestObject(
-//                username,
-//                "",
-//                "",
-//                email,
-//                "",
-//                password
-//            ), this
-//        )
+        viewModelScope.launch {
+            try {
+                signUpUseCase.signUp(signUpRequestObject)
+                viewStateMutable.value = SignUpViewState.SignUpFinishedState
+            } catch (ex: Exception) {
+                viewStateMutable.value = SignUpViewState.SignUpErrorState(ex.message.toString())
+            }
+        }
     }
 
     private fun isSignUpFormCorrect(

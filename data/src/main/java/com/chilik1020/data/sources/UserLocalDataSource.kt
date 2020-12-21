@@ -7,4 +7,5 @@ interface UserLocalDataSource {
     suspend fun getSavedToken(): String?
     suspend fun saveUserDetails(userDataModel: UserDataModel)
     suspend fun getSavedUserDetails(): UserDataModel?
+    suspend fun clear()
 }
