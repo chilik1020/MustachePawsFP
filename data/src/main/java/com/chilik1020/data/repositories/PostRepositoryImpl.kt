@@ -1,0 +1,25 @@
+package com.chilik1020.data.repositories
+
+import com.chilik1020.data.mappers.PostDataToDomainMapper
+import com.chilik1020.data.sources.PostRemoteDataSource
+import com.chilik1020.data.sources.UserLocalDataSource
+import com.chilik1020.domain.models.PostDomainModel
+import com.chilik1020.domain.repositories.PostRepository
+import javax.inject.Inject
+
+class PostRepositoryImpl @Inject constructor(
+    private val userLocalDataSource: UserLocalDataSource,
+    private val postRemoteDataSource: PostRemoteDataSource,
+    private val toDomainMapper: PostDataToDomainMapper
+) : PostRepository {
+    override suspend fun fetchPosts(): List<PostDomainModel> {
+        val token = userLocalDataSource.getSavedToken()
+        return if (token != null) {
+            postRemoteDataSource.fetchPosts(token)
+                .map(toDomainMapper)
+                .toList()
+        } else {
+            emptyList()
+        }
+    }
+}

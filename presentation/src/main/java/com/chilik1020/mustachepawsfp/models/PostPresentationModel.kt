@@ -1,6 +1,6 @@
-package com.chilik1020.data.models
+package com.chilik1020.mustachepawsfp.models
 
-data class PostDataModel(
+data class PostPresentationModel(
     val id: Long,
     val closed: Boolean,
     val typeOfAnimal: String,

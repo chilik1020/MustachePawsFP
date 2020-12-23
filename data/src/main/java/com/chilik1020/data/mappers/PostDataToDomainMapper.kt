@@ -1,0 +1,18 @@
+package com.chilik1020.data.mappers
+
+import com.chilik1020.data.models.PostDataModel
+import com.chilik1020.domain.models.PostDomainModel
+
+class PostDataToDomainMapper : (PostDataModel) -> PostDomainModel {
+    override fun invoke(post: PostDataModel) = PostDomainModel(
+        id = post.id,
+        closed = post.closed,
+        typeOfAnimal = post.typeOfAnimal,
+        ageOfAnimal = post.ageOfAnimal,
+        typeOfHelp = post.typeOfHelp,
+        description = post.description,
+        imageLink = post.imageLink,
+        creatorUsername = post.creatorUsername,
+        createdAt = post.createdAt
+    )
+}
