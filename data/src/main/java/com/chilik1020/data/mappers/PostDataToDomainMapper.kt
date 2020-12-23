@@ -2,8 +2,9 @@ package com.chilik1020.data.mappers
 
 import com.chilik1020.data.models.PostDataModel
 import com.chilik1020.domain.models.PostDomainModel
+import javax.inject.Inject
 
-class PostDataToDomainMapper : (PostDataModel) -> PostDomainModel {
+class PostDataToDomainMapper @Inject constructor() : (PostDataModel) -> PostDomainModel {
     override fun invoke(post: PostDataModel) = PostDomainModel(
         id = post.id,
         closed = post.closed,

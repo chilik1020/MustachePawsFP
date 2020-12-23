@@ -35,12 +35,15 @@ class PostListFragment : DaggerFragment() {
     }
 
     private fun initViews() {
+        viewModel = ViewModelProvider(this, viewModelFactory).get(PostListViewModel::class.java)
+
         binding.rvPostList.apply {
             adapter = postListAdapter
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         }
         viewModel.viewState.observe(viewLifecycleOwner) { render(it) }
+        viewModel.fetchPosts()
     }
 
     private fun render(state: PostListViewState) {

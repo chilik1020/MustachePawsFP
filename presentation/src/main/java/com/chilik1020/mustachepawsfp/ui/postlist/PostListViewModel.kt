@@ -4,9 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.chilik1020.domain.models.PostDomainModel
 import com.chilik1020.domain.usecases.FetchPostsUseCase
-import com.chilik1020.mustachepawsfp.models.PostPresentationModel
+import com.chilik1020.mustachepawsfp.mappers.PostDomainToPresentationModel
 import javax.inject.Inject
 import kotlinx.coroutines.launch
 
@@ -15,8 +14,7 @@ class PostListViewModel @Inject constructor() : ViewModel() {
     @Inject
     lateinit var fetchPostUseCase: FetchPostsUseCase
 
-    @Inject
-    lateinit var toPresentationMapper: (PostDomainModel) -> PostPresentationModel
+    val toPresentationMapper = PostDomainToPresentationModel()
 
     private val viewStateMutable: MutableLiveData<PostListViewState> = MutableLiveData()
     val viewState: LiveData<PostListViewState>

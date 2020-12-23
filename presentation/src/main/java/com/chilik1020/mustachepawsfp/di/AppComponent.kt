@@ -19,7 +19,8 @@ import javax.inject.Singleton
         ViewModelModule::class,
         LocalModule::class,
         NetworkModule::class,
-        UserModule::class
+        UserModule::class,
+        PostModule::class
     ]
 )
 interface AppComponent : AndroidInjector<MustachePawsDaggerApplication> {
