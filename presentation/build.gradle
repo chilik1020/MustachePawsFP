@@ -45,6 +45,9 @@ dependencies {
     implementation material
     implementation androidxDeps.values()
 
+    // ExpandableTextView
+    implementation 'at.blogc:expandabletextview:1.0.5'
+
     implementation navigation.fragmentKtx
     implementation navigation.uiKtx
 
@@ -57,6 +60,11 @@ dependencies {
     implementation retrofit.runtime
     implementation retrofit.adapterCoroutineJakeWharton
     implementation retrofit.gson
+    
+    implementation glide.runtime
+    kapt glide.compiler
+
+
 
     testImplementation atsl.jUnit
     androidTestImplementation atsl.extJunit

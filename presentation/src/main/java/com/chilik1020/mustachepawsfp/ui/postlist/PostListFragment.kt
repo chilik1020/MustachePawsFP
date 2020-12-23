@@ -32,6 +32,14 @@ class PostListFragment : DaggerFragment() {
     }
 
     private fun initViews() {
+        viewModel.viewState.observe(viewLifecycleOwner) { render(it) }
+    }
 
+    private fun render(state: PostListViewState) {
+        when (state) {
+            PostListViewState.Loading -> TODO()
+            is PostListViewState.Success -> TODO()
+            is PostListViewState.Error -> TODO()
+        }
     }
 }
