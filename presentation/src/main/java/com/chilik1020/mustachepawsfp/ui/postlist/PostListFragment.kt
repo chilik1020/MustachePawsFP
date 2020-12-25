@@ -44,11 +44,9 @@ class PostListFragment : DaggerFragment() {
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         }
 
-        binding.ivGoToProfileFragment.setOnClickListener { navigateToProfileFragment() }
-
-        binding.ivReFetchPosts.setOnClickListener {
-            viewModel.fetchPosts()
-        }
+        binding.ivGoToProfile.setOnClickListener { navigateToProfileFragment() }
+        binding.ivGoToCreatePost.setOnClickListener { navigateToPostCreate() }
+        binding.ivReFetchPosts.setOnClickListener { viewModel.fetchPosts() }
 
         viewModel.viewState.observe(viewLifecycleOwner) { render(it) }
         viewModel.fetchPosts()
@@ -70,9 +68,14 @@ class PostListFragment : DaggerFragment() {
         }
     }
 
+    private fun navigateToPostCreate() {
+        Navigation.findNavController(binding.root)
+            .navigate(R.id.action_postList_to_PostCreateGraph)
+    }
+
     private fun navigateToProfileFragment() {
         Navigation.findNavController(binding.root)
-            .navigate(R.id.action_postListFragment_to_profileFragment)
+            .navigate(R.id.action_postList_to_profile)
     }
 
     private fun showSnackBarMessage(msg: String) {

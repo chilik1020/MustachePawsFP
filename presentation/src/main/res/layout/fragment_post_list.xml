@@ -67,7 +67,7 @@
 
 
         <ImageView
-            android:id="@+id/ivGoToCreatePostFragment"
+            android:id="@+id/ivGoToCreatePost"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_gravity="center"
@@ -76,7 +76,7 @@
             android:src="@drawable/ic_add_circle" />
 
         <ImageView
-            android:id="@+id/ivGoToProfileFragment"
+            android:id="@+id/ivGoToProfile"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_gravity="center_vertical|end"
