@@ -6,10 +6,10 @@ ext {
 
     def kotlinVersion = '1.4.10'
     kotlinDeps = [
-            kotlinGradlePlugin     : "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion",
-            kotlinStdlib           : "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion",
-            kotlinAllopen          : "org.jetbrains.kotlin:kotlin-allopen:$kotlinVersion",
-            kotlinTest             : "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion"
+            kotlinGradlePlugin: "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion",
+            kotlinStdlib      : "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion",
+            kotlinAllopen     : "org.jetbrains.kotlin:kotlin-allopen:$kotlinVersion",
+            kotlinTest        : "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion"
     ]
 
     def materialVersion = '1.2.1'
@@ -137,6 +137,9 @@ ext {
             runtime : "com.github.bumptech.glide:glide:$glideVersion",
             compiler: "com.github.bumptech.glide:compiler:$glideVersion"
     ]
+
+    def uCropVersion = '2.2.5'
+    uCrop = "com.github.yalantis:ucrop:$uCropVersion"
 
     // TEST dependencies
     def jUnitVersion = '4.12'

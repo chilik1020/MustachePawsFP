@@ -91,12 +91,12 @@ class LoginFragment : DaggerFragment() {
 
     private fun navigateToSignUpFragment() {
         Navigation.findNavController(binding.root)
-            .navigate(R.id.action_loginFragment_to_signUpFragment)
+            .navigate(R.id.action_login_to_signUp)
     }
 
     private fun navigateToPostListFragment() {
         Navigation.findNavController(binding.root)
-            .navigate(R.id.action_loginFragment_to_postListFragment)
+            .navigate(R.id.action_login_to_postList)
     }
 
     private fun showSnackBarMessage(msg: String) {

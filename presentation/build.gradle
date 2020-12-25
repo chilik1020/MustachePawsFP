@@ -64,6 +64,7 @@ dependencies {
 
     implementation glide.runtime
     kapt glide.compiler
+    implementation uCrop
 
     testImplementation atsl.jUnit
     androidTestImplementation atsl.extJunit
