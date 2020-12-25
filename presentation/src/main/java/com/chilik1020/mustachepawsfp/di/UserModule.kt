@@ -13,6 +13,8 @@ import com.chilik1020.domain.usecases.LoginUseCase
 import com.chilik1020.domain.usecases.LoginUseCaseImpl
 import com.chilik1020.domain.usecases.SignUpUseCase
 import com.chilik1020.domain.usecases.SignUpUseCaseImpl
+import com.chilik1020.domain.usecases.YourProfileDetailsUseCase
+import com.chilik1020.domain.usecases.YourProfileDetailsUseCaseImpl
 import com.chilik1020.framework.local.UserLocalDataSourceImpl
 import com.chilik1020.framework.remote.MustachePawsApi
 import com.chilik1020.framework.remote.UserRemoteDataSourceImpl
@@ -29,6 +31,10 @@ class UserModule {
     @Provides
     fun provideSignUpUseCase(userRepository: UserRepository): SignUpUseCase =
         SignUpUseCaseImpl(userRepository)
+
+    @Provides
+    fun provideYourUserDetailsUseCase(userRepository: UserRepository): YourProfileDetailsUseCase =
+        YourProfileDetailsUseCaseImpl(userRepository)
 
     @Provides
     fun provideUserRepository(

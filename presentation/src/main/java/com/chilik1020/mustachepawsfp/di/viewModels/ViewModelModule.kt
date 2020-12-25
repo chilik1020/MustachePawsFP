@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.chilik1020.mustachepawsfp.ui.login.LoginViewModel
 import com.chilik1020.mustachepawsfp.ui.postlist.PostListViewModel
+import com.chilik1020.mustachepawsfp.ui.profile.ProfileViewModel
 import com.chilik1020.mustachepawsfp.ui.signup.SignUpViewModel
 import dagger.Binds
 import dagger.Module
@@ -28,4 +29,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(PostListViewModel::class)
     abstract fun bindPostListViewModel(viewModel: PostListViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ProfileViewModel::class)
+    abstract fun bindProfileViewModel(viewModel: ProfileViewModel): ViewModel
 }
