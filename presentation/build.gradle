@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.chilik1020.mustachepawsfp"
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -60,6 +60,7 @@ dependencies {
     implementation retrofit.runtime
     implementation retrofit.adapterCoroutineJakeWharton
     implementation retrofit.gson
+    implementation retrofit.moshi
     
     implementation glide.runtime
     kapt glide.compiler

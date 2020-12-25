@@ -1,6 +1,6 @@
 package com.chilik1020.framework.remote
 
-import com.chilik1020.data.models.PostDataModel
+import com.chilik1020.data.models.ListPostDataModel
 import com.chilik1020.data.models.UserDataModel
 import com.chilik1020.domain.models.LoginRequestObject
 import com.chilik1020.domain.models.SignUpRequestObject
@@ -24,5 +24,5 @@ interface MustachePawsApi {
     suspend fun echoDetails(@Header("Authorization") authorization: String): UserDataModel
 
     @GET("mustachepaws/posts/all")
-    suspend fun fetchPosts(@Header("Authorization") authorization: String): List<PostDataModel>
+    suspend fun fetchPosts(@Header("Authorization") authorization: String): ListPostDataModel
 }

@@ -42,6 +42,13 @@ class PostListFragment : DaggerFragment() {
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         }
+
+        binding.ivGoToProfileFragment.setOnClickListener { navigateToProfileFragment() }
+
+        binding.ivReFetchPosts.setOnClickListener {
+            viewModel.fetchPosts()
+        }
+
         viewModel.viewState.observe(viewLifecycleOwner) { render(it) }
         viewModel.fetchPosts()
     }
@@ -60,6 +67,11 @@ class PostListFragment : DaggerFragment() {
                 showSnackBarMessage(state.msg)
             }
         }
+    }
+
+    private fun navigateToProfileFragment() {
+//        Navigation.findNavController(binding.root)
+//            .navigate(R.id.action_loginFragment_to_postListFragment)
     }
 
     private fun showSnackBarMessage(msg: String) {

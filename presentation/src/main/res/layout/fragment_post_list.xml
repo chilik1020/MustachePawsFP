@@ -13,8 +13,8 @@
             android:id="@+id/toolbarPostListFragment"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:elevation="10dp"
             android:background="@drawable/toolbar"
+            android:elevation="10dp"
             app:title=" " />
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -57,13 +57,13 @@
         app:backgroundTint="@color/primaryColor">
 
         <ImageView
-            android:id="@+id/ivHomeFragment"
+            android:id="@+id/ivReFetchPosts"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="@dimen/ico_on_banner_margin"
             android:padding="@dimen/default_padding"
-            android:src="@drawable/ic_home" />
+            android:src="@drawable/ic_refresh" />
 
 
         <ImageView
@@ -81,6 +81,7 @@
             android:layout_height="45dp"
             android:layout_gravity="center_vertical|end"
             android:layout_marginEnd="@dimen/ico_on_banner_margin"
+            android:src="@drawable/ic_person"
             android:contentDescription="@string/my_profile"
             android:padding="@dimen/default_padding" />
 
