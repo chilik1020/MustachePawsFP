@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.chilik1020.domain.usecases.YourProfileDetailsUseCase
-import com.chilik1020.mustachepawsfp.mappers.UserDomainToPresentationModel
+import com.chilik1020.mustachepawsfp.mappers.UserDomainToPresentationMapper
 import javax.inject.Inject
 import kotlinx.coroutines.launch
 
@@ -15,7 +15,7 @@ class ProfileViewModel @Inject constructor() : ViewModel() {
     lateinit var yourProfileDetailsUseCase: YourProfileDetailsUseCase
 
     @Inject
-    lateinit var toPresentationModel: UserDomainToPresentationModel
+    lateinit var toPresentationModel: UserDomainToPresentationMapper
 
     private val viewStateMutable: MutableLiveData<ProfileViewState> = MutableLiveData()
     val viewState: LiveData<ProfileViewState>

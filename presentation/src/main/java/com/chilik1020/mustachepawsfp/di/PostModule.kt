@@ -11,7 +11,7 @@ import com.chilik1020.domain.usecases.FetchPostsUseCase
 import com.chilik1020.domain.usecases.FetchPostsUseCaseImpl
 import com.chilik1020.framework.remote.MustachePawsApi
 import com.chilik1020.framework.remote.PostRemoteDataSourceImpl
-import com.chilik1020.mustachepawsfp.mappers.PostDomainToPresentationModel
+import com.chilik1020.mustachepawsfp.mappers.PostDomainToPresentationMapper
 import com.chilik1020.mustachepawsfp.models.PostPresentationModel
 import dagger.Module
 import dagger.Provides
@@ -41,5 +41,5 @@ class PostModule {
 
     @Provides
     fun providePostDomainToPresentationMapper(): (PostDomainModel) -> PostPresentationModel =
-        PostDomainToPresentationModel()
+        PostDomainToPresentationMapper()
 }

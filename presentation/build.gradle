@@ -61,11 +61,9 @@ dependencies {
     implementation retrofit.adapterCoroutineJakeWharton
     implementation retrofit.gson
     implementation retrofit.moshi
-    
+
     implementation glide.runtime
     kapt glide.compiler
-
-
 
     testImplementation atsl.jUnit
     androidTestImplementation atsl.extJunit

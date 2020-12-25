@@ -18,6 +18,8 @@ import com.chilik1020.domain.usecases.YourProfileDetailsUseCaseImpl
 import com.chilik1020.framework.local.UserLocalDataSourceImpl
 import com.chilik1020.framework.remote.MustachePawsApi
 import com.chilik1020.framework.remote.UserRemoteDataSourceImpl
+import com.chilik1020.mustachepawsfp.mappers.UserDomainToPresentationMapper
+import com.chilik1020.mustachepawsfp.models.UserPresentationModel
 import dagger.Module
 import dagger.Provides
 
@@ -60,4 +62,8 @@ class UserModule {
     @Provides
     fun provideUserDataToDomainMapper(): (UserDataModel) -> UserDomainModel =
         UserDataToDomainMapper()
+
+    @Provides
+    fun provideUserDomainToPresentationMapper(): (UserDomainModel) -> UserPresentationModel =
+        UserDomainToPresentationMapper()
 }

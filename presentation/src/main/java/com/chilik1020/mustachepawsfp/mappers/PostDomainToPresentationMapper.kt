@@ -4,7 +4,7 @@ import com.chilik1020.domain.models.PostDomainModel
 import com.chilik1020.mustachepawsfp.models.PostPresentationModel
 import javax.inject.Inject
 
-class PostDomainToPresentationModel @Inject constructor() :
+class PostDomainToPresentationMapper @Inject constructor() :
         (PostDomainModel) -> PostPresentationModel {
     override fun invoke(post: PostDomainModel) = PostPresentationModel(
         id = post.id,
