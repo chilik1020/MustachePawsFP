@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.chilik1020.mustachepawsfp.R
 import com.chilik1020.mustachepawsfp.databinding.FragmentPostListBinding
 import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.DaggerFragment
@@ -15,7 +17,6 @@ class PostListFragment : DaggerFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-
     lateinit var binding: FragmentPostListBinding
     lateinit var viewModel: PostListViewModel
     private val postListAdapter = PostListAdapter()
@@ -70,8 +71,8 @@ class PostListFragment : DaggerFragment() {
     }
 
     private fun navigateToProfileFragment() {
-//        Navigation.findNavController(binding.root)
-//            .navigate(R.id.action_loginFragment_to_postListFragment)
+        Navigation.findNavController(binding.root)
+            .navigate(R.id.action_postListFragment_to_profileFragment)
     }
 
     private fun showSnackBarMessage(msg: String) {

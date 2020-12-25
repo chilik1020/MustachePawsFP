@@ -81,9 +81,9 @@
             android:layout_height="45dp"
             android:layout_gravity="center_vertical|end"
             android:layout_marginEnd="@dimen/ico_on_banner_margin"
-            android:src="@drawable/ic_person"
             android:contentDescription="@string/my_profile"
-            android:padding="@dimen/default_padding" />
+            android:padding="@dimen/default_padding"
+            android:src="@drawable/ic_person" />
 
     </com.google.android.material.bottomappbar.BottomAppBar>
 

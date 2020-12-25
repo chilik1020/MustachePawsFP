@@ -8,5 +8,5 @@ interface UserRepository {
     suspend fun login(loginRequestObject: LoginRequestObject): String
     suspend fun signUp(signUpRequestObject: SignUpRequestObject): UserDomainModel
     suspend fun logout()
-    suspend fun getSavedUserDetails(): UserDomainModel?
+    suspend fun yourProfileDetails(): UserDomainModel
 }

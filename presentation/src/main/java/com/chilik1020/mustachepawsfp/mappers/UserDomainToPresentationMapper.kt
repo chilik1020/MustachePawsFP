@@ -2,8 +2,10 @@ package com.chilik1020.mustachepawsfp.mappers
 
 import com.chilik1020.domain.models.UserDomainModel
 import com.chilik1020.mustachepawsfp.models.UserPresentationModel
+import javax.inject.Inject
 
-class UserDomainToPresentationModel : (UserDomainModel) -> UserPresentationModel {
+class UserDomainToPresentationMapper @Inject constructor() :
+        (UserDomainModel) -> UserPresentationModel {
     override fun invoke(user: UserDomainModel): UserPresentationModel {
         return UserPresentationModel(
             username = user.username,

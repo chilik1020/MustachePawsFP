@@ -2,6 +2,7 @@ package com.chilik1020.mustachepawsfp.di
 
 import com.chilik1020.mustachepawsfp.ui.login.LoginFragment
 import com.chilik1020.mustachepawsfp.ui.postlist.PostListFragment
+import com.chilik1020.mustachepawsfp.ui.profile.ProfileFragment
 import com.chilik1020.mustachepawsfp.ui.signup.SignUpFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -18,4 +19,7 @@ abstract class FragmentBindingModule {
 
     @ContributesAndroidInjector
     abstract fun postListFragment(): PostListFragment
+
+    @ContributesAndroidInjector
+    abstract fun profileFragment(): ProfileFragment
 }

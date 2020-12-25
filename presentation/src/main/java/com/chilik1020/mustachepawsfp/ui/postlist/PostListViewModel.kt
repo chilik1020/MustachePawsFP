@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.chilik1020.domain.usecases.FetchPostsUseCase
-import com.chilik1020.mustachepawsfp.mappers.PostDomainToPresentationModel
+import com.chilik1020.mustachepawsfp.mappers.PostDomainToPresentationMapper
 import com.chilik1020.mustachepawsfp.utils.LOG_TAG
 import javax.inject.Inject
 import kotlinx.coroutines.launch
@@ -16,7 +16,8 @@ class PostListViewModel @Inject constructor() : ViewModel() {
     @Inject
     lateinit var fetchPostUseCase: FetchPostsUseCase
 
-    val toPresentationMapper = PostDomainToPresentationModel()
+    @Inject
+    lateinit var toPresentationMapper: PostDomainToPresentationMapper
 
     private val viewStateMutable: MutableLiveData<PostListViewState> = MutableLiveData()
     val viewState: LiveData<PostListViewState>

@@ -31,7 +31,7 @@ class UserRepositoryImpl @Inject constructor(
         localDataSource.clear()
     }
 
-    override suspend fun getSavedUserDetails(): UserDomainModel? {
-        return localDataSource.getSavedUserDetails()?.let(toDomainMapper)
+    override suspend fun yourProfileDetails(): UserDomainModel {
+        return localDataSource.getSavedUserDetails().let(toDomainMapper)
     }
 }
