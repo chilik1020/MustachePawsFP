@@ -132,7 +132,7 @@ ext {
     def okHttpLoggingInterceptorVersion = '3.9.0'
     okhttpLoggingInterceptor = "com.squareup.okhttp3:logging-interceptor:$okHttpLoggingInterceptorVersion"
 
-    def glideVersion = '4.8.0'
+    def glideVersion = '4.10.0'
     glide = [
             runtime : "com.github.bumptech.glide:glide:$glideVersion",
             compiler: "com.github.bumptech.glide:compiler:$glideVersion"

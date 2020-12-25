@@ -1,16 +1,13 @@
 package com.chilik1020.mustachepawsfp.ui.login
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.chilik1020.mustachepawsfp.R
 import com.chilik1020.mustachepawsfp.databinding.FragmentLoginBinding
-import com.chilik1020.mustachepawsfp.utils.LOG_TAG
 import com.chilik1020.mustachepawsfp.utils.hideKeyboard
 import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.DaggerFragment
@@ -98,6 +95,8 @@ class LoginFragment : DaggerFragment() {
     }
 
     private fun navigateToPostListFragment() {
+        Navigation.findNavController(binding.root)
+            .navigate(R.id.action_loginFragment_to_postListFragment)
     }
 
     private fun showSnackBarMessage(msg: String) {

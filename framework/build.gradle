@@ -52,6 +52,7 @@ dependencies {
     implementation retrofit.runtime
     implementation retrofit.adapterCoroutineJakeWharton
     implementation retrofit.gson
+    implementation retrofit.moshi
 
     testImplementation atsl.jUnit
     androidTestImplementation atsl.extJunit
