@@ -10,17 +10,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.FileProvider
-import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
 import com.chilik1020.mustachepawsfp.BuildConfig
+import com.chilik1020.mustachepawsfp.R
 import com.chilik1020.mustachepawsfp.databinding.FragmentImageCaptureBinding
 import com.chilik1020.mustachepawsfp.utils.LOG_TAG
 import com.chilik1020.mustachepawsfp.utils.createImageFile
 import com.yalantis.ucrop.UCrop
+import dagger.android.support.DaggerFragment
 import java.io.File
+import javax.inject.Inject
 
-class ImageCaptureFragment : Fragment() {
+class ImageCaptureFragment : DaggerFragment() {
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+    lateinit var viewModel: PostCreateViewModel
     lateinit var binding: FragmentImageCaptureBinding
 
     lateinit var photoOriginalFile: File
@@ -43,6 +50,7 @@ class ImageCaptureFragment : Fragment() {
     }
 
     private fun initViews() {
+        viewModel = ViewModelProvider(this, viewModelFactory).get(PostCreateViewModel::class.java)
         onClickImageCapture()
     }
 
@@ -97,13 +105,20 @@ class ImageCaptureFragment : Fragment() {
                 }
 
                 UCrop.REQUEST_CROP -> {
+                    viewModel.imageUri.value = photoCroppedUri.path
                     Glide.with(this).load(photoCroppedUri).into(binding.ivCapturedImage)
+                    navigateToNextStep()
                 }
             }
         } else if (resultCode == UCrop.RESULT_ERROR) {
             val throwable = data?.let { UCrop.getError(it) }
             Log.d(LOG_TAG, throwable?.message.toString())
         }
+    }
+
+    private fun navigateToNextStep() {
+        Navigation.findNavController(binding.root)
+            .navigate(R.id.action_imageCapture_to_DialogTypeHelp)
     }
 
     companion object {

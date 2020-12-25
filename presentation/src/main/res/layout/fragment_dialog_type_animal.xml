@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/ic_background"
+    android:padding="@dimen/default_padding">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glVerticalStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.04" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glVerticalEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.96" />
+
+    <TextView
+        android:id="@+id/tvDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/default_margin"
+        android:layout_marginBottom="@dimen/default_margin"
+        android:text="Please select the type of animal:"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@id/glVerticalEnd"
+        app:layout_constraintStart_toStartOf="@id/glVerticalStart"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/rgTypeAnimal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/default_margin"
+        app:layout_constraintEnd_toEndOf="@id/glVerticalEnd"
+        app:layout_constraintStart_toStartOf="@id/glVerticalStart"
+        app:layout_constraintTop_toBottomOf="@id/tvDescription">
+
+        <RadioButton
+            android:id="@+id/rbCat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cat" />
+
+        <RadioButton
+            android:id="@+id/rbDog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dog" />
+
+        <RadioButton
+            android:id="@+id/rbMouse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mouse" />
+
+        <RadioButton
+            android:id="@+id/rbRabbit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Rabbit" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/etOtherAnimal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/default_margin"
+        android:hint="Enter another if necessary"
+        app:layout_constraintEnd_toEndOf="@id/glVerticalEnd"
+        app:layout_constraintStart_toStartOf="@id/glVerticalStart"
+        app:layout_constraintTop_toBottomOf="@id/rgTypeAnimal" />
+
+    <ImageButton
+        android:id="@+id/ibGoToPreviousStep"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:background="@color/primaryColor"
+        android:src="@drawable/ic_arrow_left"
+        app:layout_constraintEnd_toStartOf="@+id/ibClose"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="@id/glVerticalStart"
+        app:layout_constraintTop_toBottomOf="@id/etOtherAnimal" />
+
+    <ImageButton
+        android:id="@+id/ibClose"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:background="@color/primaryColor"
+        android:src="@drawable/ic_close"
+        app:layout_constraintEnd_toStartOf="@+id/ibGoToNextStep"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@id/ibGoToPreviousStep"
+        app:layout_constraintTop_toBottomOf="@id/etOtherAnimal" />
+
+    <ImageButton
+        android:id="@+id/ibGoToNextStep"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:background="@color/primaryColor"
+        android:src="@drawable/ic_arrow_right"
+        app:layout_constraintEnd_toEndOf="@id/glVerticalEnd"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ibClose"
+        app:layout_constraintTop_toBottomOf="@id/etOtherAnimal" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

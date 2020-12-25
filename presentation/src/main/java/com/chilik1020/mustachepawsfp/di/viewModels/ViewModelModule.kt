@@ -3,12 +3,14 @@ package com.chilik1020.mustachepawsfp.di.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.chilik1020.mustachepawsfp.ui.login.LoginViewModel
+import com.chilik1020.mustachepawsfp.ui.postcreate.PostCreateViewModel
 import com.chilik1020.mustachepawsfp.ui.postlist.PostListViewModel
 import com.chilik1020.mustachepawsfp.ui.profile.ProfileViewModel
 import com.chilik1020.mustachepawsfp.ui.signup.SignUpViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
+import javax.inject.Singleton
 
 @Module
 abstract class ViewModelModule {
@@ -34,4 +36,10 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ProfileViewModel::class)
     abstract fun bindProfileViewModel(viewModel: ProfileViewModel): ViewModel
+
+    @Singleton
+    @Binds
+    @IntoMap
+    @ViewModelKey(PostCreateViewModel::class)
+    abstract fun bindPostCreateViewModel(viewModel: PostCreateViewModel): ViewModel
 }

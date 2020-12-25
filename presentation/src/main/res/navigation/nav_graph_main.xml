@@ -5,8 +5,6 @@
     android:id="@+id/navGraphMain"
     app:startDestination="@id/postList">
 
-    <!--    <include app:graph="@navigation/nav_graph_post_create" />-->
-
     <fragment
         android:id="@+id/login"
         android:name="com.chilik1020.mustachepawsfp.ui.login.LoginFragment"
@@ -61,7 +59,7 @@
 
         <action
             android:id="@+id/action_postList_to_PostCreateGraph"
-            app:destination="@id/createPost"
+            app:destination="@id/imageCapture"
             app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/slide_in_left"
@@ -74,17 +72,41 @@
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile" />
 
+    <fragment
+        android:id="@+id/imageCapture"
+        android:name="com.chilik1020.mustachepawsfp.ui.postcreate.ImageCaptureFragment"
+        android:label="ImageCapture"
+        tools:layout="@layout/fragment_image_capture">
+
+        <action
+            android:id="@+id/action_imageCapture_to_DialogTypeHelp"
+            app:destination="@id/dialogTypeHelp" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/dialogTypeHelp"
+        android:name="com.chilik1020.mustachepawsfp.ui.postcreate.TypeHelpDialogFragment"
+        android:label="DialogTypeHelp"
+        tools:layout="@layout/fragment_dialog_type_help">
+        <action
+            android:id="@+id/action_dialogTypeHelp_to_dialogTypeAnimal"
+            app:destination="@id/dialogTypeAnimal" />
+    </dialog>
+
+    <dialog
+        android:id="@+id/dialogTypeAnimal"
+        android:name="com.chilik1020.mustachepawsfp.ui.postcreate.TypeAnimalDialogFragment"
+        android:label="DialogTypeAnimal"
+        tools:layout="@layout/fragment_dialog_type_animal">
+        <action
+            android:id="@+id/action_dialogTypeAnimal_to_createPost"
+            app:destination="@id/createPost" />
+    </dialog>
 
     <fragment
         android:id="@+id/createPost"
         android:name="com.chilik1020.mustachepawsfp.ui.postcreate.PostCreateFragment"
         android:label="Create Post"
         tools:layout="@layout/fragment_post_create" />
-
-    <fragment
-        android:id="@+id/imageCapture"
-        android:name="com.chilik1020.mustachepawsfp.ui.postcreate.ImageCaptureFragment"
-        android:label="ImageCapture"
-        tools:layout="@layout/fragment_image_capture" />
 
 </navigation>
