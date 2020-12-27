@@ -15,12 +15,7 @@ class PostRepositoryImpl @Inject constructor(
     override suspend fun fetchPosts(): List<PostDomainModel> {
         val token = userLocalDataSource.getSavedToken()
         return if (token != null) {
-            val posts = postRemoteDataSource.fetchPosts(token)
-            val result = mutableListOf<PostDomainModel>()
-            posts.data.forEach {
-                result.add(toDomainMapper(it))
-            }
-            result
+            postRemoteDataSource.fetchPosts(token).map { toDomainMapper.invoke(it) }
         } else {
             emptyList()
         }
