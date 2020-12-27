@@ -32,6 +32,12 @@ android {
     buildFeatures {
         viewBinding true
     }
+
+    repositories {
+        maven {
+            url "http://maven.google.com/"
+        }
+    }
 }
 
 dependencies {
@@ -45,8 +51,9 @@ dependencies {
     implementation material
     implementation androidxDeps.values()
 
-    // ExpandableTextView
-    implementation 'at.blogc:expandabletextview:1.0.5'
+    implementation expendableTextView
+
+    implementation yandexMaps
 
     implementation navigation.fragmentKtx
     implementation navigation.uiKtx

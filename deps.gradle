@@ -138,6 +138,12 @@ ext {
             compiler: "com.github.bumptech.glide:compiler:$glideVersion"
     ]
 
+    def expendableTextViewVersion = "1.0.5"
+    expendableTextView = "at.blogc:expandabletextview:$expendableTextViewVersion"
+
+    def yandexMapsVersion = '4.0.0-lite'
+    yandexMaps = "com.yandex.android:maps.mobile:$yandexMapsVersion"
+
     def uCropVersion = '2.2.5'
     uCrop = "com.github.yalantis:ucrop:$uCropVersion"
 
