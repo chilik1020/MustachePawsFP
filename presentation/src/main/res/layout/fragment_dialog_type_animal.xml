@@ -93,6 +93,7 @@
         android:id="@+id/ibClose"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/default_half_margin"
         android:background="@color/primaryColor"
         android:src="@drawable/ic_close"
         app:layout_constraintEnd_toStartOf="@+id/ibGoToNextStep"

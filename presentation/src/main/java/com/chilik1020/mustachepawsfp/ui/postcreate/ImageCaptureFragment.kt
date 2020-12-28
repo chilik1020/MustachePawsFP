@@ -12,7 +12,6 @@ import android.view.ViewGroup
 import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import com.bumptech.glide.Glide
 import com.chilik1020.mustachepawsfp.BuildConfig
 import com.chilik1020.mustachepawsfp.R
 import com.chilik1020.mustachepawsfp.databinding.FragmentImageCaptureBinding
@@ -100,13 +99,13 @@ class ImageCaptureFragment : DaggerFragment() {
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
                 REQUEST_IMAGE_CAPTURE -> {
-                    Glide.with(this).load(photoOriginalUri).into(binding.ivCapturedImage)
+//                    Glide.with(this).load(photoOriginalUri).into(binding.ivCapturedImage)
                     startUCropActivity()
                 }
 
                 UCrop.REQUEST_CROP -> {
                     viewModel.imageUri.value = photoCroppedUri.path
-                    Glide.with(this).load(photoCroppedUri).into(binding.ivCapturedImage)
+//                    Glide.with(this).load(photoCroppedUri).into(binding.ivCapturedImage)
                     navigateToNextStep()
                 }
             }
