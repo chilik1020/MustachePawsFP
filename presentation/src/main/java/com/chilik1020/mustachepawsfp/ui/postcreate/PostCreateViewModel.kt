@@ -10,6 +10,7 @@ class PostCreateViewModel @Inject constructor() : ViewModel() {
     val typeOfHelp = MutableLiveData<String>()
     val typeOfAnimal = MutableLiveData<String>()
     val location = MutableLiveData<String>()
+    val description = MutableLiveData<String>()
 
     fun createPost() {
 

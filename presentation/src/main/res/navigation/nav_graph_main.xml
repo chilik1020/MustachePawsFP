@@ -99,6 +99,16 @@
         android:label="DialogTypeAnimal"
         tools:layout="@layout/fragment_dialog_type_animal">
         <action
+            android:id="@+id/action_dialogTypeAnimal_to_dialogDescription"
+            app:destination="@id/dialogDescription" />
+    </dialog>
+
+    <dialog
+        android:id="@+id/dialogDescription"
+        android:name="com.chilik1020.mustachepawsfp.ui.postcreate.PostDescriptionDialogFragment"
+        android:label="@string/create_post"
+        tools:layout="@layout/fragment_dialog_description">
+        <action
             android:id="@+id/action_dialogTypeAnimal_to_createPost"
             app:destination="@id/createPost" />
     </dialog>

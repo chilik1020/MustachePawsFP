@@ -7,23 +7,22 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.chilik1020.mustachepawsfp.R
-import com.chilik1020.mustachepawsfp.databinding.FragmentDialogTypeAnimalBinding
+import com.chilik1020.mustachepawsfp.databinding.FragmentDialogDescriptionBinding
 import dagger.android.support.DaggerDialogFragment
 import javax.inject.Inject
 
-class TypeAnimalDialogFragment : DaggerDialogFragment() {
-
+class PostDescriptionDialogFragment : DaggerDialogFragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     lateinit var viewModel: PostCreateViewModel
-    lateinit var binding: FragmentDialogTypeAnimalBinding
+    lateinit var binding: FragmentDialogDescriptionBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentDialogTypeAnimalBinding.inflate(inflater, container, false)
+        binding = FragmentDialogDescriptionBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -35,7 +34,7 @@ class TypeAnimalDialogFragment : DaggerDialogFragment() {
     private fun initViews() {
         viewModel = ViewModelProvider(this, viewModelFactory).get(PostCreateViewModel::class.java)
         binding.ibGoToNextStep.setOnClickListener {
-            viewModel.typeOfAnimal.value = "Turtle"
+            viewModel.description.value = binding.etDescription.text.toString()
             navigateToNextStep()
         }
         binding.ibGoToPreviousStep.setOnClickListener { navigateToPreviousStep() }
@@ -43,7 +42,7 @@ class TypeAnimalDialogFragment : DaggerDialogFragment() {
 
     private fun navigateToNextStep() {
         findNavController()
-            .navigate(R.id.action_dialogTypeAnimal_to_dialogDescription)
+            .navigate(R.id.action_dialogTypeAnimal_to_createPost)
     }
 
     private fun navigateToPreviousStep() {
