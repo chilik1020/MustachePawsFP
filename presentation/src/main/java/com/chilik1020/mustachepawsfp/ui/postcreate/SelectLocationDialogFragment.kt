@@ -1,14 +1,13 @@
 package com.chilik1020.mustachepawsfp.ui.postcreate
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.chilik1020.mustachepawsfp.R
 import com.chilik1020.mustachepawsfp.databinding.FragmentDialogSelectLocationBinding
-import com.chilik1020.mustachepawsfp.utils.LOG_TAG
 import com.google.android.libraries.maps.CameraUpdateFactory
 import com.google.android.libraries.maps.GoogleMap
 import com.google.android.libraries.maps.OnMapReadyCallback
@@ -29,6 +28,7 @@ class SelectLocationDialogFragment : DaggerDialogFragment(), OnMapReadyCallback 
 
     private lateinit var mapFragment: SupportMapFragment
     private var googleMap: GoogleMap? = null
+    private var currentLocation: LatLng? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,24 +47,43 @@ class SelectLocationDialogFragment : DaggerDialogFragment(), OnMapReadyCallback 
         initViews()
     }
 
-    private fun initViews() {
-        mapFragment.getMapAsync(this)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(PostCreateViewModel::class.java)
-    }
-
     override fun onMapReady(gm: GoogleMap?) {
-        Log.d(LOG_TAG, "Map READY")
         googleMap = gm
         googleMap?.let {
             it.mapType = GoogleMap.MAP_TYPE_HYBRID
-            val latLng = LatLng(53.90831018963494, 27.571897533128794)
-            it.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 11f))
+            currentLocation = LatLng(53.90831018963494, 27.571897533128794)
+            currentLocation?.let { currentLatLng ->
+                val latLng: LatLng = currentLatLng
+                it.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 11f))
 
-            val markerOptions = MarkerOptions()
-            markerOptions.position(latLng)
-            markerOptions.title("Current Position")
-            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA))
-            it.addMarker(markerOptions)
+                val markerOptions = MarkerOptions()
+                markerOptions.position(latLng)
+                markerOptions.title("Current Position")
+                markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA))
+                it.addMarker(markerOptions)
+            }
         }
+    }
+
+    private fun initViews() {
+        mapFragment.getMapAsync(this)
+
+        viewModel = ViewModelProvider(this, viewModelFactory).get(PostCreateViewModel::class.java)
+
+        viewModel.location.observe(viewLifecycleOwner) { currentLocation = it }
+        binding.ibGoToPreviousStep.setOnClickListener { navigateToPreviousStep() }
+        binding.ibGoToNextStep.setOnClickListener {
+            viewModel.location.value = currentLocation
+            navigateToNextStep()
+        }
+    }
+
+    private fun navigateToNextStep() {
+        findNavController()
+            .navigate(R.id.action_selectLocation_to_createPost)
+    }
+
+    private fun navigateToPreviousStep() {
+        findNavController().popBackStack()
     }
 }

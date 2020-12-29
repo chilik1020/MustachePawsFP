@@ -85,7 +85,7 @@
 
     <ImageButton
         android:id="@+id/ibGoToPreviousStep"
-        android:layout_width="100dp"
+        android:layout_width="@dimen/dialog_btn_next_prev_width"
         android:layout_height="wrap_content"
         android:background="@color/primaryColor"
         android:foreground="?attr/selectableItemBackgroundBorderless"
@@ -98,7 +98,7 @@
 
     <ImageButton
         android:id="@+id/ibClose"
-        android:layout_width="100dp"
+        android:layout_width="@dimen/dialog_btn_next_prev_width"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/default_half_margin"
         android:background="@color/primaryColor"
@@ -111,7 +111,7 @@
 
     <ImageButton
         android:id="@+id/ibGoToNextStep"
-        android:layout_width="100dp"
+        android:layout_width="@dimen/dialog_btn_next_prev_width"
         android:layout_height="wrap_content"
         android:background="@color/primaryColor"
         android:foreground="?attr/selectableItemBackgroundBorderless"

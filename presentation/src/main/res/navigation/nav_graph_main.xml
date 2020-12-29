@@ -110,7 +110,7 @@
         android:label="@string/create_post"
         tools:layout="@layout/fragment_dialog_description">
         <action
-            android:id="@+id/action_dialogTypeAnimal_to_selectLocation"
+            android:id="@+id/action_dialogDescription_to_selectLocation"
             app:destination="@id/selectLocation" />
     </dialog>
 

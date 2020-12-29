@@ -52,7 +52,9 @@ class PostCreateFragment : DaggerFragment() {
         }
 
         viewModel.typeOfHelp.observe(viewLifecycleOwner) { binding.tvTypeOfHelp.text = it }
-        viewModel.location.observe(viewLifecycleOwner) { binding.tvPlace.text = it }
+        viewModel.location.observe(viewLifecycleOwner) {
+            binding.tvPlace.text = "${it.latitude} : ${it.longitude}"
+        }
         viewModel.description.observe(viewLifecycleOwner) { binding.etvPostDescription.text = it }
         binding.btnPublishPost.setOnClickListener { viewModel.createPost() }
     }

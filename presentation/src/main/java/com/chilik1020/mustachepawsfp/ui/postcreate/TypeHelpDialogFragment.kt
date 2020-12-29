@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.chilik1020.mustachepawsfp.R
 import com.chilik1020.mustachepawsfp.databinding.FragmentDialogTypeHelpBinding
@@ -37,8 +36,8 @@ class TypeHelpDialogFragment : DaggerDialogFragment() {
         viewModel = ViewModelProvider(this, viewModelFactory).get(PostCreateViewModel::class.java)
         binding.ibGoToNextStep.setOnClickListener {
             viewModel.typeOfHelp.value = "Assistance 1"
-            viewModel.location.value = "Barcelona, Spain"
-            navigateToNextStep() }
+            navigateToNextStep()
+        }
         binding.ibGoToPreviousStep.setOnClickListener { navigateToPreviousStep() }
 //
 //        Navigation.findNavController(binding.root).backStack.forEach {
