@@ -81,6 +81,7 @@
         <action
             android:id="@+id/action_imageCapture_to_DialogTypeHelp"
             app:destination="@id/dialogTypeHelp" />
+
     </fragment>
 
     <dialog
