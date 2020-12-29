@@ -4,7 +4,7 @@ import com.chilik1020.mustachepawsfp.ui.login.LoginFragment
 import com.chilik1020.mustachepawsfp.ui.postcreate.ImageCaptureFragment
 import com.chilik1020.mustachepawsfp.ui.postcreate.PostCreateFragment
 import com.chilik1020.mustachepawsfp.ui.postcreate.PostDescriptionDialogFragment
-import com.chilik1020.mustachepawsfp.ui.postcreate.SelectLocationFragment
+import com.chilik1020.mustachepawsfp.ui.postcreate.SelectLocationDialogFragment
 import com.chilik1020.mustachepawsfp.ui.postcreate.TypeAnimalDialogFragment
 import com.chilik1020.mustachepawsfp.ui.postcreate.TypeHelpDialogFragment
 import com.chilik1020.mustachepawsfp.ui.postlist.PostListFragment
@@ -42,7 +42,7 @@ abstract class FragmentBindingModule {
     abstract fun postDescriptionDialogFragment(): PostDescriptionDialogFragment
 
     @ContributesAndroidInjector
-    abstract fun selectLocationFragment(): SelectLocationFragment
+    abstract fun selectLocationFragment(): SelectLocationDialogFragment
 
     @ContributesAndroidInjector
     abstract fun postCreateFragment(): PostCreateFragment

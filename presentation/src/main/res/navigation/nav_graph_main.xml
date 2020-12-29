@@ -110,7 +110,16 @@
         android:label="@string/create_post"
         tools:layout="@layout/fragment_dialog_description">
         <action
-            android:id="@+id/action_dialogTypeAnimal_to_createPost"
+            android:id="@+id/action_dialogTypeAnimal_to_selectLocation"
+            app:destination="@id/selectLocation" />
+    </dialog>
+
+    <dialog
+        android:id="@+id/selectLocation"
+        android:name="com.chilik1020.mustachepawsfp.ui.postcreate.SelectLocationDialogFragment"
+        android:label="Select location"
+        tools:layout="@layout/fragment_dialog_select_location">
+        <action android:id="@+id/action_selectLocation_to_createPost"
             app:destination="@id/createPost" />
     </dialog>
 

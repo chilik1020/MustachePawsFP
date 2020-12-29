@@ -15,6 +15,9 @@ ext {
     def materialVersion = '1.2.1'
     material = "com.google.android.material:material:$materialVersion"
 
+    def googleMapsApiVersion = '3.1.0-beta'
+    googleMapsApi = "com.google.android.libraries.maps:maps:$googleMapsApiVersion"
+
     def coreKtxVersion = '1.3.2'
     def appCompatVersion = '1.2.0'
     def constraintLayoutVersion = '2.0.4'

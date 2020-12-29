@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.chilik1020.mustachepawsfp.R
@@ -33,6 +34,9 @@ class PostDescriptionDialogFragment : DaggerDialogFragment() {
 
     private fun initViews() {
         viewModel = ViewModelProvider(this, viewModelFactory).get(PostCreateViewModel::class.java)
+        viewModel.description.observe(viewLifecycleOwner) {
+            binding.etDescription.setText(it, TextView.BufferType.EDITABLE)
+        }
         binding.ibGoToNextStep.setOnClickListener {
             viewModel.description.value = binding.etDescription.text.toString()
             navigateToNextStep()
@@ -42,7 +46,7 @@ class PostDescriptionDialogFragment : DaggerDialogFragment() {
 
     private fun navigateToNextStep() {
         findNavController()
-            .navigate(R.id.action_dialogTypeAnimal_to_createPost)
+            .navigate(R.id.action_dialogTypeAnimal_to_selectLocation)
     }
 
     private fun navigateToPreviousStep() {

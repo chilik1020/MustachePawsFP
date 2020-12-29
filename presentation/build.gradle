@@ -49,6 +49,7 @@ dependencies {
 
     implementation kotlinDeps.kotlinStdlib
     implementation material
+    implementation googleMapsApi
     implementation androidxDeps.values()
 
     implementation expendableTextView
