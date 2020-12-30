@@ -24,6 +24,10 @@ class PostListViewModel @Inject constructor() : ViewModel() {
     val viewState: LiveData<PostListViewState>
         get() = viewStateMutable
 
+    init {
+        fetchPosts()
+    }
+
     fun fetchPosts() {
         viewStateMutable.value = PostListViewState.Loading
         viewModelScope.launch {

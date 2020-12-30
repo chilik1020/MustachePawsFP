@@ -1,5 +1,6 @@
 package com.chilik1020.mustachepawsfp.ui.postlist
 
+import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,10 +8,15 @@ import android.view.animation.OvershootInterpolator
 import androidx.recyclerview.widget.RecyclerView
 import at.blogc.android.views.ExpandableTextView
 import com.bumptech.glide.Glide
-import com.chilik1020.framework.utils.BASE_URL
+import com.bumptech.glide.load.model.GlideUrl
+import com.bumptech.glide.load.model.LazyHeaders
+import com.chilik1020.framework.utils.BASE_URL_POST_IMAGE
+import com.chilik1020.framework.utils.PREFERENCE_FILE_NAME
+import com.chilik1020.framework.utils.PREFERENCE_TOKEN_KEY
 import com.chilik1020.mustachepawsfp.databinding.ItemPostBinding
 import com.chilik1020.mustachepawsfp.models.PostPresentationModel
 import com.chilik1020.mustachepawsfp.utils.LOG_TAG
+
 
 class PostListAdapter : RecyclerView.Adapter<PostListAdapter.PostViewHolder>() {
 
@@ -38,13 +44,29 @@ class PostListAdapter : RecyclerView.Adapter<PostListAdapter.PostViewHolder>() {
 
         fun bind(post: PostPresentationModel) {
             with(binding) {
-                val link = "${BASE_URL}mustachepaws/posts/image/${post.imageLink}"
+                val link = "${BASE_URL_POST_IMAGE}${post.imageLink}"
                 Log.d(LOG_TAG, link)
-                Glide.with(root.context).load(link).into(ivPostPhoto)
+                val token = binding.root.context.getSharedPreferences(
+                    PREFERENCE_FILE_NAME,
+                    Context.MODE_PRIVATE
+                ).getString(
+                    PREFERENCE_TOKEN_KEY, ""
+                ) ?: ""
+                Log.d(LOG_TAG, token)
+                val glideWithHeaders = GlideUrl(
+                    link,
+                    LazyHeaders.Builder()
+                        .addHeader("Authorization", token)
+                        .build()
+                )
+
+                Glide.with(root.context).load(glideWithHeaders).into(ivPostImage)
 
                 Glide.with(root.context).load(link).circleCrop().into(ivCreatorAvatar)
+                tvTypeOfHelp.text = post.typeOfHelp
+                tvPlace.text = "Minsk, Pushkina 18"
                 tvCreatorUsername.text = post.creatorUsername
-                tvPostStatus.text = if (post.closed) "[Закрыто]" else "[Актуально]"
+//                tvPostStatus.text = if (post.closed) "[Закрыто]" else "[Актуально]"
                 etvPostDescription.text = post.description
 
                 etvPostDescription.setInterpolator(OvershootInterpolator())

@@ -49,7 +49,6 @@ class PostListFragment : DaggerFragment() {
         binding.ivReFetchPosts.setOnClickListener { viewModel.fetchPosts() }
 
         viewModel.viewState.observe(viewLifecycleOwner) { render(it) }
-        viewModel.fetchPosts()
     }
 
     private fun render(state: PostListViewState) {
