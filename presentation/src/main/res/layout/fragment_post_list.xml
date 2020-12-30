@@ -15,14 +15,14 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@drawable/toolbar"
             android:elevation="10dp"
+            app:layout_scrollFlags="scroll|enterAlways"
             app:title=" " />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="48dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:layout_marginBottom="48dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvPostList"
