@@ -1,108 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/ic_background">
+    android:layout_height="match_parent">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/materialCardView"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/default_half_margin"
-        android:background="@drawable/ic_background"
-        app:layout_constraintBottom_toTopOf="@+id/btnPublishPost"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="spread_inside">
+        android:background="@drawable/ic_background">
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/glVerticalStart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.04" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/glVerticalEnd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.96" />
-
-        <LinearLayout
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_margin="@dimen/default_half_margin"
+            android:background="@drawable/ic_background"
+            app:layout_constraintBottom_toTopOf="@+id/btnPublishPost"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="spread_inside">
 
-            <ImageView
-                android:id="@+id/ivCapturedImage"
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/glVerticalStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.04" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/glVerticalEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.96" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_add_photo" />
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tvTypeOfHelp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/default_half_margin"
-                android:layout_marginTop="@dimen/default_margin"
-                android:drawablePadding="@dimen/default_padding"
-                android:textSize="20sp"
-                app:drawableStartCompat="@drawable/ic_type_help"
-                tools:text="type of help" />
+                <ImageView
+                    android:id="@+id/ivCapturedImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_add_photo" />
 
-            <TextView
-                android:id="@+id/tvPlace"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/default_half_margin"
-                android:layout_marginTop="@dimen/default_margin"
-                android:drawablePadding="@dimen/default_padding"
-                android:textSize="20sp"
-                app:drawableStartCompat="@drawable/ic_placeholder"
-                tools:text="Minsk,Belarus" />
+                <TextView
+                    android:id="@+id/tvTypeOfHelp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/default_half_margin"
+                    android:layout_marginTop="@dimen/default_margin"
+                    android:drawablePadding="@dimen/default_padding"
+                    android:textSize="20sp"
+                    app:drawableStartCompat="@drawable/ic_type_help"
+                    tools:text="type of help" />
 
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="@id/glVerticalEnd"
-                app:layout_constraintStart_toStartOf="@id/glVerticalStart"
-                app:layout_constraintTop_toBottomOf="@id/tvPlace">
+                <TextView
+                    android:id="@+id/tvPlace"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/default_half_margin"
+                    android:layout_marginTop="@dimen/default_margin"
+                    android:drawablePadding="@dimen/default_padding"
+                    android:textSize="20sp"
+                    app:drawableStartCompat="@drawable/ic_placeholder"
+                    tools:text="Minsk,Belarus" />
 
                 <at.blogc.android.views.ExpandableTextView
                     android:id="@+id/etvPostDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/default_half_margin"
+                    android:layout_marginVertical="@dimen/default_margin"
+                    android:drawableStart="@drawable/ic_description"
+                    android:drawablePadding="@dimen/default_padding"
                     android:ellipsize="end"
                     android:maxLines="2"
-                    android:padding="@dimen/default_padding"
                     android:textSize="20sp"
                     app:animation_duration="750"
                     app:layout_constraintEnd_toEndOf="@id/glVerticalEnd"
                     app:layout_constraintStart_toStartOf="@id/glVerticalStart"
                     app:layout_constraintTop_toBottomOf="@id/tvPlace"
                     tools:text="Please, help find the dog." />
-            </ScrollView>
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnPublishPost"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center"
-        android:layout_marginTop="@dimen/default_margin"
-        android:layout_marginBottom="@dimen/default_margin"
-        android:background="@color/primaryColor"
-        android:text="Publish"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnPublishPost"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginBottom="@dimen/default_margin"
+            android:background="@color/colorPrimary"
+            android:text="Publish"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
