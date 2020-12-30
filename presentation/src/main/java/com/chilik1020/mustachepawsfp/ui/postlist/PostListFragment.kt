@@ -2,8 +2,12 @@ package com.chilik1020.mustachepawsfp.ui.postlist
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,6 +25,11 @@ class PostListFragment : DaggerFragment() {
     lateinit var viewModel: PostListViewModel
     private val postListAdapter = PostListAdapter()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -35,7 +44,29 @@ class PostListFragment : DaggerFragment() {
         initViews()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        menu.clear()
+        inflater.inflate(R.menu.menu_toolbar_postlist_frag, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean =
+        when (item.itemId) {
+            R.id.miMyProfile -> {
+                navigateToProfileFragment()
+                true
+            }
+
+            R.id.miLogOut -> {
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+
     private fun initViews() {
+        if (activity is AppCompatActivity) {
+            (activity as AppCompatActivity).setSupportActionBar(binding.toolbarPostListFragment)
+        }
         viewModel = ViewModelProvider(this, viewModelFactory).get(PostListViewModel::class.java)
 
         binding.rvPostList.apply {
