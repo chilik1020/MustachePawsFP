@@ -75,9 +75,9 @@ class PostListFragment : DaggerFragment() {
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         }
 
-        binding.ivGoToProfile.setOnClickListener { navigateToProfileFragment() }
-        binding.ivGoToCreatePost.setOnClickListener { navigateToPostCreate() }
-        binding.ivReFetchPosts.setOnClickListener { viewModel.fetchPosts() }
+//        binding.ivGoToProfile.setOnClickListener { navigateToProfileFragment() }
+        binding.fabGoToPostCreate.setOnClickListener { navigateToPostCreate() }
+//        binding.ivReFetchPosts.setOnClickListener { viewModel.fetchPosts() }
 
         viewModel.viewState.observe(viewLifecycleOwner) { render(it) }
     }

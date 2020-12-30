@@ -10,6 +10,7 @@
 
     <color name="colorPrimary">@color/material_blue_grey_800</color>
     <color name="colorPrimaryDark">@color/material_blue_grey_900</color>
-    <color name="colorAccent">#081B60</color>
+    <color name="colorAccent">#E91E63</color>
 
+    <color name="fabColor">#3F51B5</color>
 </resources>

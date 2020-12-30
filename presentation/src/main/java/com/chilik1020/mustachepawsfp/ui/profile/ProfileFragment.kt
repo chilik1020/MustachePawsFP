@@ -53,7 +53,7 @@ class ProfileFragment : DaggerFragment() {
                     tvEmail.text = state.data.email
                     tvRegistered.text = "Registered at 24/12/2020"
                     Glide.with(root)
-                        .load(R.drawable.ic_logo)
+                        .load(R.drawable.ic_person)
                         .into(ivProfilePhoto)
                 }
             }

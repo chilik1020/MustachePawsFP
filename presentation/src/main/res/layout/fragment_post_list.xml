@@ -51,10 +51,14 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottomAppBar"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_gravity="bottom"
-        app:backgroundTint="@color/primaryColor">
+        android:backgroundTint="@color/primaryColor"
+        app:fabCradleMargin="10dp"
+        app:fabCradleRoundedCornerRadius="5dp"
+        app:fabCradleVerticalOffset="5dp">
 
         <ImageView
             android:id="@+id/ivReFetchPosts"
@@ -63,17 +67,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginStart="@dimen/ico_on_banner_margin"
             android:padding="@dimen/default_padding"
-            android:src="@drawable/ic_refresh" />
-
-
-        <ImageView
-            android:id="@+id/ivGoToCreatePost"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_gravity="center"
-            android:contentDescription="@string/create_post"
-            android:padding="@dimen/default_padding"
-            android:src="@drawable/ic_add_circle" />
+            android:src="@drawable/ic_list_black" />
 
         <ImageView
             android:id="@+id/ivGoToProfile"
@@ -83,8 +77,19 @@
             android:layout_marginEnd="@dimen/ico_on_banner_margin"
             android:contentDescription="@string/my_profile"
             android:padding="@dimen/default_padding"
-            android:src="@drawable/ic_person" />
+            android:src="@drawable/ic_map_black" />
 
     </com.google.android.material.bottomappbar.BottomAppBar>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabGoToPostCreate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_margin="@dimen/default_margin"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/ic_add"
+        app:backgroundTint="@color/colorAccent"
+        app:layout_anchor="@id/bottomAppBar" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
