@@ -21,8 +21,8 @@ class UserLocalDataSourceImpl @Inject constructor(
         preferences.edit().putString(PREFERENCE_TOKEN_KEY, token).apply()
     }
 
-    override suspend fun getSavedToken(): String? {
-        return preferences.getString(PREFERENCE_TOKEN_KEY, null)
+    override suspend fun getSavedToken(): String {
+        return preferences.getString(PREFERENCE_TOKEN_KEY, "") ?: ""
     }
 
     override suspend fun saveUserDetails(userDataModel: UserDataModel) {
