@@ -22,10 +22,10 @@ class PostRepositoryImpl @Inject constructor(
                 .map { toDomainMapper.invoke(it) }
         }
 
-    override suspend fun createPost(post: PostRequestObject, imageUri: String) {
+    override suspend fun createPost(post: PostRequestObject, imageUri: String): PostDomainModel =
         withContext(Dispatchers.IO) {
             val token = userLocalDataSource.getSavedToken()
-            postRemoteDataSource.createPost(post, imageUri, token)
+            val postCreated = postRemoteDataSource.createPost(post, imageUri, token)
+            return@withContext toDomainMapper.invoke(postCreated)
         }
-    }
 }

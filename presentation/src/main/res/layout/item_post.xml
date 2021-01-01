@@ -158,19 +158,19 @@
     android:layout_margin="@dimen/default_half_margin"
     android:background="@drawable/ic_background">
 
-<!--    <androidx.constraintlayout.widget.Guideline-->
-<!--        android:id="@+id/glVerticalStart"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="vertical"-->
-<!--        app:layout_constraintGuide_percent="0.04" />-->
+    <!--    <androidx.constraintlayout.widget.Guideline-->
+    <!--        android:id="@+id/glVerticalStart"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:orientation="vertical"-->
+    <!--        app:layout_constraintGuide_percent="0.04" />-->
 
-<!--    <androidx.constraintlayout.widget.Guideline-->
-<!--        android:id="@+id/glVerticalEnd"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="vertical"-->
-<!--        app:layout_constraintGuide_percent="0.96" />-->
+    <!--    <androidx.constraintlayout.widget.Guideline-->
+    <!--        android:id="@+id/glVerticalEnd"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:orientation="vertical"-->
+    <!--        app:layout_constraintGuide_percent="0.96" />-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -182,27 +182,26 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/default_half_margin"
             android:layout_marginTop="@dimen/default_half_margin"
+            android:layout_marginBottom="@dimen/default_half_margin"
             android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/ivCreatorAvatar"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center_vertical|end" />
+                android:layout_width="24dp"
+                android:layout_height="24dp" />
 
             <TextView
                 android:id="@+id/tvCreatorUsername"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/default_margin"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
         </LinearLayout>
 
         <ImageView
             android:id="@+id/ivPostImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/default_margin"
             android:src="@drawable/ic_add_photo" />
 
         <TextView
@@ -210,7 +209,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/default_half_margin"
-            android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_half_margin"
             android:drawablePadding="@dimen/default_padding"
             android:textSize="18sp"
             app:drawableStartCompat="@drawable/ic_type_help"
@@ -221,7 +220,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/default_half_margin"
-            android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_half_margin"
             android:drawablePadding="@dimen/default_padding"
             android:textSize="18sp"
             app:drawableStartCompat="@drawable/ic_placeholder"
@@ -232,7 +231,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/default_half_margin"
-            android:layout_marginVertical="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_half_margin"
             android:drawableStart="@drawable/ic_description"
             android:drawablePadding="@dimen/default_padding"
             android:ellipsize="end"
@@ -243,6 +242,17 @@
             app:layout_constraintStart_toStartOf="@id/glVerticalStart"
             app:layout_constraintTop_toBottomOf="@id/tvPlace"
             tools:text="Please, help find the dog." />
+
+        <TextView
+            android:id="@+id/tvCreatedAt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_margin="@dimen/default_half_margin"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etvPostDescription"
+            tools:text="29 02 2020 friday" />
 
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

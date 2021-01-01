@@ -9,10 +9,10 @@ import com.chilik1020.domain.models.PostLocation
 import com.chilik1020.domain.models.PostRequestObject
 import com.chilik1020.domain.usecases.CreatePostUseCase
 import com.chilik1020.domain.usecases.UploadImageUseCase
+import com.chilik1020.mustachepawsfp.mappers.PostDomainToPresentationMapper
 import com.chilik1020.mustachepawsfp.utils.LOG_TAG
 import com.google.android.libraries.maps.model.LatLng
 import javax.inject.Inject
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class PostCreateViewModel @Inject constructor() : ViewModel() {
@@ -22,6 +22,9 @@ class PostCreateViewModel @Inject constructor() : ViewModel() {
 
     @Inject
     lateinit var uploadImageUseCase: UploadImageUseCase
+
+    @Inject
+    lateinit var toPresentationMapper: PostDomainToPresentationMapper
 
     private val viewStateMutable: MutableLiveData<PostCreateViewState> = MutableLiveData()
     val viewState: LiveData<PostCreateViewState>
@@ -35,7 +38,8 @@ class PostCreateViewModel @Inject constructor() : ViewModel() {
 
     fun createPost() {
         viewStateMutable.value = PostCreateViewState.Loading
-        viewModelScope.launch(Dispatchers.Main) {
+        viewModelScope.launch {
+            Log.d(LOG_TAG, "POSTCREATEVIEWMODEL scope.launch")
             val locationPost = PostLocation(
                 20.0, 57.0, "Somewhere on Earth"
             )
@@ -48,13 +52,14 @@ class PostCreateViewModel @Inject constructor() : ViewModel() {
                 creatorUsername = "chilik1020",
                 description = "description post"
             )
-            uploadImageUseCase.uploadImage(
-                "/storage/emulated/0/Android/data/com.chilik1020.mustachepawsfp/files/Pictures/img_cropped_20210101_191227_6462414432172716851.jpg"
-            )
-            createPostUseCase.createPost(post, post.imageLink)
 
             try {
-                createPostUseCase.createPost(post, imageUri.value ?: "")
+                uploadImageUseCase.uploadImage(
+                    "/storage/emulated/0/Android/data/com.chilik1020.mustachepawsfp/files/Pictures/img_cropped_20210101_191227_6462414432172716851.jpg"
+                )
+                val postCreated = createPostUseCase.createPost(post, post.imageLink)
+                viewStateMutable.value =
+                    PostCreateViewState.Success(toPresentationMapper.invoke(postCreated))
             } catch (ex: Exception) {
                 Log.d(LOG_TAG, "POSTCREATEVIEWMODEL ERROR: ${ex.message}")
                 viewStateMutable.value = PostCreateViewState.Error(ex.message.toString())

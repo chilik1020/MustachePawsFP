@@ -7,7 +7,7 @@ import javax.inject.Inject
 class CreatePostUseCaseImpl @Inject constructor(
     private val postRepository: PostRepository
 ) : CreatePostUseCase {
-    override suspend fun createPost(post: PostRequestObject, imageUri: String) {
+    override suspend fun createPost(post: PostRequestObject, imageUri: String) =
         postRepository.createPost(post, imageUri)
-    }
+
 }
