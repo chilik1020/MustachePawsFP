@@ -64,7 +64,7 @@ class PostListAdapter : RecyclerView.Adapter<PostListAdapter.PostViewHolder>() {
 
                 Glide.with(root.context).load(link).circleCrop().into(ivCreatorAvatar)
                 tvTypeOfHelp.text = post.typeOfHelp
-                tvPlace.text = "Minsk, Pushkina 18"
+                tvPlace.text = post.location.description
                 tvCreatorUsername.text = post.creatorUsername
 //                tvPostStatus.text = if (post.closed) "[Закрыто]" else "[Актуально]"
                 etvPostDescription.text = post.description

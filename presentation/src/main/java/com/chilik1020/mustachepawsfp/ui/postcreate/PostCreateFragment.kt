@@ -1,6 +1,7 @@
 package com.chilik1020.mustachepawsfp.ui.postcreate
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import at.blogc.android.views.ExpandableTextView
 import com.bumptech.glide.Glide
 import com.chilik1020.mustachepawsfp.databinding.FragmentPostCreateBinding
+import com.chilik1020.mustachepawsfp.utils.LOG_TAG
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
@@ -57,5 +59,9 @@ class PostCreateFragment : DaggerFragment() {
         }
         viewModel.description.observe(viewLifecycleOwner) { binding.etvPostDescription.text = it }
         binding.btnPublishPost.setOnClickListener { viewModel.createPost() }
+
+        viewModel.viewState.observe(viewLifecycleOwner) {
+            Log.d(LOG_TAG, "CREATEFRAGMENT ${it.toString()}")
+        }
     }
 }

@@ -79,6 +79,8 @@ class PostListFragment : DaggerFragment() {
         binding.fabGoToPostCreate.setOnClickListener { navigateToPostCreate() }
 //        binding.ivReFetchPosts.setOnClickListener { viewModel.fetchPosts() }
 
+        binding.ivReFetchPosts.setOnClickListener { viewModel.fetchPosts() }
+
         viewModel.viewState.observe(viewLifecycleOwner) { render(it) }
     }
 

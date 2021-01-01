@@ -4,6 +4,7 @@ import com.chilik1020.data.models.PostDataModel
 import com.chilik1020.data.sources.PostRemoteDataSource
 import com.chilik1020.data.sources.UserLocalDataSource
 import com.chilik1020.domain.models.PostDomainModel
+import com.chilik1020.domain.models.PostRequestObject
 import com.chilik1020.domain.repositories.PostRepository
 import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
@@ -20,4 +21,11 @@ class PostRepositoryImpl @Inject constructor(
             return@withContext postRemoteDataSource.fetchPosts(token)
                 .map { toDomainMapper.invoke(it) }
         }
+
+    override suspend fun createPost(post: PostRequestObject, imageUri: String) {
+        withContext(Dispatchers.IO) {
+            val token = userLocalDataSource.getSavedToken()
+            postRemoteDataSource.createPost(post, imageUri, token)
+        }
+    }
 }

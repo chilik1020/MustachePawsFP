@@ -2,13 +2,21 @@ package com.chilik1020.mustachepawsfp.di
 
 import com.chilik1020.data.mappers.PostDataToDomainMapper
 import com.chilik1020.data.models.PostDataModel
+import com.chilik1020.data.repositories.ImageRepositoryImpl
 import com.chilik1020.data.repositories.PostRepositoryImpl
+import com.chilik1020.data.sources.ImageRemoteDataSource
 import com.chilik1020.data.sources.PostRemoteDataSource
 import com.chilik1020.data.sources.UserLocalDataSource
 import com.chilik1020.domain.models.PostDomainModel
+import com.chilik1020.domain.repositories.ImageRepository
 import com.chilik1020.domain.repositories.PostRepository
+import com.chilik1020.domain.usecases.CreatePostUseCase
+import com.chilik1020.domain.usecases.CreatePostUseCaseImpl
 import com.chilik1020.domain.usecases.FetchPostsUseCase
 import com.chilik1020.domain.usecases.FetchPostsUseCaseImpl
+import com.chilik1020.domain.usecases.UploadImageUseCase
+import com.chilik1020.domain.usecases.UploadImageUseCaseImpl
+import com.chilik1020.framework.remote.ImageRemoteDataSourceImpl
 import com.chilik1020.framework.remote.MustachePawsApi
 import com.chilik1020.framework.remote.PostRemoteDataSourceImpl
 import com.chilik1020.mustachepawsfp.mappers.PostDomainToPresentationMapper
@@ -24,6 +32,14 @@ class PostModule {
         FetchPostsUseCaseImpl(postRepository)
 
     @Provides
+    fun provideCreatePostUseCase(postRepository: PostRepository): CreatePostUseCase =
+        CreatePostUseCaseImpl(postRepository)
+
+    @Provides
+    fun provideUploadImageUseCase(imageRepository: ImageRepository): UploadImageUseCase =
+        UploadImageUseCaseImpl(imageRepository)
+
+    @Provides
     fun providePostRepository(
         userLocalDataSource: UserLocalDataSource,
         postRemoteDataSource: PostRemoteDataSource,
@@ -32,8 +48,18 @@ class PostModule {
         PostRepositoryImpl(userLocalDataSource, postRemoteDataSource, toDomainMapper)
 
     @Provides
-    fun providePostRemoteDataSource(api: MustachePawsApi):PostRemoteDataSource =
+    fun provideImageRepository(
+        imageRemoteDataSource: ImageRemoteDataSource,
+        userLocalDataSource: UserLocalDataSource
+    ): ImageRepository = ImageRepositoryImpl(imageRemoteDataSource, userLocalDataSource)
+
+    @Provides
+    fun providePostRemoteDataSource(api: MustachePawsApi): PostRemoteDataSource =
         PostRemoteDataSourceImpl(api)
+
+    @Provides
+    fun provideImageRemoteDataSource(api: MustachePawsApi): ImageRemoteDataSource =
+        ImageRemoteDataSourceImpl(api)
 
     @Provides
     fun providePostDataToDomainMapper(): (PostDataModel) -> PostDomainModel =
