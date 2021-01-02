@@ -53,6 +53,7 @@ dependencies {
     implementation androidxDeps.values()
 
     implementation expendableTextView
+    implementation circleImageView
 
     implementation yandexMaps
 
