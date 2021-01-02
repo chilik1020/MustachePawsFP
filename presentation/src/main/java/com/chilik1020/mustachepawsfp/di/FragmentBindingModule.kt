@@ -8,6 +8,8 @@ import com.chilik1020.mustachepawsfp.ui.postcreate.SelectLocationDialogFragment
 import com.chilik1020.mustachepawsfp.ui.postcreate.TypeAnimalDialogFragment
 import com.chilik1020.mustachepawsfp.ui.postcreate.TypeHelpDialogFragment
 import com.chilik1020.mustachepawsfp.ui.postlist.PostListFragment
+import com.chilik1020.mustachepawsfp.ui.postlist.PostMapFragment
+import com.chilik1020.mustachepawsfp.ui.postlist.PostsFragment
 import com.chilik1020.mustachepawsfp.ui.profile.ProfileFragment
 import com.chilik1020.mustachepawsfp.ui.signup.SignUpFragment
 import dagger.Module
@@ -24,7 +26,7 @@ abstract class FragmentBindingModule {
     abstract fun signUpFragment(): SignUpFragment
 
     @ContributesAndroidInjector
-    abstract fun postListFragment(): PostListFragment
+    abstract fun postsFragment(): PostsFragment
 
     @ContributesAndroidInjector
     abstract fun profileFragment(): ProfileFragment

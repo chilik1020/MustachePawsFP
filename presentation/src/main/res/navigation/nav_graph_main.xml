@@ -45,9 +45,9 @@
 
     <fragment
         android:id="@+id/postList"
-        android:name="com.chilik1020.mustachepawsfp.ui.postlist.PostListFragment"
+        android:name="com.chilik1020.mustachepawsfp.ui.postlist.PostsFragment"
         android:label="PostList"
-        tools:layout="@layout/fragment_post_list">
+        tools:layout="@layout/fragment_posts">
 
         <action
             android:id="@+id/action_postList_to_profile"
