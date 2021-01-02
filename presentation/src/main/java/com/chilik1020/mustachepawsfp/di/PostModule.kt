@@ -12,6 +12,10 @@ import com.chilik1020.domain.repositories.ImageRepository
 import com.chilik1020.domain.repositories.PostRepository
 import com.chilik1020.domain.usecases.CreatePostUseCase
 import com.chilik1020.domain.usecases.CreatePostUseCaseImpl
+import com.chilik1020.domain.usecases.FetchPostByCreatorIdUseCase
+import com.chilik1020.domain.usecases.FetchPostByCreatorIdUseCaseImpl
+import com.chilik1020.domain.usecases.FetchPostByIdUseCase
+import com.chilik1020.domain.usecases.FetchPostByIdUseCaseImpl
 import com.chilik1020.domain.usecases.FetchPostsUseCase
 import com.chilik1020.domain.usecases.FetchPostsUseCaseImpl
 import com.chilik1020.domain.usecases.UploadImageUseCase
@@ -30,6 +34,14 @@ class PostModule {
     @Provides
     fun provideFetchPostsUseCase(postRepository: PostRepository): FetchPostsUseCase =
         FetchPostsUseCaseImpl(postRepository)
+
+    @Provides
+    fun provideFetchPostByIdUseCase(postRepository: PostRepository): FetchPostByIdUseCase =
+        FetchPostByIdUseCaseImpl(postRepository)
+
+    @Provides
+    fun provideFetchPostByCreatorIdUseCase(postRepository: PostRepository): FetchPostByCreatorIdUseCase =
+        FetchPostByCreatorIdUseCaseImpl(postRepository)
 
     @Provides
     fun provideCreatePostUseCase(postRepository: PostRepository): CreatePostUseCase =

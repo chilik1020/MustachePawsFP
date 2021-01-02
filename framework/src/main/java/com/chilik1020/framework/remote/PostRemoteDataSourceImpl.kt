@@ -12,6 +12,14 @@ class PostRemoteDataSourceImpl @Inject constructor(
         return api.fetchPosts(token)
     }
 
+    override suspend fun fetchPostById(token: String, id: Long): PostDataModel {
+        return api.fetchPostById(token, id)
+    }
+
+    override suspend fun fetchPostByCreatorId(token: String, id: Long): List<PostDataModel> {
+        return api.fetchPostByCreatorId(token, id)
+    }
+
     override suspend fun createPost(
         post: PostRequestObject,
         imageUri: String,

@@ -15,6 +15,7 @@ import retrofit2.http.Headers
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
+import retrofit2.http.Path
 
 interface MustachePawsApi {
     @POST("mustachepaws/login")
@@ -29,6 +30,18 @@ interface MustachePawsApi {
 
     @GET("mustachepaws/posts/all")
     suspend fun fetchPosts(@Header("Authorization") authorization: String): List<PostDataModel>
+
+    @GET("mustachepaws/one/{id}")
+    suspend fun fetchPostById(
+        @Header("Authorization") authorization: String,
+        @Path("id") id: Long
+    ): PostDataModel
+
+    @GET("mustachepaws/creator/{id}")
+    suspend fun fetchPostByCreatorId(
+        @Header("Authorization") authorization: String,
+        @Path("id") id: Long
+    ): List<PostDataModel>
 
     @POST("mustachepaws/posts/create")
     suspend fun createPost(

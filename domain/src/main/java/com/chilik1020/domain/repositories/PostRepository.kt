@@ -5,5 +5,7 @@ import com.chilik1020.domain.models.PostRequestObject
 
 interface PostRepository {
     suspend fun fetchPosts(): List<PostDomainModel>
+    suspend fun fetchPostById(id: Long): PostDomainModel
+    suspend fun fetchPostByCreatorId(id: Long): List<PostDomainModel>
     suspend fun createPost(post: PostRequestObject, imageUri: String): PostDomainModel
 }

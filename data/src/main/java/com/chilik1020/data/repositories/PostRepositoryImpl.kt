@@ -22,6 +22,19 @@ class PostRepositoryImpl @Inject constructor(
                 .map { toDomainMapper.invoke(it) }
         }
 
+    override suspend fun fetchPostById(id: Long): PostDomainModel =
+        withContext(Dispatchers.IO) {
+            val token = userLocalDataSource.getSavedToken()
+            return@withContext toDomainMapper.invoke(postRemoteDataSource.fetchPostById(token, id))
+        }
+
+    override suspend fun fetchPostByCreatorId(id: Long): List<PostDomainModel> =
+        withContext(Dispatchers.IO) {
+            val token = userLocalDataSource.getSavedToken()
+            return@withContext postRemoteDataSource.fetchPostByCreatorId(token, id)
+                .map { toDomainMapper.invoke(it) }
+        }
+
     override suspend fun createPost(post: PostRequestObject, imageUri: String): PostDomainModel =
         withContext(Dispatchers.IO) {
             val token = userLocalDataSource.getSavedToken()
