@@ -1,7 +1,6 @@
 package com.chilik1020.mustachepawsfp.ui.postlist
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -15,8 +14,9 @@ import androidx.navigation.Navigation
 import androidx.viewpager2.widget.ViewPager2
 import com.chilik1020.mustachepawsfp.R
 import com.chilik1020.mustachepawsfp.databinding.FragmentPostsBinding
-import com.chilik1020.mustachepawsfp.utils.LOG_TAG
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
@@ -30,6 +30,8 @@ class PostsFragment : DaggerFragment() {
     private lateinit var viewPager: ViewPager2
     private val listFrag = PostListFragment()
     private val mapFrag = PostMapFragment()
+
+    private val tabIcons = arrayOf(R.drawable.ic_list_black, R.drawable.ic_map_black)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,13 +77,13 @@ class PostsFragment : DaggerFragment() {
         }
         viewModel = ViewModelProvider(this, viewModelFactory).get(PostsViewModel::class.java)
         viewModel.viewState.observe(viewLifecycleOwner) {
-            listFrag.render(it)
-            mapFrag.render(it)
+            render(it)
+            if (listFrag.isAdded) listFrag.render(it)
+            if (mapFrag.isAdded) mapFrag.render(it)
         }
-
+        viewModel.fetchPosts()
 
         binding.fabGoToPostCreate.setOnClickListener { navigateToPostCreate() }
-        binding.ivReFetchPosts.setOnClickListener { viewModel.fetchPosts() }
 
         pagerAdapter = PostsViewPagerAdapter(this)
         pagerAdapter.setFragments(mutableListOf<Fragment>().apply {
@@ -90,6 +92,24 @@ class PostsFragment : DaggerFragment() {
         })
         viewPager = binding.pagerPosts
         viewPager.adapter = pagerAdapter
+
+        TabLayoutMediator(binding.tabLayoutPosts, binding.pagerPosts)
+        { tab: TabLayout.Tab, position: Int -> tab.setIcon(tabIcons[position]) }.attach()
+
+        binding.swipeRefreshLayout.setOnRefreshListener { viewModel.fetchPosts() }
+    }
+
+    private fun render(state: PostsViewState) {
+        when (state) {
+            is PostsViewState.Success -> {
+                showSnackBarMessage("Succees")
+                binding.swipeRefreshLayout.isRefreshing = false
+            }
+            is PostsViewState.Error -> {
+                showSnackBarMessage(state.msg)
+                binding.swipeRefreshLayout.isRefreshing = false
+            }
+        }
     }
 
     private fun navigateToPostCreate() {

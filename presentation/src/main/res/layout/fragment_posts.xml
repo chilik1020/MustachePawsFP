@@ -15,76 +15,80 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@drawable/toolbar"
             android:elevation="10dp"
-            app:layout_scrollFlags="scroll|enterAlways"
             app:title=" " />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="?attr/actionBarSize"
-        android:layout_marginBottom="48dp">
+        android:layout_marginTop="?attr/actionBarSize">
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayoutPosts"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:tabMode="fixed" />
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/pagerPosts"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tabLayoutPosts" />
+            app:layout_constraintTop_toBottomOf="@id/tabLayoutPosts">
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/pagerPosts"
+                android:layout_width="match_parent"
+                android:layout_height="0dp" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bottomAppBar"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_gravity="bottom"
-        android:backgroundTint="@color/primaryColor"
-        app:fabCradleMargin="10dp"
-        app:fabCradleRoundedCornerRadius="5dp"
-        app:fabCradleVerticalOffset="5dp">
+    <!--    <com.google.android.material.bottomappbar.BottomAppBar-->
+    <!--        android:id="@+id/bottomAppBar"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="48dp"-->
+    <!--        android:layout_gravity="bottom"-->
+    <!--        android:backgroundTint="@color/primaryColor"-->
+    <!--        app:fabCradleMargin="10dp"-->
+    <!--        app:fabCradleRoundedCornerRadius="5dp"-->
+    <!--        app:fabCradleVerticalOffset="5dp">-->
 
-        <ImageView
-            android:id="@+id/ivReFetchPosts"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="@dimen/ico_on_banner_margin"
-            android:padding="@dimen/default_padding"
-            android:src="@drawable/ic_list_black" />
+    <!--        <ImageView-->
+    <!--            android:id="@+id/ivReFetchPosts"-->
+    <!--            android:layout_width="45dp"-->
+    <!--            android:layout_height="45dp"-->
+    <!--            android:layout_gravity="center_vertical"-->
+    <!--            android:layout_marginStart="@dimen/ico_on_banner_margin"-->
+    <!--            android:padding="@dimen/default_padding"-->
+    <!--            android:src="@drawable/ic_list_black" />-->
 
-        <ImageView
-            android:id="@+id/ivGoToProfile"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_gravity="center_vertical|end"
-            android:layout_marginEnd="@dimen/ico_on_banner_margin"
-            android:contentDescription="@string/my_profile"
-            android:padding="@dimen/default_padding"
-            android:src="@drawable/ic_map_black" />
+    <!--        <ImageView-->
+    <!--            android:id="@+id/ivGoToProfile"-->
+    <!--            android:layout_width="45dp"-->
+    <!--            android:layout_height="45dp"-->
+    <!--            android:layout_gravity="center_vertical|end"-->
+    <!--            android:layout_marginEnd="@dimen/ico_on_banner_margin"-->
+    <!--            android:contentDescription="@string/my_profile"-->
+    <!--            android:padding="@dimen/default_padding"-->
+    <!--            android:src="@drawable/ic_map_black" />-->
 
-    </com.google.android.material.bottomappbar.BottomAppBar>
+    <!--    </com.google.android.material.bottomappbar.BottomAppBar>-->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabGoToPostCreate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center_horizontal"
+        android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/default_margin"
         android:clickable="true"
         android:focusable="true"
         android:src="@drawable/ic_add"
         app:backgroundTint="@color/colorAccent"
-        app:layout_anchor="@id/bottomAppBar" />
+        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

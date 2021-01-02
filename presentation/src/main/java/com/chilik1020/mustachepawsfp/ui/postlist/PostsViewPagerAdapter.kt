@@ -15,6 +15,7 @@ class PostsViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment)
         fragments.apply {
             clear()
             addAll(frags)
+            notifyDataSetChanged()
         }
     }
 }

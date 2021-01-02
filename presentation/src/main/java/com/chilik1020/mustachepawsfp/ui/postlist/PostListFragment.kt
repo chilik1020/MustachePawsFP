@@ -1,14 +1,12 @@
 package com.chilik1020.mustachepawsfp.ui.postlist
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chilik1020.mustachepawsfp.databinding.FragmentPostListBinding
-import com.chilik1020.mustachepawsfp.utils.LOG_TAG
 import com.google.android.material.snackbar.Snackbar
 
 class PostListFragment : Fragment() {
@@ -28,7 +26,6 @@ class PostListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViews()
-        Log.d(LOG_TAG, "POSTLISTFRAGMENT onViewCreated")
     }
 
     private fun initViews() {
@@ -40,9 +37,8 @@ class PostListFragment : Fragment() {
     }
 
     fun render(state: PostsViewState) {
-        Log.d(LOG_TAG, "POSTLISTFRAGMENT $state")
         when (state) {
-            PostsViewState.Loading -> {
+            is PostsViewState.Loading -> {
                 binding.pbFetchPostsLoading.visibility = View.VISIBLE
             }
             is PostsViewState.Success -> {

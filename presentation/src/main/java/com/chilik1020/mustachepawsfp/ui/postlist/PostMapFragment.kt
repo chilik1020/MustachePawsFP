@@ -1,14 +1,13 @@
 package com.chilik1020.mustachepawsfp.ui.postlist
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.chilik1020.mustachepawsfp.R
 import com.chilik1020.mustachepawsfp.databinding.FragmentPostMapBinding
-import com.chilik1020.mustachepawsfp.utils.LOG_TAG
+import com.chilik1020.mustachepawsfp.models.PostPresentationModel
 import com.google.android.libraries.maps.CameraUpdateFactory
 import com.google.android.libraries.maps.GoogleMap
 import com.google.android.libraries.maps.OnMapReadyCallback
@@ -22,7 +21,6 @@ class PostMapFragment : Fragment(), OnMapReadyCallback {
     private lateinit var binding: FragmentPostMapBinding
     private lateinit var mapFragment: SupportMapFragment
     private var googleMap: GoogleMap? = null
-    private var currentLocation: LatLng? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,23 +37,30 @@ class PostMapFragment : Fragment(), OnMapReadyCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViews()
-        Log.d(LOG_TAG, "POSTMAPFRAGMENT onViewCreated")
     }
 
     override fun onMapReady(gm: GoogleMap?) {
         googleMap = gm
-        googleMap?.let {
-            it.mapType = GoogleMap.MAP_TYPE_HYBRID
-            currentLocation = LatLng(53.90831018963494, 27.571897533128794)
-            currentLocation?.let { currentLatLng ->
-                val latLng: LatLng = currentLatLng
-                it.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 11f))
+        googleMap?.mapType = GoogleMap.MAP_TYPE_HYBRID
+        googleMap?.moveCamera(
+            CameraUpdateFactory.newLatLngZoom(
+                LatLng(
+                    53.90831018963494,
+                    27.571897533128794
+                ), 11f
+            )
+        )
+    }
 
-                val markerOptions = MarkerOptions()
-                markerOptions.position(latLng)
-                markerOptions.title("Current Position")
-                markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA))
-                it.addMarker(markerOptions)
+    fun render(state: PostsViewState) {
+        when (state) {
+            is PostsViewState.Loading -> {
+            }
+            is PostsViewState.Success -> {
+                setMarkers(state.data)
+            }
+            is PostsViewState.Error -> {
+                showSnackBarMessage(state.msg)
             }
         }
     }
@@ -64,18 +69,15 @@ class PostMapFragment : Fragment(), OnMapReadyCallback {
         mapFragment.getMapAsync(this)
     }
 
-    fun render(state: PostsViewState) {
-        Log.d(LOG_TAG, "POSTMAPFRAGMENT $state")
-        when (state) {
-            PostsViewState.Loading -> {
-                showSnackBarMessage("Loading")
-            }
-            is PostsViewState.Success -> {
-                showSnackBarMessage("Succees")
-            }
-            is PostsViewState.Error -> {
-                showSnackBarMessage(state.msg)
-            }
+    private fun setMarkers(post: List<PostPresentationModel>) {
+        googleMap?.clear()
+        post.forEach {
+            val latLng = LatLng(it.location.lon, it.location.lat)
+            val markerOptions = MarkerOptions()
+            markerOptions.position(latLng)
+            markerOptions.title(it.location.description)
+            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA))
+            googleMap?.addMarker(markerOptions)
         }
     }
 
