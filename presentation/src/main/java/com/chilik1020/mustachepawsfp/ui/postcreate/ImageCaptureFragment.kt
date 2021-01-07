@@ -11,7 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.chilik1020.mustachepawsfp.BuildConfig
 import com.chilik1020.mustachepawsfp.R
 import com.chilik1020.mustachepawsfp.databinding.FragmentImageCaptureBinding
@@ -106,7 +106,7 @@ class ImageCaptureFragment : DaggerFragment() {
                 UCrop.REQUEST_CROP -> {
                     viewModel.imageUri.value = photoCroppedUri.path
 //                    Glide.with(this).load(photoCroppedUri).into(binding.ivCapturedImage)
-                    navigateToNextStep()
+                    navigateToPostCreate()
                 }
             }
         } else if (resultCode == UCrop.RESULT_ERROR) {
@@ -115,9 +115,9 @@ class ImageCaptureFragment : DaggerFragment() {
         }
     }
 
-    private fun navigateToNextStep() {
-        Navigation.findNavController(binding.root)
-            .navigate(R.id.action_imageCapture_to_DialogTypeHelp)
+    private fun navigateToPostCreate() {
+        findNavController()
+            .popBackStack()
     }
 
     companion object {

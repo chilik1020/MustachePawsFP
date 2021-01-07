@@ -45,8 +45,8 @@ class PostDescriptionDialogFragment : DaggerDialogFragment() {
     }
 
     private fun navigateToNextStep() {
-        findNavController()
-            .navigate(R.id.action_dialogDescription_to_selectLocation)
+//        findNavController()
+//            .navigate(R.id.action_dialogDescription_to_selectLocation)
     }
 
     private fun navigateToPreviousStep() {

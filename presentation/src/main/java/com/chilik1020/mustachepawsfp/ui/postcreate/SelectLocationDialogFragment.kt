@@ -79,8 +79,8 @@ class SelectLocationDialogFragment : DaggerDialogFragment(), OnMapReadyCallback 
     }
 
     private fun navigateToNextStep() {
-        findNavController()
-            .navigate(R.id.action_selectLocation_to_createPost)
+//        findNavController()
+//            .navigate(R.id.action_selectLocation_to_createPost)
     }
 
     private fun navigateToPreviousStep() {

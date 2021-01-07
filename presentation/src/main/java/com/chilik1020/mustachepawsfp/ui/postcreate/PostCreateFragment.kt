@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.OvershootInterpolator
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import at.blogc.android.views.ExpandableTextView
 import com.bumptech.glide.Glide
+import com.chilik1020.mustachepawsfp.R
 import com.chilik1020.mustachepawsfp.databinding.FragmentPostCreateBinding
 import com.chilik1020.mustachepawsfp.utils.LOG_TAG
 import dagger.android.support.DaggerFragment
@@ -63,5 +65,26 @@ class PostCreateFragment : DaggerFragment() {
         viewModel.viewState.observe(viewLifecycleOwner) {
             Log.d(LOG_TAG, "CREATEFRAGMENT ${it.toString()}")
         }
+
+        binding.ivCapturedImage.setOnClickListener { navigateToImageCapture() }
+        binding.tvTypeOfHelp.setOnClickListener { navigateToDialogAssistType() }
+        binding.etvPostDescription.setOnClickListener { navigateToDialogDescription() }
+        binding.tvPlace.setOnClickListener { navigateToSelectLocation() }
+    }
+
+    private fun navigateToImageCapture() {
+        findNavController().navigate(R.id.action_createPost_to_imageCapture)
+    }
+
+    private fun navigateToDialogAssistType() {
+        findNavController().navigate(R.id.action_createPost_to_dialogTypeHelp)
+    }
+
+    private fun navigateToDialogDescription() {
+        findNavController().navigate(R.id.action_createPost_to_dialogDescription)
+    }
+
+    private fun navigateToSelectLocation() {
+        findNavController().navigate(R.id.action_createPost_to_selectLocation)
     }
 }

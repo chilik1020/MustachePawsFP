@@ -46,8 +46,8 @@ class TypeHelpDialogFragment : DaggerDialogFragment() {
     }
 
     private fun navigateToNextStep() {
-        findNavController()
-            .navigate(R.id.action_dialogTypeHelp_to_dialogTypeAnimal)
+//        findNavController()
+//            .navigate(R.id.action_dialogTypeHelp_to_dialogTypeAnimal)
     }
 
     private fun navigateToPreviousStep() {
