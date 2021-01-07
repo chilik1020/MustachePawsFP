@@ -38,7 +38,6 @@ class LoginViewModel @Inject constructor() : ViewModel() {
                     Log.d(LOG_TAG, ex.message.toString())
                 }
             }
-
         }
     }
 

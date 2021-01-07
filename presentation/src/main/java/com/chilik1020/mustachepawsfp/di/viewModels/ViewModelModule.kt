@@ -10,7 +10,6 @@ import com.chilik1020.mustachepawsfp.ui.signup.SignUpViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
-import javax.inject.Singleton
 
 @Module
 abstract class ViewModelModule {
@@ -37,7 +36,6 @@ abstract class ViewModelModule {
     @ViewModelKey(ProfileViewModel::class)
     abstract fun bindProfileViewModel(viewModel: ProfileViewModel): ViewModel
 
-    @Singleton
     @Binds
     @IntoMap
     @ViewModelKey(PostCreateViewModel::class)

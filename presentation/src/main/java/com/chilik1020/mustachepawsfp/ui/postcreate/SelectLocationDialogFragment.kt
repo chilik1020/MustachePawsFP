@@ -76,6 +76,7 @@ class SelectLocationDialogFragment : DaggerDialogFragment(), OnMapReadyCallback 
             viewModel.location.value = currentLocation
             navigateToNextStep()
         }
+        binding.svLocationQuery.isSubmitButtonEnabled = true
     }
 
     private fun navigateToNextStep() {

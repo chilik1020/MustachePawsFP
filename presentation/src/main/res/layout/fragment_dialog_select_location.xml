@@ -16,10 +16,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.SearchView
+        android:id="@+id/svLocationQuery"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/default_half_margin"
         android:background="@drawable/background_yellow_stroke_rect"
+        app:goIcon="@drawable/ic_arrow_right"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

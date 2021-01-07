@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.chilik1020.domain.models.PostLocation
 import com.chilik1020.domain.models.PostRequestObject
 import com.chilik1020.domain.usecases.CreatePostUseCase
+import com.chilik1020.domain.usecases.LocationFromQueryUseCase
 import com.chilik1020.domain.usecases.UploadImageUseCase
 import com.chilik1020.mustachepawsfp.mappers.PostDomainToPresentationMapper
 import com.chilik1020.mustachepawsfp.utils.LOG_TAG
@@ -22,6 +23,9 @@ class PostCreateViewModel @Inject constructor() : ViewModel() {
 
     @Inject
     lateinit var uploadImageUseCase: UploadImageUseCase
+
+    @Inject
+    lateinit var locationFromQueryUseCase: LocationFromQueryUseCase
 
     @Inject
     lateinit var toPresentationMapper: PostDomainToPresentationMapper
@@ -64,6 +68,14 @@ class PostCreateViewModel @Inject constructor() : ViewModel() {
                 Log.d(LOG_TAG, "POSTCREATEVIEWMODEL ERROR: ${ex.message}")
                 viewStateMutable.value = PostCreateViewState.Error(ex.message.toString())
             }
+        }
+    }
+
+    fun getLocationFromQuery(query: String) {
+        Log.d(LOG_TAG, "POSTCREATEVIEWMODEL getLocationFromQuery ")
+        viewModelScope.launch {
+            Log.d(LOG_TAG, "POSTCREATEVIEWMODEL getLocationFromQuery launch section")
+            locationFromQueryUseCase.getLocation(query)
         }
     }
 }

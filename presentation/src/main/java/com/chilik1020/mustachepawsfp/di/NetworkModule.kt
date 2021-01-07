@@ -1,5 +1,7 @@
 package com.chilik1020.mustachepawsfp.di
 
+import com.chilik1020.framework.remote.LocationApi
+import com.chilik1020.framework.remote.LocationApiImpl
 import com.chilik1020.framework.remote.MustachePawsApi
 import com.chilik1020.framework.utils.BASE_URL
 import dagger.Module
@@ -21,6 +23,11 @@ class NetworkModule {
 
     @Provides
     @Singleton
+    fun provideLocationApi(okHttpClient: OkHttpClient): LocationApi =
+        LocationApiImpl(okHttpClient)
+
+    @Provides
+    @Singleton
     fun provideRetrofit(client: OkHttpClient): Retrofit =
         Retrofit.Builder()
             .baseUrl(BASE_URL)
@@ -29,16 +36,14 @@ class NetworkModule {
             .build()
 
     @Provides
-    @Singleton
     fun provideOkHttpClient(interceptor: HttpLoggingInterceptor): OkHttpClient =
         OkHttpClient.Builder()
-            .connectTimeout(2, TimeUnit.SECONDS)
-            .readTimeout(4, TimeUnit.SECONDS)
+            .connectTimeout(5, TimeUnit.SECONDS)
+            .readTimeout(5, TimeUnit.SECONDS)
             .addInterceptor(interceptor)
             .build()
 
     @Provides
-    @Singleton
     fun provideLoggingInterceptor(): HttpLoggingInterceptor =
         HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
