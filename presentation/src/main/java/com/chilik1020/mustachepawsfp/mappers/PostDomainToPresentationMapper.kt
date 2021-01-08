@@ -10,7 +10,7 @@ class PostDomainToPresentationMapper @Inject constructor() :
         id = post.id,
         closed = post.closed,
         typeOfAnimal = post.typeOfAnimal,
-        typeOfHelp = post.typeOfHelp,
+        typeOfAssist = post.typeOfHelp,
         location = post.location,
         description = post.description,
         imageLink = post.imageLink,

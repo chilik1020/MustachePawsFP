@@ -49,13 +49,26 @@
                     android:src="@drawable/ic_add_photo" />
 
                 <TextView
-                    android:id="@+id/tvTypeOfHelp"
+                    android:id="@+id/tvTypeOfAnimal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/default_half_margin"
                     android:layout_marginTop="@dimen/default_margin"
                     android:drawablePadding="@dimen/default_padding"
-                    android:textSize="20sp"
+                    android:textColor="@color/defaultTextColor"
+                    android:textSize="16sp"
+                    app:drawableStartCompat="@drawable/ic_type_animal"
+                    tools:text="type of animal" />
+
+                <TextView
+                    android:id="@+id/tvTypeOfAssist"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/default_half_margin"
+                    android:layout_marginTop="@dimen/default_margin"
+                    android:drawablePadding="@dimen/default_padding"
+                    android:textColor="@color/defaultTextColor"
+                    android:textSize="16sp"
                     app:drawableStartCompat="@drawable/ic_type_help"
                     tools:text="type of help" />
 
@@ -66,7 +79,8 @@
                     android:layout_marginHorizontal="@dimen/default_half_margin"
                     android:layout_marginTop="@dimen/default_margin"
                     android:drawablePadding="@dimen/default_padding"
-                    android:textSize="20sp"
+                    android:textColor="@color/defaultTextColor"
+                    android:textSize="16sp"
                     app:drawableStartCompat="@drawable/ic_placeholder"
                     tools:text="Minsk,Belarus" />
 
@@ -80,7 +94,8 @@
                     android:drawablePadding="@dimen/default_padding"
                     android:ellipsize="end"
                     android:maxLines="2"
-                    android:textSize="20sp"
+                    android:textColor="@color/defaultTextColor"
+                    android:textSize="16sp"
                     app:animation_duration="750"
                     app:layout_constraintEnd_toEndOf="@id/glVerticalEnd"
                     app:layout_constraintStart_toStartOf="@id/glVerticalStart"
@@ -96,8 +111,8 @@
             android:layout_height="50dp"
             android:layout_marginTop="@dimen/default_margin"
             android:layout_marginBottom="@dimen/default_margin"
-            android:background="@color/colorPrimary"
             android:text="Publish"
+            app:cornerRadius="7dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"

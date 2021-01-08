@@ -114,7 +114,7 @@ class PostsFragment : DaggerFragment() {
 
     private fun navigateToPostCreate() {
         Navigation.findNavController(binding.root)
-            .navigate(R.id.action_postList_to_PostCreate)
+            .navigate(R.id.action_postList_to_ImageCapture)
     }
 
     private fun navigateToProfileFragment() {

@@ -63,7 +63,8 @@ class PostListAdapter : RecyclerView.Adapter<PostListAdapter.PostViewHolder>() {
                 Glide.with(root.context).load(glideWithHeaders).into(ivPostImage)
 
                 Glide.with(root.context).load(link).circleCrop().into(ivCreatorAvatar)
-                tvTypeOfHelp.text = post.typeOfHelp
+                tvTypeOfAnimal.text = post.typeOfAnimal
+                tvTypeOfAssist.text = post.typeOfAssist
                 tvPlace.text = post.location.description
                 tvCreatedAt.text = post.createdAt.toString()
                 tvCreatorUsername.text = post.creatorUsername

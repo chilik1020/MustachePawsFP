@@ -1,7 +1,9 @@
 ext {
     def gradleVersion = '4.0.2'
+    def navVersion = "2.3.2"
     build = [
-            gradle: "com.android.tools.build:gradle:$gradleVersion"
+            gradle: "com.android.tools.build:gradle:$gradleVersion",
+            safeArgsPlugin: "androidx.navigation:navigation-safe-args-gradle-plugin:$navVersion"
     ]
 
     def kotlinVersion = '1.4.10'

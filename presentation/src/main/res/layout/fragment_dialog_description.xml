@@ -28,59 +28,48 @@
         android:layout_marginHorizontal="@dimen/default_margin"
         android:layout_marginBottom="@dimen/default_margin"
         android:text="Please type some description:"
-        android:textSize="24sp"
+        android:textSize="20sp"
+        android:textColor="@color/defaultTextColor"
         app:layout_constraintEnd_toEndOf="@id/glVerticalEnd"
         app:layout_constraintStart_toStartOf="@id/glVerticalStart"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/etDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/default_margin"
         android:gravity="bottom"
         android:hint="Enter description"
+        android:maxLength="256"
         android:minLines="10"
         app:layout_constraintEnd_toEndOf="@id/glVerticalEnd"
         app:layout_constraintStart_toStartOf="@id/glVerticalStart"
         app:layout_constraintTop_toBottomOf="@id/tvDescription" />
 
-    <ImageButton
-        android:id="@+id/ibGoToPreviousStep"
-        android:layout_width="@dimen/dialog_btn_next_prev_width"
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/mbCancel"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/primaryColor"
-        android:foreground="?attr/selectableItemBackgroundBorderless"
-        android:src="@drawable/ic_arrow_left"
-        app:layout_constraintEnd_toStartOf="@+id/ibClose"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="spread_inside"
-        app:layout_constraintStart_toStartOf="@id/glVerticalStart"
+        android:layout_marginStart="@dimen/default_half_margin"
+        android:text="@string/btn_cancel"
+        app:cornerRadius="25dp"
+        app:icon="@drawable/ic_close"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etDescription" />
 
-    <ImageButton
-        android:id="@+id/ibClose"
-        android:layout_width="@dimen/dialog_btn_next_prev_width"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/mbApply"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/default_half_margin"
-        android:background="@color/primaryColor"
-        android:foreground="?attr/selectableItemBackgroundBorderless"
-        android:src="@drawable/ic_close"
-        app:layout_constraintEnd_toStartOf="@+id/ibGoToNextStep"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@id/ibGoToPreviousStep"
-        app:layout_constraintTop_toBottomOf="@id/etDescription" />
-
-    <ImageButton
-        android:id="@+id/ibGoToNextStep"
-        android:layout_width="@dimen/dialog_btn_next_prev_width"
-        android:layout_height="wrap_content"
-        android:background="@color/primaryColor"
-        android:foreground="?attr/selectableItemBackgroundBorderless"
-        android:src="@drawable/ic_arrow_right"
-        app:layout_constraintEnd_toEndOf="@id/glVerticalEnd"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/ibClose"
+        android:layout_marginEnd="@dimen/default_half_margin"
+        android:text="@string/btn_apply"
+        app:cornerRadius="25dp"
+        app:icon="@drawable/ic_apply"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

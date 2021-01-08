@@ -1,21 +1,16 @@
 package com.chilik1020.mustachepawsfp.ui.postcreate
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
-import com.chilik1020.mustachepawsfp.R
+import androidx.fragment.app.DialogFragment
 import com.chilik1020.mustachepawsfp.databinding.FragmentDialogDescriptionBinding
-import dagger.android.support.DaggerDialogFragment
-import javax.inject.Inject
+import com.chilik1020.mustachepawsfp.utils.EXTRA_KEY_DESCRIPTION
 
-class PostDescriptionDialogFragment : DaggerDialogFragment() {
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-    lateinit var viewModel: PostCreateViewModel
+class PostDescriptionDialogFragment : DialogFragment() {
     lateinit var binding: FragmentDialogDescriptionBinding
 
     override fun onCreateView(
@@ -33,23 +28,16 @@ class PostDescriptionDialogFragment : DaggerDialogFragment() {
     }
 
     private fun initViews() {
-        viewModel = ViewModelProvider(this, viewModelFactory).get(PostCreateViewModel::class.java)
-        viewModel.description.observe(viewLifecycleOwner) {
-            binding.etDescription.setText(it, TextView.BufferType.EDITABLE)
+        binding.mbApply.setOnClickListener {
+            val intent = Intent().apply {
+                putExtra(EXTRA_KEY_DESCRIPTION, binding.etDescription.text.toString())
+            }
+            targetFragment?.onActivityResult(targetRequestCode, Activity.RESULT_OK, intent)
+            dismiss()
         }
-        binding.ibGoToNextStep.setOnClickListener {
-            viewModel.description.value = binding.etDescription.text.toString()
-            navigateToNextStep()
+
+        binding.mbCancel.setOnClickListener {
+            dismiss()
         }
-        binding.ibGoToPreviousStep.setOnClickListener { navigateToPreviousStep() }
-    }
-
-    private fun navigateToNextStep() {
-//        findNavController()
-//            .navigate(R.id.action_dialogDescription_to_selectLocation)
-    }
-
-    private fun navigateToPreviousStep() {
-        findNavController().popBackStack()
     }
 }

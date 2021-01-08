@@ -35,7 +35,7 @@ class PostCreateViewModel @Inject constructor() : ViewModel() {
         get() = viewStateMutable
 
     val imageUri = MutableLiveData<String>()
-    val typeOfHelp = MutableLiveData<String>()
+    val typeOfAssist = MutableLiveData<String>()
     val typeOfAnimal = MutableLiveData<String>()
     val location = MutableLiveData<LatLng>()
     val description = MutableLiveData<String>()
@@ -43,23 +43,24 @@ class PostCreateViewModel @Inject constructor() : ViewModel() {
     fun createPost() {
         viewStateMutable.value = PostCreateViewState.Loading
         viewModelScope.launch {
-            Log.d(LOG_TAG, "POSTCREATEVIEWMODEL scope.launch")
             val locationPost = PostLocation(
                 20.0, 57.0, "Somewhere on Earth"
             )
-
+            val imageFullPath = imageUri.value.toString()
+            val index = imageFullPath.indexOfLast { it == '/' }
+            val imageName = imageFullPath.substring(index + 1)
+            Log.d(LOG_TAG, "imageName $imageName")
             val post = PostRequestObject(
-                animalType = "AnimalType 1",
-                assistType = "AssistType 1",
+                animalType = typeOfAnimal.value.toString(),
+                assistType = typeOfAssist.value.toString(),
                 location = locationPost,
-                imageLink = "img_cropped_20210101_191227_6462414432172716851.jpg",
+                imageLink = imageName,
                 creatorUsername = "chilik1020",
-                description = "description post"
+                description = description.value.toString()
             )
-
             try {
                 uploadImageUseCase.uploadImage(
-                    "/storage/emulated/0/Android/data/com.chilik1020.mustachepawsfp/files/Pictures/img_cropped_20210101_191227_6462414432172716851.jpg"
+                    imageFullPath
                 )
                 val postCreated = createPostUseCase.createPost(post, post.imageLink)
                 viewStateMutable.value =

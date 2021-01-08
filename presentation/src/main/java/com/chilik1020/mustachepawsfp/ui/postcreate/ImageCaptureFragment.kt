@@ -10,23 +10,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.FileProvider
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.chilik1020.mustachepawsfp.BuildConfig
 import com.chilik1020.mustachepawsfp.R
 import com.chilik1020.mustachepawsfp.databinding.FragmentImageCaptureBinding
+import com.chilik1020.mustachepawsfp.utils.EXTRA_KEY_IMAGE_URI_PATH
 import com.chilik1020.mustachepawsfp.utils.LOG_TAG
 import com.chilik1020.mustachepawsfp.utils.createImageFile
 import com.yalantis.ucrop.UCrop
-import dagger.android.support.DaggerFragment
 import java.io.File
-import javax.inject.Inject
 
-class ImageCaptureFragment : DaggerFragment() {
-
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-    lateinit var viewModel: PostCreateViewModel
+class ImageCaptureFragment : Fragment() {
     lateinit var binding: FragmentImageCaptureBinding
 
     lateinit var photoOriginalFile: File
@@ -49,7 +44,6 @@ class ImageCaptureFragment : DaggerFragment() {
     }
 
     private fun initViews() {
-        viewModel = ViewModelProvider(this, viewModelFactory).get(PostCreateViewModel::class.java)
         onClickImageCapture()
     }
 
@@ -104,7 +98,6 @@ class ImageCaptureFragment : DaggerFragment() {
                 }
 
                 UCrop.REQUEST_CROP -> {
-                    viewModel.imageUri.value = photoCroppedUri.path
 //                    Glide.with(this).load(photoCroppedUri).into(binding.ivCapturedImage)
                     navigateToPostCreate()
                 }
@@ -116,8 +109,10 @@ class ImageCaptureFragment : DaggerFragment() {
     }
 
     private fun navigateToPostCreate() {
-        findNavController()
-            .popBackStack()
+        val bundle = Bundle().apply {
+            putString(EXTRA_KEY_IMAGE_URI_PATH, photoCroppedUri.path)
+        }
+        findNavController().navigate(R.id.action_imageCapture_to_PostCreate, bundle)
     }
 
     companion object {

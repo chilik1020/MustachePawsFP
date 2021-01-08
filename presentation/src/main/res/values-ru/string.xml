@@ -37,4 +37,8 @@
     <string name="my_profile">Профиль</string>
     <string name="take_photo">Сделать фото</string>
 
+    <!--  CREATE POST  DIALOGS-->
+    <string name="btn_apply">сохранить</string>
+    <string name="btn_cancel">отменить</string>
+
 </resources>

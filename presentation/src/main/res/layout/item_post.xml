@@ -1,154 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="wrap_content"-->
-<!--    android:layout_marginBottom="@dimen/default_margin"-->
-<!--    android:orientation="vertical">-->
-
-<!--    <LinearLayout-->
-<!--        android:id="@+id/llPostUserInfo"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:gravity="center_vertical|start"-->
-<!--        android:orientation="horizontal"-->
-<!--        android:padding="@dimen/default_padding"-->
-<!--        app:layout_constraintBottom_toTopOf="@id/ivPostPhoto"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent">-->
-
-<!--        <ImageView-->
-<!--            android:id="@+id/ivCreatorAvatar"-->
-<!--            android:layout_width="30dp"-->
-<!--            android:layout_height="30dp"-->
-<!--            android:layout_gravity="center_vertical|end" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/tvCreatorUsername"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="@dimen/default_margin"-->
-<!--            android:textSize="18sp" />-->
-<!--    </LinearLayout>-->
-
-<!--    <ImageView-->
-<!--        android:id="@+id/ivPostPhoto"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:adjustViewBounds="true"-->
-<!--        app:layout_constraintBottom_toTopOf="@id/tvPostStatus"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/llPostUserInfo" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/tvPostStatus"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="@dimen/default_margin"-->
-<!--        android:textSize="14sp"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/ivPostPhoto" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/tvAnimalTypeLabel"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="@dimen/default_margin"-->
-<!--        android:layout_marginLeft="@dimen/default_margin"-->
-<!--        android:text="Кому?: "-->
-<!--        android:textSize="14sp"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/tvPostStatus" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/tvAnimalType"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginLeft="@dimen/default_margin"-->
-<!--        android:layout_marginRight="@dimen/default_margin"-->
-<!--        android:textSize="14sp"-->
-<!--        app:layout_constraintStart_toEndOf="@id/tvAnimalTypeLabel"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/tvPostStatus" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/tvTypeOfHelpLabel"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginLeft="@dimen/default_margin"-->
-<!--        android:layout_marginRight="@dimen/default_margin"-->
-<!--        android:text="Какая помощь нужна?: "-->
-<!--        android:textSize="14sp"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/tvAnimalTypeLabel" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/tvTypeOfHelp"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginLeft="@dimen/default_margin"-->
-<!--        android:layout_marginRight="@dimen/default_margin"-->
-<!--        android:textSize="14sp"-->
-<!--        app:layout_constraintStart_toEndOf="@id/tvTypeOfHelpLabel"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/tvAnimalTypeLabel" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/tvPlaceLabel"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginLeft="@dimen/default_margin"-->
-<!--        android:layout_marginRight="@dimen/default_margin"-->
-<!--        android:text="Где?:"-->
-<!--        android:textSize="14sp"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/tvTypeOfHelpLabel" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/tvPlace"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginLeft="@dimen/default_margin"-->
-<!--        android:layout_marginRight="@dimen/default_margin"-->
-<!--        android:textSize="14sp"-->
-<!--        app:layout_constraintStart_toEndOf="@id/tvPlaceLabel"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/tvTypeOfHelpLabel" />-->
-
-
-<!--    <at.blogc.android.views.ExpandableTextView-->
-<!--        android:id="@+id/etvPostDescription"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:ellipsize="end"-->
-<!--        android:maxLines="2"-->
-<!--        android:padding="@dimen/default_padding"-->
-<!--        app:animation_duration="750"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/tvPlaceLabel" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/postComments"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="@dimen/default_margin"-->
-<!--        android:gravity="end"-->
-<!--        android:text="Комментарии(16)"-->
-<!--        android:textSize="12sp"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/etvPostDescription" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/postCreatedAt"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginEnd="@dimen/default_margin"-->
-<!--        android:text="29 02 2020 friday"-->
-<!--        android:textSize="12sp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/etvPostDescription" />-->
-
-<!--</androidx.constraintlayout.widget.ConstraintLayout>-->
-
+<?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -205,15 +55,28 @@
             android:src="@drawable/ic_add_photo" />
 
         <TextView
-            android:id="@+id/tvTypeOfHelp"
+            android:id="@+id/tvTypeOfAnimal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/default_half_margin"
             android:layout_marginTop="@dimen/default_half_margin"
             android:drawablePadding="@dimen/default_padding"
-            android:textSize="18sp"
+            android:textColor="@color/defaultTextColor"
+            android:textSize="16sp"
+            app:drawableStartCompat="@drawable/ic_type_animal"
+            tools:text="type of animal" />
+
+        <TextView
+            android:id="@+id/tvTypeOfAssist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/default_half_margin"
+            android:layout_marginTop="@dimen/default_half_margin"
+            android:drawablePadding="@dimen/default_padding"
+            android:textColor="@color/defaultTextColor"
+            android:textSize="16sp"
             app:drawableStartCompat="@drawable/ic_type_help"
-            tools:text="type of help" />
+            tools:text="type of assist" />
 
         <TextView
             android:id="@+id/tvPlace"
@@ -222,7 +85,8 @@
             android:layout_marginHorizontal="@dimen/default_half_margin"
             android:layout_marginTop="@dimen/default_half_margin"
             android:drawablePadding="@dimen/default_padding"
-            android:textSize="18sp"
+            android:textColor="@color/defaultTextColor"
+            android:textSize="16sp"
             app:drawableStartCompat="@drawable/ic_placeholder"
             tools:text="Minsk,Belarus" />
 
@@ -236,6 +100,7 @@
             android:drawablePadding="@dimen/default_padding"
             android:ellipsize="end"
             android:maxLines="2"
+            android:textColor="@color/defaultTextColor"
             android:textSize="16sp"
             app:animation_duration="750"
             app:layout_constraintEnd_toEndOf="@id/glVerticalEnd"

@@ -1,11 +1,12 @@
 package com.chilik1020.mustachepawsfp.ui.postcreate
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
+import androidx.fragment.app.DialogFragment
 import com.chilik1020.mustachepawsfp.R
 import com.chilik1020.mustachepawsfp.databinding.FragmentDialogSelectLocationBinding
 import com.google.android.libraries.maps.CameraUpdateFactory
@@ -15,15 +16,10 @@ import com.google.android.libraries.maps.SupportMapFragment
 import com.google.android.libraries.maps.model.BitmapDescriptorFactory
 import com.google.android.libraries.maps.model.LatLng
 import com.google.android.libraries.maps.model.MarkerOptions
-import dagger.android.support.DaggerDialogFragment
-import javax.inject.Inject
 
 
-class SelectLocationDialogFragment : DaggerDialogFragment(), OnMapReadyCallback {
+class SelectLocationDialogFragment : DialogFragment(), OnMapReadyCallback {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-    lateinit var viewModel: PostCreateViewModel
     lateinit var binding: FragmentDialogSelectLocationBinding
 
     private lateinit var mapFragment: SupportMapFragment
@@ -68,23 +64,17 @@ class SelectLocationDialogFragment : DaggerDialogFragment(), OnMapReadyCallback 
     private fun initViews() {
         mapFragment.getMapAsync(this)
 
-        viewModel = ViewModelProvider(this, viewModelFactory).get(PostCreateViewModel::class.java)
-
-        viewModel.location.observe(viewLifecycleOwner) { currentLocation = it }
-        binding.ibGoToPreviousStep.setOnClickListener { navigateToPreviousStep() }
-        binding.ibGoToNextStep.setOnClickListener {
-            viewModel.location.value = currentLocation
-            navigateToNextStep()
+        binding.mbApply.setOnClickListener {
+            val intent = Intent().apply {
+                //  putExtra(EXTRA_KEY_LOCATION, )
+                //     putExtra(EXTRA_KEY_DESCRIPTION, binding.etDescription.text.toString())
+            }
+            targetFragment?.onActivityResult(targetRequestCode, Activity.RESULT_OK, intent)
+            dismiss()
         }
-        binding.svLocationQuery.isSubmitButtonEnabled = true
-    }
 
-    private fun navigateToNextStep() {
-//        findNavController()
-//            .navigate(R.id.action_selectLocation_to_createPost)
-    }
-
-    private fun navigateToPreviousStep() {
-        findNavController().popBackStack()
+        binding.mbCancel.setOnClickListener {
+            dismiss()
+        }
     }
 }

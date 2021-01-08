@@ -7,7 +7,7 @@ data class PostPresentationModel(
     val id: Long,
     val closed: Boolean,
     val typeOfAnimal: String,
-    val typeOfHelp: String,
+    val typeOfAssist: String,
     val location: PostLocation,
     val description: String,
     val imageLink: String,

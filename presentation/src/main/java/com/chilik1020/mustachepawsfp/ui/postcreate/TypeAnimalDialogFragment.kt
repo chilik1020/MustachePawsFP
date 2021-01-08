@@ -1,21 +1,20 @@
 package com.chilik1020.mustachepawsfp.ui.postcreate
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
+import androidx.fragment.app.DialogFragment
 import com.chilik1020.mustachepawsfp.R
 import com.chilik1020.mustachepawsfp.databinding.FragmentDialogTypeAnimalBinding
-import dagger.android.support.DaggerDialogFragment
-import javax.inject.Inject
+import com.chilik1020.mustachepawsfp.utils.EXTRA_KEY_ANIMAL_TYPE
+import com.chilik1020.mustachepawsfp.utils.LOG_TAG
 
-class TypeAnimalDialogFragment : DaggerDialogFragment() {
+class TypeAnimalDialogFragment : DialogFragment() {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-    lateinit var viewModel: PostCreateViewModel
     lateinit var binding: FragmentDialogTypeAnimalBinding
 
     override fun onCreateView(
@@ -33,20 +32,28 @@ class TypeAnimalDialogFragment : DaggerDialogFragment() {
     }
 
     private fun initViews() {
-        viewModel = ViewModelProvider(this, viewModelFactory).get(PostCreateViewModel::class.java)
-        binding.ibGoToNextStep.setOnClickListener {
-            viewModel.typeOfAnimal.value = "Turtle"
-            navigateToNextStep()
+        binding.mbApply.setOnClickListener {
+            val intent = Intent().apply {
+                putExtra(EXTRA_KEY_ANIMAL_TYPE, getTextFromCheckedRadioButton())
+            }
+            targetFragment?.onActivityResult(targetRequestCode, Activity.RESULT_OK, intent)
+            dismiss()
         }
-        binding.ibGoToPreviousStep.setOnClickListener { navigateToPreviousStep() }
+
+        binding.mbCancel.setOnClickListener {
+            dismiss()
+        }
     }
 
-    private fun navigateToNextStep() {
-//        findNavController()
-//            .navigate(R.id.action_dialogTypeAnimal_to_dialogDescription)
-    }
-
-    private fun navigateToPreviousStep() {
-        findNavController().popBackStack()
+    private fun getTextFromCheckedRadioButton(): String {
+        val checkedRB = binding.rgTypeAnimal.checkedRadioButtonId
+        Log.d(LOG_TAG, "Checked $checkedRB")
+        return when (checkedRB) {
+            R.id.rbCat -> "Cat"
+            R.id.rbDog -> "Dog"
+            R.id.rbRabbit -> "Rabbit"
+            R.id.rbMouse -> "Mouse"
+            else -> binding.etOtherAnimal.text.toString()
+        }
     }
 }
