@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.chilik1020.mustachepawsfp.R
 import com.chilik1020.mustachepawsfp.databinding.FragmentPostsBinding
@@ -66,6 +67,7 @@ class PostsFragment : DaggerFragment() {
             }
 
             R.id.miLogOut -> {
+                navigateToLoginFragment()
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -120,6 +122,11 @@ class PostsFragment : DaggerFragment() {
     private fun navigateToProfileFragment() {
         Navigation.findNavController(binding.root)
             .navigate(R.id.action_postList_to_profile)
+    }
+
+
+    private fun navigateToLoginFragment() {
+        findNavController().navigate(R.id.action_postList_to_Login)
     }
 
     private fun showSnackBarMessage(msg: String) {
