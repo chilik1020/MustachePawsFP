@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">MustachePawsFP</string>
-    <string name="maps_api_key" translatable="false"></string>
 
     <string name="string_ad">Announcements</string>
     <string name="string_filter">Filters</string>
@@ -37,5 +36,8 @@
     <string name="my_profile">My profile</string>
     <string name="take_photo">Take photo</string>
 
+<!--  CREATE POST  DIALOGS-->
+    <string name="btn_apply">apply</string>
+    <string name="btn_cancel">cancel</string>
 
 </resources>

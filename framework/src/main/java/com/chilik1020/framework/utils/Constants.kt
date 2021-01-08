@@ -3,6 +3,11 @@ package com.chilik1020.framework.utils
 const val BASE_URL: String = "http://188.120.232.83:8080/"
 const val BASE_URL_POST_IMAGE: String = "http://188.120.232.83:8080/mustachepaws/posts/image/"
 
+const val LOCATION_FROM_QUERY_BASE_URL =
+    "http://open.mapquestapi.com/geocoding/v1/address?key=%s&location=%s"
+//"https://us1.locationiq.com/v1/search.php?key=%s=json&q=%s"
+//"https://maps.googleapis.com/maps/api/geocode/json?address=%s&key=%s"
+
 const val PREFERENCE_FILE_NAME = "APP_PREFERENCES"
 const val PREFERENCE_TOKEN_KEY = "ACCESS_TOKEN"
 const val PREFERENCE_USER_ID_KEY = "USER_ID"
