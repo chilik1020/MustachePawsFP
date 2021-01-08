@@ -10,7 +10,7 @@ import at.blogc.android.views.ExpandableTextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.load.model.LazyHeaders
-import com.chilik1020.framework.utils.BASE_URL_POST_IMAGE
+import com.chilik1020.framework.utils.MUSTACHE_BASE_URL_POST_IMAGE
 import com.chilik1020.framework.utils.PREFERENCE_FILE_NAME
 import com.chilik1020.framework.utils.PREFERENCE_TOKEN_KEY
 import com.chilik1020.mustachepawsfp.databinding.ItemPostBinding
@@ -44,7 +44,7 @@ class PostListAdapter : RecyclerView.Adapter<PostListAdapter.PostViewHolder>() {
 
         fun bind(post: PostPresentationModel) {
             with(binding) {
-                val link = "${BASE_URL_POST_IMAGE}${post.imageLink}"
+                val link = "${MUSTACHE_BASE_URL_POST_IMAGE}${post.imageLink}"
                 Log.d(LOG_TAG, link)
                 val token = binding.root.context.getSharedPreferences(
                     PREFERENCE_FILE_NAME,

@@ -59,7 +59,6 @@ class LoginFragment : DaggerFragment() {
             }
 
             is LoginViewState.LoggedState -> {
-                showSnackBarMessage("You have successfully logged in!")
                 navigateToPostListFragment()
             }
 

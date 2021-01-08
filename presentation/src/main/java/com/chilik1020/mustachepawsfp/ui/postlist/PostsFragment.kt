@@ -103,8 +103,9 @@ class PostsFragment : DaggerFragment() {
 
     private fun render(state: PostsViewState) {
         when (state) {
+            PostsViewState.Loading -> {
+            }
             is PostsViewState.Success -> {
-                showSnackBarMessage("Succees")
                 binding.swipeRefreshLayout.isRefreshing = false
             }
             is PostsViewState.Error -> {
@@ -123,7 +124,6 @@ class PostsFragment : DaggerFragment() {
         Navigation.findNavController(binding.root)
             .navigate(R.id.action_postList_to_profile)
     }
-
 
     private fun navigateToLoginFragment() {
         findNavController().navigate(R.id.action_postList_to_Login)
