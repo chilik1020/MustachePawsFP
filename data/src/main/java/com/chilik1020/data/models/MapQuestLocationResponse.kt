@@ -8,8 +8,9 @@ data class ResultMQ(
     val locations: List<LocationMQ>
 )
 
-
 data class LocationMQ(
+    val adminArea5: String,
+    val adminArea6: String,
     val latLng: LatLngMQ
 )
 

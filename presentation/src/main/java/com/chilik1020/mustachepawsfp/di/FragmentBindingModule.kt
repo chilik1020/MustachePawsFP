@@ -2,6 +2,7 @@ package com.chilik1020.mustachepawsfp.di
 
 import com.chilik1020.mustachepawsfp.ui.login.LoginFragment
 import com.chilik1020.mustachepawsfp.ui.postcreate.PostCreateFragment
+import com.chilik1020.mustachepawsfp.ui.postcreate.SelectLocationDialogFragment
 import com.chilik1020.mustachepawsfp.ui.postlist.PostsFragment
 import com.chilik1020.mustachepawsfp.ui.profile.ProfileFragment
 import com.chilik1020.mustachepawsfp.ui.signup.SignUpFragment
@@ -36,10 +37,10 @@ abstract class FragmentBindingModule {
 //    @ContributesAndroidInjector
 //    abstract fun postDescriptionDialogFragment(): PostDescriptionDialogFragment
 //
-//    @ContributesAndroidInjector
-//    abstract fun selectLocationFragment(): SelectLocationDialogFragment
 
     @ContributesAndroidInjector
     abstract fun postCreateFragment(): PostCreateFragment
 
+    @ContributesAndroidInjector
+    abstract fun selectLocationFragment(): SelectLocationDialogFragment
 }

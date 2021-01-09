@@ -3,12 +3,16 @@ package com.chilik1020.mustachepawsfp.ui.postcreate
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.DialogFragment
+import androidx.appcompat.widget.SearchView
+import androidx.lifecycle.ViewModelProvider
 import com.chilik1020.mustachepawsfp.R
 import com.chilik1020.mustachepawsfp.databinding.FragmentDialogSelectLocationBinding
+import com.chilik1020.mustachepawsfp.utils.EXTRA_KEY_LOCATION
+import com.chilik1020.mustachepawsfp.utils.LOG_TAG
 import com.google.android.libraries.maps.CameraUpdateFactory
 import com.google.android.libraries.maps.GoogleMap
 import com.google.android.libraries.maps.OnMapReadyCallback
@@ -16,9 +20,15 @@ import com.google.android.libraries.maps.SupportMapFragment
 import com.google.android.libraries.maps.model.BitmapDescriptorFactory
 import com.google.android.libraries.maps.model.LatLng
 import com.google.android.libraries.maps.model.MarkerOptions
+import dagger.android.support.DaggerDialogFragment
+import javax.inject.Inject
 
 
-class SelectLocationDialogFragment : DialogFragment(), OnMapReadyCallback {
+class SelectLocationDialogFragment : DaggerDialogFragment(), OnMapReadyCallback {
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+    lateinit var viewModel: SelectLocationViewModel
 
     lateinit var binding: FragmentDialogSelectLocationBinding
 
@@ -63,14 +73,29 @@ class SelectLocationDialogFragment : DialogFragment(), OnMapReadyCallback {
 
     private fun initViews() {
         mapFragment.getMapAsync(this)
+        viewModel =
+            ViewModelProvider(this, viewModelFactory).get(SelectLocationViewModel::class.java)
+
+        binding.svLocationQuery.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                query?.let { viewModel.getLocationFromQuery(it) }
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                Log.d(LOG_TAG, "$newText")
+                return false
+            }
+        })
 
         binding.mbApply.setOnClickListener {
-            val intent = Intent().apply {
-                //  putExtra(EXTRA_KEY_LOCATION, )
-                //     putExtra(EXTRA_KEY_DESCRIPTION, binding.etDescription.text.toString())
+            viewModel.location?.let {
+                val intent = Intent().apply {
+                    putExtra(EXTRA_KEY_LOCATION, it)
+                }
+                targetFragment?.onActivityResult(targetRequestCode, Activity.RESULT_OK, intent)
+                dismiss()
             }
-            targetFragment?.onActivityResult(targetRequestCode, Activity.RESULT_OK, intent)
-            dismiss()
         }
 
         binding.mbCancel.setOnClickListener {

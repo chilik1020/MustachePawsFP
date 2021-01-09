@@ -14,6 +14,7 @@ import at.blogc.android.views.ExpandableTextView
 import com.bumptech.glide.Glide
 import com.chilik1020.mustachepawsfp.R
 import com.chilik1020.mustachepawsfp.databinding.FragmentPostCreateBinding
+import com.chilik1020.mustachepawsfp.models.LocationPresentationModel
 import com.chilik1020.mustachepawsfp.utils.EXTRA_KEY_ANIMAL_TYPE
 import com.chilik1020.mustachepawsfp.utils.EXTRA_KEY_ASSIST_TYPE
 import com.chilik1020.mustachepawsfp.utils.EXTRA_KEY_DESCRIPTION
@@ -60,7 +61,7 @@ class PostCreateFragment : DaggerFragment() {
         viewModel.typeOfAnimal.observe(viewLifecycleOwner) { binding.tvTypeOfAnimal.text = it }
         viewModel.typeOfAssist.observe(viewLifecycleOwner) { binding.tvTypeOfAssist.text = it }
         viewModel.location.observe(viewLifecycleOwner) {
-            binding.tvPlace.text = "${it.latitude} : ${it.longitude}"
+            binding.tvPlace.text = it.description
         }
         viewModel.description.observe(viewLifecycleOwner) { binding.etvPostDescription.text = it }
         viewModel.viewState.observe(viewLifecycleOwner) { render(it) }
@@ -134,8 +135,8 @@ class PostCreateFragment : DaggerFragment() {
                 }
 
                 REQUEST_LOCATION -> {
-                    data?.getStringExtra(EXTRA_KEY_LOCATION).let {
-                        // viewModel.l.value = it
+                    data?.getSerializableExtra(EXTRA_KEY_LOCATION).let {
+                        viewModel.location.value = it as LocationPresentationModel
                     }
                 }
 

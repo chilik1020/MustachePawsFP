@@ -8,11 +8,10 @@ import androidx.lifecycle.viewModelScope
 import com.chilik1020.domain.models.PostLocation
 import com.chilik1020.domain.models.PostRequestObject
 import com.chilik1020.domain.usecases.CreatePostUseCase
-import com.chilik1020.domain.usecases.LocationFromQueryUseCase
 import com.chilik1020.domain.usecases.UploadImageUseCase
 import com.chilik1020.mustachepawsfp.mappers.PostDomainToPresentationMapper
+import com.chilik1020.mustachepawsfp.models.LocationPresentationModel
 import com.chilik1020.mustachepawsfp.utils.LOG_TAG
-import com.google.android.libraries.maps.model.LatLng
 import javax.inject.Inject
 import kotlinx.coroutines.launch
 
@@ -25,9 +24,6 @@ class PostCreateViewModel @Inject constructor() : ViewModel() {
     lateinit var uploadImageUseCase: UploadImageUseCase
 
     @Inject
-    lateinit var locationFromQueryUseCase: LocationFromQueryUseCase
-
-    @Inject
     lateinit var toPresentationMapper: PostDomainToPresentationMapper
 
     private val viewStateMutable: MutableLiveData<PostCreateViewState> = MutableLiveData()
@@ -37,7 +33,7 @@ class PostCreateViewModel @Inject constructor() : ViewModel() {
     val imageUri = MutableLiveData<String>()
     val typeOfAssist = MutableLiveData<String>()
     val typeOfAnimal = MutableLiveData<String>()
-    val location = MutableLiveData<LatLng>()
+    val location = MutableLiveData<LocationPresentationModel>()
     val description = MutableLiveData<String>()
 
     fun createPost() {
@@ -69,14 +65,6 @@ class PostCreateViewModel @Inject constructor() : ViewModel() {
                 Log.d(LOG_TAG, "POSTCREATEVIEWMODEL ERROR: ${ex.message}")
                 viewStateMutable.value = PostCreateViewState.Error(ex.message.toString())
             }
-        }
-    }
-
-    fun getLocationFromQuery(query: String) {
-        Log.d(LOG_TAG, "POSTCREATEVIEWMODEL getLocationFromQuery ")
-        viewModelScope.launch {
-            Log.d(LOG_TAG, "POSTCREATEVIEWMODEL getLocationFromQuery launch section")
-            locationFromQueryUseCase.getLocation(query)
         }
     }
 }

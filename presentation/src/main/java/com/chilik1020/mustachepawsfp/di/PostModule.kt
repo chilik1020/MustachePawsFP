@@ -1,6 +1,8 @@
 package com.chilik1020.mustachepawsfp.di
 
+import com.chilik1020.data.mappers.LocationDataToDomainMapper
 import com.chilik1020.data.mappers.PostDataToDomainMapper
+import com.chilik1020.data.models.MapQuestLocationResponse
 import com.chilik1020.data.models.PostDataModel
 import com.chilik1020.data.repositories.ImageRepositoryImpl
 import com.chilik1020.data.repositories.LocationRepositoryImpl
@@ -9,6 +11,7 @@ import com.chilik1020.data.sources.ImageRemoteDataSource
 import com.chilik1020.data.sources.LocationRemoteDataSource
 import com.chilik1020.data.sources.PostRemoteDataSource
 import com.chilik1020.data.sources.UserLocalDataSource
+import com.chilik1020.domain.models.LocationDomainModel
 import com.chilik1020.domain.models.PostDomainModel
 import com.chilik1020.domain.repositories.ImageRepository
 import com.chilik1020.domain.repositories.LocationRepository
@@ -30,7 +33,9 @@ import com.chilik1020.framework.remote.LocationApi
 import com.chilik1020.framework.remote.LocationRemoteDataSourceImpl
 import com.chilik1020.framework.remote.MustachePawsApi
 import com.chilik1020.framework.remote.PostRemoteDataSourceImpl
+import com.chilik1020.mustachepawsfp.mappers.LocationDomainToPresentationMapper
 import com.chilik1020.mustachepawsfp.mappers.PostDomainToPresentationMapper
+import com.chilik1020.mustachepawsfp.models.LocationPresentationModel
 import com.chilik1020.mustachepawsfp.models.PostPresentationModel
 import dagger.Module
 import dagger.Provides
@@ -77,8 +82,11 @@ class PostModule {
     ): ImageRepository = ImageRepositoryImpl(imageRemoteDataSource, userLocalDataSource)
 
     @Provides
-    fun provideLocationRepository(locationRemoteDataSource: LocationRemoteDataSource): LocationRepository =
-        LocationRepositoryImpl(locationRemoteDataSource)
+    fun provideLocationRepository(
+        locationRemoteDataSource: LocationRemoteDataSource,
+        locationDataToDomainMapper: LocationDataToDomainMapper
+    ): LocationRepository =
+        LocationRepositoryImpl(locationRemoteDataSource, locationDataToDomainMapper)
 
     @Provides
     fun providePostRemoteDataSource(api: MustachePawsApi): PostRemoteDataSource =
@@ -99,4 +107,12 @@ class PostModule {
     @Provides
     fun providePostDomainToPresentationMapper(): (PostDomainModel) -> PostPresentationModel =
         PostDomainToPresentationMapper()
+
+    @Provides
+    fun provideLocationDataToDomainMapper(): (MapQuestLocationResponse) -> LocationDomainModel =
+        LocationDataToDomainMapper()
+
+    @Provides
+    fun provideLocationDomainToPresentationMapper(): (LocationDomainModel) -> LocationPresentationModel =
+        LocationDomainToPresentationMapper()
 }
