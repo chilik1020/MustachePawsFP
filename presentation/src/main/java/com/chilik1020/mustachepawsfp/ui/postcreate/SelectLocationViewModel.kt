@@ -1,5 +1,7 @@
 package com.chilik1020.mustachepawsfp.ui.postcreate
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.chilik1020.domain.usecases.LocationFromQueryUseCase
@@ -16,12 +18,14 @@ class SelectLocationViewModel @Inject constructor() : ViewModel() {
     @Inject
     lateinit var locationDomainToPresentationMapper: LocationDomainToPresentationMapper
 
-    var location: LocationPresentationModel? = null
+    private val locationLiveDataMutable = MutableLiveData<LocationPresentationModel>()
+    val locationLiveData: LiveData<LocationPresentationModel>
+        get() = locationLiveDataMutable
 
     fun getLocationFromQuery(query: String) {
         viewModelScope.launch {
             val locationDomain = locationFromQueryUseCase.getLocation(query)
-            location = locationDomainToPresentationMapper(locationDomain)
+            locationLiveDataMutable.value = locationDomainToPresentationMapper(locationDomain)
         }
     }
 }

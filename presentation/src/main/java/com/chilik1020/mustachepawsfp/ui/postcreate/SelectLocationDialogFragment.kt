@@ -3,7 +3,6 @@ package com.chilik1020.mustachepawsfp.ui.postcreate
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,8 +10,8 @@ import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import com.chilik1020.mustachepawsfp.R
 import com.chilik1020.mustachepawsfp.databinding.FragmentDialogSelectLocationBinding
+import com.chilik1020.mustachepawsfp.models.LocationPresentationModel
 import com.chilik1020.mustachepawsfp.utils.EXTRA_KEY_LOCATION
-import com.chilik1020.mustachepawsfp.utils.LOG_TAG
 import com.google.android.libraries.maps.CameraUpdateFactory
 import com.google.android.libraries.maps.GoogleMap
 import com.google.android.libraries.maps.OnMapReadyCallback
@@ -55,16 +54,19 @@ class SelectLocationDialogFragment : DaggerDialogFragment(), OnMapReadyCallback 
 
     override fun onMapReady(gm: GoogleMap?) {
         googleMap = gm
+    }
+
+    private fun setLocationMarker(location: LocationPresentationModel) {
         googleMap?.let {
             it.mapType = GoogleMap.MAP_TYPE_HYBRID
-            currentLocation = LatLng(53.90831018963494, 27.571897533128794)
+            currentLocation = LatLng(location.lat, location.lng)
             currentLocation?.let { currentLatLng ->
                 val latLng: LatLng = currentLatLng
                 it.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 11f))
 
                 val markerOptions = MarkerOptions()
                 markerOptions.position(latLng)
-                markerOptions.title("Current Position")
+                markerOptions.title(location.description)
                 markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA))
                 it.addMarker(markerOptions)
             }
@@ -76,6 +78,8 @@ class SelectLocationDialogFragment : DaggerDialogFragment(), OnMapReadyCallback 
         viewModel =
             ViewModelProvider(this, viewModelFactory).get(SelectLocationViewModel::class.java)
 
+        viewModel.locationLiveData.observe(viewLifecycleOwner) { setLocationMarker(it) }
+
         binding.svLocationQuery.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 query?.let { viewModel.getLocationFromQuery(it) }
@@ -83,13 +87,12 @@ class SelectLocationDialogFragment : DaggerDialogFragment(), OnMapReadyCallback 
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                Log.d(LOG_TAG, "$newText")
                 return false
             }
         })
 
         binding.mbApply.setOnClickListener {
-            viewModel.location?.let {
+            viewModel.locationLiveData.value?.let {
                 val intent = Intent().apply {
                     putExtra(EXTRA_KEY_LOCATION, it)
                 }
@@ -98,8 +101,6 @@ class SelectLocationDialogFragment : DaggerDialogFragment(), OnMapReadyCallback 
             }
         }
 
-        binding.mbCancel.setOnClickListener {
-            dismiss()
-        }
+        binding.mbCancel.setOnClickListener { dismiss() }
     }
 }

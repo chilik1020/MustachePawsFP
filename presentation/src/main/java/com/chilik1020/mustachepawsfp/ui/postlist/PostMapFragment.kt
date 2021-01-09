@@ -72,7 +72,7 @@ class PostMapFragment : Fragment(), OnMapReadyCallback {
     private fun setMarkers(post: List<PostPresentationModel>) {
         googleMap?.clear()
         post.forEach {
-            val latLng = LatLng(it.location.lon, it.location.lat)
+            val latLng = LatLng(it.location.lat, it.location.lon)
             val markerOptions = MarkerOptions()
             markerOptions.position(latLng)
             markerOptions.title(it.location.description)

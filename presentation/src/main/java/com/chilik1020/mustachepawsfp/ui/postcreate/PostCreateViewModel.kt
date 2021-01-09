@@ -9,6 +9,7 @@ import com.chilik1020.domain.models.PostLocation
 import com.chilik1020.domain.models.PostRequestObject
 import com.chilik1020.domain.usecases.CreatePostUseCase
 import com.chilik1020.domain.usecases.UploadImageUseCase
+import com.chilik1020.domain.usecases.YourProfileDetailsUseCase
 import com.chilik1020.mustachepawsfp.mappers.PostDomainToPresentationMapper
 import com.chilik1020.mustachepawsfp.models.LocationPresentationModel
 import com.chilik1020.mustachepawsfp.utils.LOG_TAG
@@ -22,6 +23,9 @@ class PostCreateViewModel @Inject constructor() : ViewModel() {
 
     @Inject
     lateinit var uploadImageUseCase: UploadImageUseCase
+
+    @Inject
+    lateinit var yourProfileDetailsUseCase: YourProfileDetailsUseCase
 
     @Inject
     lateinit var toPresentationMapper: PostDomainToPresentationMapper
@@ -39,9 +43,14 @@ class PostCreateViewModel @Inject constructor() : ViewModel() {
     fun createPost() {
         viewStateMutable.value = PostCreateViewState.Loading
         viewModelScope.launch {
+
             val locationPost = PostLocation(
-                20.0, 57.0, "Somewhere on Earth"
+                location.value?.lat ?: 20.0,
+                location.value?.lng ?: 55.0,
+                location.value?.description ?: "location undefined"
             )
+
+            val creatorUsername = yourProfileDetailsUseCase.userDetails().username
             val imageFullPath = imageUri.value.toString()
             val index = imageFullPath.indexOfLast { it == '/' }
             val imageName = imageFullPath.substring(index + 1)
@@ -51,7 +60,7 @@ class PostCreateViewModel @Inject constructor() : ViewModel() {
                 assistType = typeOfAssist.value.toString(),
                 location = locationPost,
                 imageLink = imageName,
-                creatorUsername = "chilik1020",
+                creatorUsername = creatorUsername,
                 description = description.value.toString()
             )
             try {
