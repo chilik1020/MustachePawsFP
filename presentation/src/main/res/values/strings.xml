@@ -42,9 +42,11 @@
     <string name="registred_at">Registred at</string>
     <string name="edit_profile">Edit profile</string>
     <string name="log_out_profile_frag">Log out</string>
+    <string name="save_profile">Save</string>
 
     <!--  POSTLIST FRAGMENT  -->
     <string name="my_profile">My profile</string>
     <string name="log_out_postlist_frag">Log out</string>
+
 
 </resources>

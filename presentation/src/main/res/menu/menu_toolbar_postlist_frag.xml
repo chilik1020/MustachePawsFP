@@ -5,7 +5,7 @@
         android:id="@+id/miMyProfilePostListMenu"
         android:title="@string/my_profile" />
 
-    <item
-        android:id="@+id/miLogOutPostListMenu"
-        android:title="@string/log_out_postlist_frag" />
+<!--    <item-->
+    <!--        android:id="@+id/miLogOutPostListMenu"-->
+    <!--        android:title="@string/log_out_postlist_frag" />-->
 </menu>

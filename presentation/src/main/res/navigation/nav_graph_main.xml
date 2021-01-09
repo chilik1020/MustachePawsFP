@@ -67,11 +67,11 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
 
-        <action
-            android:id="@+id/action_postList_to_Login"
-            app:destination="@id/login"
-            app:launchSingleTop="true"
-            app:popUpTo="@id/login" />
+<!--        <action-->
+<!--            android:id="@+id/action_postList_to_Login"-->
+<!--            app:destination="@id/login"-->
+<!--            app:launchSingleTop="true"-->
+<!--            app:popUpTo="@id/login" />-->
     </fragment>
 
     <fragment

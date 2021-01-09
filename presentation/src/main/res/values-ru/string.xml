@@ -40,6 +40,7 @@
     <string name="registred_at">Зарегистрирован(а) </string>
     <string name="edit_profile">Редактировать профиль</string>
     <string name="log_out_profile_frag">Выйти</string>
+    <string name="save_profile">Сохранить</string>
 
     <!--  POSTLIST FRAGMENT  -->
     <string name="my_profile">Мой профиль</string>

@@ -66,10 +66,10 @@ class PostsFragment : DaggerFragment() {
                 true
             }
 
-            R.id.miLogOutPostListMenu -> {
-                navigateToLoginFragment()
-                true
-            }
+//            R.id.miLogOutPostListMenu -> {
+//                navigateToLoginFragment()
+//                true
+//            }
             else -> super.onOptionsItemSelected(item)
         }
 
@@ -125,9 +125,9 @@ class PostsFragment : DaggerFragment() {
             .navigate(R.id.action_postList_to_profile)
     }
 
-    private fun navigateToLoginFragment() {
-        findNavController().navigate(R.id.action_postList_to_Login)
-    }
+//    private fun navigateToLoginFragment() {
+//        findNavController().navigate(R.id.action_postList_to_Login)
+//    }
 
     private fun showSnackBarMessage(msg: String) {
         Snackbar.make(binding.root, msg, Snackbar.LENGTH_SHORT).show()
