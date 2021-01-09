@@ -28,17 +28,21 @@
     <string name="description">Описание</string>
     <string name="image_link">Ссылка</string>
 
-
-    <!--  Toolbar menu  -->
-    <string name="menu_logout">Выйти</string>
-
     <!-- TODO: Remove or change this placeholder text -->
     <string name="create_post">Coздать</string>
-    <string name="my_profile">Профиль</string>
     <string name="take_photo">Сделать фото</string>
 
     <!--  CREATE POST  DIALOGS-->
     <string name="btn_apply">сохранить</string>
     <string name="btn_cancel">отменить</string>
+
+    <!--  PROFILE FRAGMENT  -->
+    <string name="registred_at">Зарегистрирован(а) </string>
+    <string name="edit_profile">Редактировать профиль</string>
+    <string name="log_out_profile_frag">Выйти</string>
+
+    <!--  POSTLIST FRAGMENT  -->
+    <string name="my_profile">Мой профиль</string>
+    <string name="log_out_postlist_frag">Выйти</string>
 
 </resources>

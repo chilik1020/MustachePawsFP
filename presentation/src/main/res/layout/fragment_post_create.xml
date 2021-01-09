@@ -57,7 +57,7 @@
                     android:drawablePadding="@dimen/default_padding"
                     android:textColor="@color/defaultTextColor"
                     android:textSize="16sp"
-                    app:drawableStartCompat="@drawable/ic_type_animal"
+                    app:drawableStartCompat="@drawable/ic_pawprint"
                     tools:text="type of animal" />
 
                 <TextView
@@ -90,7 +90,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/default_half_margin"
                     android:layout_marginVertical="@dimen/default_margin"
-                    android:drawableStart="@drawable/ic_description"
+                    android:drawableStart="@drawable/ic_edit"
                     android:drawablePadding="@dimen/default_padding"
                     android:ellipsize="end"
                     android:maxLines="2"

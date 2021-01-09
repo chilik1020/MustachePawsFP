@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/miMyProfile"
-        android:title="My profile"/>
+    <item
+        android:id="@+id/miMyProfilePostListMenu"
+        android:title="@string/my_profile" />
 
-    <item android:id="@+id/miLogOut"
-        android:title="Log out"/>
+    <item
+        android:id="@+id/miLogOutPostListMenu"
+        android:title="@string/log_out_postlist_frag" />
 </menu>

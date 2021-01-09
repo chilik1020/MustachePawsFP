@@ -61,12 +61,12 @@ class PostsFragment : DaggerFragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean =
         when (item.itemId) {
-            R.id.miMyProfile -> {
+            R.id.miMyProfilePostListMenu -> {
                 navigateToProfileFragment()
                 true
             }
 
-            R.id.miLogOut -> {
+            R.id.miLogOutPostListMenu -> {
                 navigateToLoginFragment()
                 true
             }

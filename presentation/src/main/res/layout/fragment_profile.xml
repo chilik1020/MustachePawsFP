@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_background">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarPostListFragment"
@@ -38,14 +39,23 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.96" />
 
+        <!--        <ImageView-->
+        <!--            android:id="@+id/ivProfilePhoto"-->
+        <!--            android:layout_width="96dp"-->
+        <!--            android:layout_height="96dp"-->
+        <!--            android:layout_margin="@dimen/default_half_margin"-->
+        <!--            android:src="@drawable/ic_default_avatar"-->
+        <!--            app:layout_constraintStart_toStartOf="@id/glVerticalStart"-->
+        <!--            app:layout_constraintTop_toTopOf="parent" />-->
+
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/ivProfilePhoto"
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:layout_margin="@dimen/default_half_margin"
-            android:src="@drawable/ic_person"
+            android:src="@drawable/ic_default_avatar"
             app:civ_border_color="#FF605B5B"
-            app:civ_border_width="2dp"
+            app:civ_border_width="1dp"
             app:layout_constraintStart_toStartOf="@id/glVerticalStart"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -65,8 +75,8 @@
             android:layout_marginStart="@dimen/default_margin"
             android:layout_marginTop="@dimen/default_margin"
             android:gravity="start"
-            android:text="Andrey Demchuk"
-            android:textSize="24sp"
+            android:textColor="@color/defaultTextColor"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="@id/glVerticalEnd"
             app:layout_constraintStart_toEndOf="@id/ivProfilePhoto"
             app:layout_constraintTop_toTopOf="parent"
@@ -78,6 +88,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/default_margin"
             android:gravity="start"
+            android:textColor="@color/defaultTextColor"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="@id/glVerticalEnd"
             app:layout_constraintStart_toEndOf="@id/ivProfilePhoto"
@@ -91,9 +102,9 @@
             android:layout_marginTop="@dimen/default_half_margin"
             android:drawablePadding="@dimen/default_padding"
             android:gravity="start"
-            android:text="+37529XXXXXXX"
+            android:textColor="@color/defaultTextColor"
             android:textSize="18sp"
-            app:drawableStartCompat="@drawable/ic_phone"
+            app:drawableStartCompat="@drawable/ic_phone_old"
             app:layout_constraintEnd_toEndOf="@id/glVerticalEnd"
             app:layout_constraintStart_toStartOf="@id/glVerticalStart"
             app:layout_constraintTop_toBottomOf="@id/ivProfilePhoto"
@@ -106,6 +117,7 @@
             android:layout_marginTop="@dimen/default_half_margin"
             android:drawablePadding="@dimen/default_padding"
             android:gravity="start"
+            android:textColor="@color/defaultTextColor"
             android:textSize="18sp"
             app:drawableStartCompat="@drawable/ic_email"
             app:layout_constraintEnd_toEndOf="@id/glVerticalEnd"
@@ -114,16 +126,32 @@
             tools:text="avd@gmail.com" />
 
         <TextView
+            android:id="@+id/tvRegisteredLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_half_margin"
+            android:drawablePadding="@dimen/default_padding"
+            android:gravity="start"
+            android:text="@string/registred_at"
+            android:textColor="@color/defaultTextColor"
+            android:textSize="18sp"
+            app:drawableStartCompat="@drawable/ic_time"
+            app:layout_constraintStart_toStartOf="@id/glVerticalStart"
+            app:layout_constraintTop_toBottomOf="@id/tvEmail"
+            tools:text="Registered at: " />
+
+        <TextView
             android:id="@+id/tvRegistered"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/default_half_margin"
             android:gravity="start"
+            android:textColor="@color/defaultTextColor"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="@id/glVerticalEnd"
-            app:layout_constraintStart_toStartOf="@id/glVerticalStart"
+            app:layout_constraintStart_toEndOf="@id/tvRegisteredLabel"
             app:layout_constraintTop_toBottomOf="@id/tvEmail"
-            tools:text="Registered at: 24/12/2020" />
+            tools:text="24/12/2020" />
 
         <View
             android:id="@+id/viewSeparator"
