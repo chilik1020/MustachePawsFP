@@ -7,6 +7,7 @@ import com.chilik1020.mustachepawsfp.ui.postcreate.PostCreateViewModel
 import com.chilik1020.mustachepawsfp.ui.postcreate.SelectLocationViewModel
 import com.chilik1020.mustachepawsfp.ui.postlist.PostsViewModel
 import com.chilik1020.mustachepawsfp.ui.profile.ProfileViewModel
+import com.chilik1020.mustachepawsfp.ui.profileedit.EditProfileViewModel
 import com.chilik1020.mustachepawsfp.ui.signup.SignUpViewModel
 import dagger.Binds
 import dagger.Module
@@ -36,6 +37,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ProfileViewModel::class)
     abstract fun bindProfileViewModel(viewModel: ProfileViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(EditProfileViewModel::class)
+    abstract fun bindEditProfileViewModel(viewModel: EditProfileViewModel): ViewModel
 
     @Binds
     @IntoMap

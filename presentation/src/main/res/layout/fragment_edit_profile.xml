@@ -38,6 +38,31 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.96" />
 
+    <FrameLayout
+        android:id="@+id/flImageAvatar"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="@dimen/default_half_margin"
+        app:layout_constraintBottom_toTopOf="@id/tilFirstnameEditF"
+        app:layout_constraintEnd_toEndOf="@id/glVerticalEnd"
+        app:layout_constraintStart_toStartOf="@id/glVerticalStart"
+        app:layout_constraintTop_toBottomOf="@id/appBarPostListFragment">
+
+        <ImageView
+            android:id="@+id/ivProfilePhoto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/default_user_avatar" />
+
+        <ImageView
+            android:id="@+id/ivAddPhoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:elevation="10dp"
+            android:src="@drawable/ic_add_photo" />
+    </FrameLayout>
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilFirstnameEditF"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -48,7 +73,7 @@
         app:layout_constraintBottom_toTopOf="@+id/tilLastnameEditF"
         app:layout_constraintEnd_toEndOf="@id/glVerticalEnd"
         app:layout_constraintStart_toStartOf="@id/glVerticalStart"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/flImageAvatar"
         app:layout_constraintVertical_chainStyle="packed">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -115,7 +140,7 @@
         android:layout_height="@dimen/default_input_field_height"
         android:text="@string/save_profile"
         app:cornerRadius="7dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+
         app:layout_constraintEnd_toEndOf="@id/glVerticalEnd"
         app:layout_constraintStart_toStartOf="@id/glVerticalStart"
         app:layout_constraintTop_toBottomOf="@+id/tilPhonenumberEditF" />

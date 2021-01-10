@@ -67,11 +67,11 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
 
-<!--        <action-->
-<!--            android:id="@+id/action_postList_to_Login"-->
-<!--            app:destination="@id/login"-->
-<!--            app:launchSingleTop="true"-->
-<!--            app:popUpTo="@id/login" />-->
+        <!--        <action-->
+        <!--            android:id="@+id/action_postList_to_Login"-->
+        <!--            app:destination="@id/login"-->
+        <!--            app:launchSingleTop="true"-->
+        <!--            app:popUpTo="@id/login" />-->
     </fragment>
 
     <fragment
@@ -80,11 +80,24 @@
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile">
         <action
+            android:id="@+id/action_profile_to_editProfile"
+            app:destination="@+id/editProfile"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
             android:id="@+id/action_profile_to_Login"
             app:destination="@id/login"
             app:launchSingleTop="true"
             app:popUpTo="@id/login" />
     </fragment>
+
+    <fragment
+        android:id="@+id/editProfile"
+        android:name="com.chilik1020.mustachepawsfp.ui.profileedit.EditProfileFragment"
+        android:label="EditProfileFragment"
+        tools:layout="@layout/fragment_edit_profile" />
 
     <fragment
         android:id="@+id/imageCapture"

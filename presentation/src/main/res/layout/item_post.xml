@@ -100,6 +100,7 @@
             android:drawablePadding="@dimen/default_padding"
             android:ellipsize="end"
             android:maxLines="2"
+            android:fontFamily="sans-serif-light"
             android:textColor="@color/defaultTextColor"
             android:textSize="16sp"
             app:animation_duration="750"

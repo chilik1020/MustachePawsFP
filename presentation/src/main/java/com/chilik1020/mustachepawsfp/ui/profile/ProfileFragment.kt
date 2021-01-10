@@ -107,12 +107,13 @@ class ProfileFragment : DaggerFragment() {
             tvEmail.text = user.email
             tvRegistered.text = user.createdAt
             Glide.with(root)
-                .load(R.drawable.ic_default_avatar)
+                .load(R.drawable.default_user_avatar)
                 .into(ivProfilePhoto)
         }
     }
 
     private fun navigateToEditProfileFragment() {
+        findNavController().navigate(R.id.action_profile_to_editProfile)
     }
 
     private fun navigateToLoginFragment() {

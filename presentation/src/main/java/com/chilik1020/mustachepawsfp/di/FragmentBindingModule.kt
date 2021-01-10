@@ -5,6 +5,7 @@ import com.chilik1020.mustachepawsfp.ui.postcreate.PostCreateFragment
 import com.chilik1020.mustachepawsfp.ui.postcreate.SelectLocationDialogFragment
 import com.chilik1020.mustachepawsfp.ui.postlist.PostsFragment
 import com.chilik1020.mustachepawsfp.ui.profile.ProfileFragment
+import com.chilik1020.mustachepawsfp.ui.profileedit.EditProfileFragment
 import com.chilik1020.mustachepawsfp.ui.signup.SignUpFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -25,18 +26,8 @@ abstract class FragmentBindingModule {
     @ContributesAndroidInjector
     abstract fun profileFragment(): ProfileFragment
 
-//    @ContributesAndroidInjector
-//    abstract fun imageCaptureFragment(): ImageCaptureFragment
-
-//    @ContributesAndroidInjector
-//    abstract fun typeHelpDialogFragment(): TypeHelpDialogFragment
-//
-//    @ContributesAndroidInjector
-//    abstract fun typeAnimalDialogFragment(): TypeAnimalDialogFragment
-//
-//    @ContributesAndroidInjector
-//    abstract fun postDescriptionDialogFragment(): PostDescriptionDialogFragment
-//
+    @ContributesAndroidInjector
+    abstract fun editProfileFragment(): EditProfileFragment
 
     @ContributesAndroidInjector
     abstract fun postCreateFragment(): PostCreateFragment
