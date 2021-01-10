@@ -35,6 +35,15 @@ class EditProfileFragment : DaggerFragment() {
 
     private fun initViews() {
         viewModel = ViewModelProvider(this, viewModelFactory).get(EditProfileViewModel::class.java)
+        viewModel.getCurrentProfile()
+        viewModel.currentProfileLD.observe(viewLifecycleOwner) {
+            with(binding) {
+                tietFirstnameEditF.setText(it.firstname)
+                tietLastnameEditF.setText(it.lastname)
+                tietEmailEditF.setText(it.email)
+                tietPhonenumberEditF.setText(it.phoneNumber)
+            }
+        }
 
         if (activity is AppCompatActivity) {
             (activity as AppCompatActivity).setSupportActionBar(binding.toolbaEditProfileFragment)

@@ -59,7 +59,7 @@ class PostCreateFragment : DaggerFragment() {
                 .into(binding.ivCapturedImage)
         }
         viewModel.typeOfAnimal.observe(viewLifecycleOwner) { binding.tvTypeOfAnimal.text = it }
-        viewModel.typeOfAssist.observe(viewLifecycleOwner) { binding.tvTypeOfAssist.text = it }
+        viewModel.typeOfAssist.observe(viewLifecycleOwner) { binding.etvTypeOfAssist.text = it }
         viewModel.location.observe(viewLifecycleOwner) {
             binding.tvPlace.text = it.description
         }
@@ -78,7 +78,7 @@ class PostCreateFragment : DaggerFragment() {
 
         with(binding) {
             tvTypeOfAnimal.setOnClickListener { navigateToDialogAnimalType() }
-            tvTypeOfAssist.setOnClickListener { navigateToDialogAssistType() }
+            etvTypeOfAssist.setOnClickListener { navigateToDialogAssistType() }
             etvPostDescription.setOnClickListener { navigateToDialogDescription() }
             tvPlace.setOnClickListener { navigateToSelectLocation() }
             btnPublishPost.setOnClickListener { viewModel.createPost() }
@@ -151,13 +151,16 @@ class PostCreateFragment : DaggerFragment() {
         when (state) {
             PostCreateViewState.Loading -> {
                 binding.btnPublishPost.isActivated = false
+                binding.pbPostCreating.visibility = View.VISIBLE
             }
             is PostCreateViewState.Success -> {
+                binding.pbPostCreating.visibility = View.GONE
                 navigateToPostList()
             }
             is PostCreateViewState.Error -> {
+                binding.pbPostCreating.visibility = View.GONE
                 binding.btnPublishPost.isActivated = true
-                Snackbar.make(binding.root, state.msg.toString(), Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(binding.root, state.msg, Snackbar.LENGTH_SHORT).show()
             }
         }
     }

@@ -31,7 +31,7 @@ class TypeAssistanceDialogFragment : DialogFragment() {
     private fun initViews() {
         binding.mbApply.setOnClickListener {
             val intent = Intent().apply {
-                putExtra(EXTRA_KEY_ASSIST_TYPE, getTextFromCheckedChcBox())
+                putExtra(EXTRA_KEY_ASSIST_TYPE, binding.etOtherAssistance.text.toString())
             }
             targetFragment?.onActivityResult(targetRequestCode, Activity.RESULT_OK, intent)
             dismiss()
@@ -40,25 +40,5 @@ class TypeAssistanceDialogFragment : DialogFragment() {
         binding.mbCancel.setOnClickListener {
             dismiss()
         }
-    }
-
-    private fun getTextFromCheckedChcBox(): String {
-        val sb = StringBuilder()
-        with(binding) {
-            if (chbxAssistance1.isChecked) {
-                sb.append("${chbxAssistance1.text} ")
-            }
-            if (chbxAssistance2.isChecked) {
-                sb.append("${chbxAssistance2.text} ")
-            }
-            if (chbxAssistance3.isChecked) {
-                sb.append("${chbxAssistance3.text} ")
-            }
-            if (chbxAssistance4.isChecked) {
-                sb.append("${chbxAssistance4.text} ")
-            }
-            sb.append(etOtherAssistance.text.toString())
-        }
-        return sb.toString()
     }
 }

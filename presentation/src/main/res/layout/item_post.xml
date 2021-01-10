@@ -66,17 +66,21 @@
             app:drawableStartCompat="@drawable/ic_pawprint"
             tools:text="type of animal" />
 
-        <TextView
-            android:id="@+id/tvTypeOfAssist"
+        <at.blogc.android.views.ExpandableTextView
+            android:id="@+id/etvTypeOfAssist"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/default_half_margin"
             android:layout_marginTop="@dimen/default_half_margin"
+            android:drawableStart="@drawable/ic_type_help"
             android:drawablePadding="@dimen/default_padding"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif-light"
+            android:maxLines="2"
             android:textColor="@color/defaultTextColor"
             android:textSize="16sp"
-            app:drawableStartCompat="@drawable/ic_type_help"
-            tools:text="type of assist" />
+            app:animation_duration="750"
+            tools:text="Type help you needed." />
 
         <TextView
             android:id="@+id/tvPlace"
@@ -99,8 +103,8 @@
             android:drawableStart="@drawable/ic_edit"
             android:drawablePadding="@dimen/default_padding"
             android:ellipsize="end"
-            android:maxLines="2"
             android:fontFamily="sans-serif-light"
+            android:maxLines="2"
             android:textColor="@color/defaultTextColor"
             android:textSize="16sp"
             app:animation_duration="750"

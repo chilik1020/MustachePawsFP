@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/default_margin"
         android:layout_marginBottom="@dimen/default_margin"
-        android:text="Please select the type of animal:"
+        android:text="@string/select_the_type_of_animal"
         android:textColor="@color/defaultTextColor"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@id/glVerticalEnd"
@@ -47,25 +47,26 @@
             android:id="@+id/rbCat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cat" />
+            android:text="@string/type_cat" />
 
         <RadioButton
             android:id="@+id/rbDog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Dog" />
+            android:text="@string/type_dog" />
 
         <RadioButton
-            android:id="@+id/rbMouse"
+            android:id="@+id/rbBird"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Mouse" />
+            android:text="@string/type_bird" />
 
         <RadioButton
-            android:id="@+id/rbRabbit"
+            android:id="@+id/rbRodent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Rabbit" />
+            android:text="@string/type_rodent" />
+
     </RadioGroup>
 
     <EditText
@@ -73,7 +74,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/default_margin"
-        android:hint="Enter another if necessary"
+        android:hint="@string/enter_another_if_needed"
         app:layout_constraintEnd_toEndOf="@id/glVerticalEnd"
         app:layout_constraintStart_toStartOf="@id/glVerticalStart"
         app:layout_constraintTop_toBottomOf="@id/rgTypeAnimal" />
@@ -83,9 +84,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/default_half_margin"
-        android:text="@string/btn_cancel"
         app:cornerRadius="25dp"
         app:icon="@drawable/ic_close"
+        app:iconGravity="textStart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etOtherAnimal" />
@@ -95,9 +96,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/default_half_margin"
-        android:text="@string/btn_apply"
         app:cornerRadius="25dp"
         app:icon="@drawable/ic_apply"
+        app:iconGravity="textEnd"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etOtherAnimal" />
