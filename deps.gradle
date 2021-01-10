@@ -1,19 +1,24 @@
 ext {
     def gradleVersion = '4.0.2'
+    def navVersion = "2.3.2"
     build = [
-            gradle: "com.android.tools.build:gradle:$gradleVersion"
+            gradle: "com.android.tools.build:gradle:$gradleVersion",
+            safeArgsPlugin: "androidx.navigation:navigation-safe-args-gradle-plugin:$navVersion"
     ]
 
     def kotlinVersion = '1.4.10'
     kotlinDeps = [
-            kotlinGradlePlugin     : "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion",
-            kotlinStdlib           : "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion",
-            kotlinAllopen          : "org.jetbrains.kotlin:kotlin-allopen:$kotlinVersion",
-            kotlinTest             : "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion"
+            kotlinGradlePlugin: "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion",
+            kotlinStdlib      : "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion",
+            kotlinAllopen     : "org.jetbrains.kotlin:kotlin-allopen:$kotlinVersion",
+            kotlinTest        : "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion"
     ]
 
     def materialVersion = '1.2.1'
     material = "com.google.android.material:material:$materialVersion"
+
+    def googleMapsApiVersion = '3.1.0-beta'
+    googleMapsApi = "com.google.android.libraries.maps:maps:$googleMapsApiVersion"
 
     def coreKtxVersion = '1.3.2'
     def appCompatVersion = '1.2.0'
@@ -137,6 +142,18 @@ ext {
             runtime : "com.github.bumptech.glide:glide:$glideVersion",
             compiler: "com.github.bumptech.glide:compiler:$glideVersion"
     ]
+
+    def expendableTextViewVersion = "1.0.5"
+    expendableTextView = "at.blogc:expandabletextview:$expendableTextViewVersion"
+
+    def circleImageViewVersion = "3.1.0"
+    circleImageView = "de.hdodenhof:circleimageview:$circleImageViewVersion"
+
+    def yandexMapsVersion = '4.0.0-lite'
+    yandexMaps = "com.yandex.android:maps.mobile:$yandexMapsVersion"
+
+    def uCropVersion = '2.2.5'
+    uCrop = "com.github.yalantis:ucrop:$uCropVersion"
 
     // TEST dependencies
     def jUnitVersion = '4.12'

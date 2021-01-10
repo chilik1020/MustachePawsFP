@@ -6,7 +6,6 @@ import javax.inject.Scope
 @kotlin.annotation.Retention(AnnotationRetention.RUNTIME)
 annotation class AppScope
 
-
 @Scope
 @kotlin.annotation.Retention(AnnotationRetention.RUNTIME)
 annotation class LoginScope

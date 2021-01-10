@@ -11,7 +11,7 @@ import com.chilik1020.mustachepawsfp.utils.LOG_TAG
 import javax.inject.Inject
 import kotlinx.coroutines.launch
 
-class PostListViewModel @Inject constructor() : ViewModel() {
+class PostsViewModel @Inject constructor() : ViewModel() {
 
     @Inject
     lateinit var fetchPostUseCase: FetchPostsUseCase
@@ -19,22 +19,22 @@ class PostListViewModel @Inject constructor() : ViewModel() {
     @Inject
     lateinit var toPresentationMapper: PostDomainToPresentationMapper
 
-    private val viewStateMutable: MutableLiveData<PostListViewState> = MutableLiveData()
-    val viewState: LiveData<PostListViewState>
+    private val viewStateMutable: MutableLiveData<PostsViewState> = MutableLiveData()
+    val viewState: LiveData<PostsViewState>
         get() = viewStateMutable
 
     fun fetchPosts() {
-        viewStateMutable.value = PostListViewState.Loading
+        viewStateMutable.value = PostsViewState.Loading
         viewModelScope.launch {
             try {
-                val posts = fetchPostUseCase.fetchPosts()
-                    .map { toPresentationMapper.invoke(it) }
-                    .toList()
+                val posts = fetchPostUseCase.fetchPosts().map {
+                    toPresentationMapper.invoke(it)
+                }
                 Log.d(LOG_TAG, "ViewModel: ${posts.toString()}")
-                viewStateMutable.value = PostListViewState.Success(posts)
+                viewStateMutable.value = PostsViewState.Success(posts)
             } catch (ex: Exception) {
                 Log.d(LOG_TAG, "ViewModelError: ${ex.message.toString()}")
-                viewStateMutable.value = PostListViewState.Error(ex.message.toString())
+                viewStateMutable.value = PostsViewState.Error(ex.message.toString())
             }
         }
     }

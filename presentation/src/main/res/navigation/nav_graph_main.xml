@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navGraphMain"
+    app:startDestination="@id/login">
+
+    <fragment
+        android:id="@+id/login"
+        android:name="com.chilik1020.mustachepawsfp.ui.login.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login">
+
+        <action
+            android:id="@+id/action_login_to_signUp"
+            app:destination="@id/signUp"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <action
+            android:id="@+id/action_login_to_postList"
+            app:destination="@id/postList"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/postList" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/signUp"
+        android:name="com.chilik1020.mustachepawsfp.ui.signup.SignUpFragment"
+        android:label="SignUpFragment"
+        tools:layout="@layout/fragment_sign_up">
+        <action
+            android:id="@+id/action_signUp_to_postList"
+            app:destination="@id/postList"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/postList"
+        android:name="com.chilik1020.mustachepawsfp.ui.postlist.PostsFragment"
+        android:label="PostList"
+        tools:layout="@layout/fragment_posts">
+
+        <action
+            android:id="@+id/action_postList_to_profile"
+            app:destination="@id/profile"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <action
+            android:id="@+id/action_postList_to_ImageCapture"
+            app:destination="@id/imageCapture"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <!--        <action-->
+        <!--            android:id="@+id/action_postList_to_Login"-->
+        <!--            app:destination="@id/login"-->
+        <!--            app:launchSingleTop="true"-->
+        <!--            app:popUpTo="@id/login" />-->
+    </fragment>
+
+    <fragment
+        android:id="@+id/profile"
+        android:name="com.chilik1020.mustachepawsfp.ui.profile.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profile_to_editProfile"
+            app:destination="@+id/editProfile"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_profile_to_Login"
+            app:destination="@id/login"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/login" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/editProfile"
+        android:name="com.chilik1020.mustachepawsfp.ui.profileedit.EditProfileFragment"
+        android:label="EditProfileFragment"
+        tools:layout="@layout/fragment_edit_profile" />
+
+    <fragment
+        android:id="@+id/imageCapture"
+        android:name="com.chilik1020.mustachepawsfp.ui.postcreate.ImageCaptureFragment"
+        android:label="ImageCapture"
+        tools:layout="@layout/fragment_image_capture">
+        <action
+            android:id="@+id/action_imageCapture_to_PostCreate"
+            app:destination="@id/createPost"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right">
+            <argument
+                android:name="imageUri"
+                android:defaultValue="null"
+                app:argType="string" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/createPost"
+        android:name="com.chilik1020.mustachepawsfp.ui.postcreate.PostCreateFragment"
+        android:label="Create Post"
+        tools:layout="@layout/fragment_post_create">
+
+        <argument
+            android:name="imageUri"
+            android:defaultValue="null"
+            app:argType="string" />
+
+        <action
+            android:id="@+id/action_createPost_to_PostList"
+            app:popUpTo="@id/postList" />
+
+        <!--        <action-->
+        <!--            android:id="@+id/action_createPost_to_dialogTypeAnimal"-->
+        <!--            app:destination="@id/dialogTypeAnimal" />-->
+
+        <!--        <action-->
+        <!--            android:id="@+id/action_createPost_to_dialogTypeHelp"-->
+        <!--            app:destination="@id/dialogTypeHelp" />-->
+
+        <!--        <action-->
+        <!--            android:id="@+id/action_createPost_to_dialogDescription"-->
+        <!--            app:destination="@id/dialogDescription" />-->
+
+        <!--        <action-->
+        <!--            android:id="@+id/action_createPost_to_selectLocation"-->
+        <!--            app:destination="@id/selectLocation" />-->
+    </fragment>
+
+    <!--    <dialog-->
+    <!--        android:id="@+id/dialogTypeHelp"-->
+    <!--        android:name="com.chilik1020.mustachepawsfp.ui.postcreate.TypeHelpDialogFragment"-->
+    <!--        android:label="DialogTypeHelp"-->
+    <!--        tools:layout="@layout/fragment_dialog_type_help" />-->
+
+    <!--    <dialog-->
+    <!--        android:id="@+id/dialogTypeAnimal"-->
+    <!--        android:name="com.chilik1020.mustachepawsfp.ui.postcreate.TypeAnimalDialogFragment"-->
+    <!--        android:label="DialogTypeAnimal"-->
+    <!--        tools:layout="@layout/fragment_dialog_type_animal" />-->
+
+    <!--    <dialog-->
+    <!--        android:id="@+id/dialogDescription"-->
+    <!--        android:name="com.chilik1020.mustachepawsfp.ui.postcreate.PostDescriptionDialogFragment"-->
+    <!--        android:label="@string/create_post"-->
+    <!--        tools:layout="@layout/fragment_dialog_description" />-->
+
+    <!--    <dialog-->
+    <!--        android:id="@+id/selectLocation"-->
+    <!--        android:name="com.chilik1020.mustachepawsfp.ui.postcreate.SelectLocationDialogFragment"-->
+    <!--        android:label="Select location"-->
+    <!--        tools:layout="@layout/fragment_dialog_select_location" />-->
+
+</navigation>

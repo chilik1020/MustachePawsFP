@@ -8,6 +8,8 @@ import com.chilik1020.domain.models.SignUpRequestObject
 import com.chilik1020.domain.models.UserDomainModel
 import com.chilik1020.domain.repositories.UserRepository
 import javax.inject.Inject
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class UserRepositoryImpl @Inject constructor(
     private val localDataSource: UserLocalDataSource,
@@ -15,23 +17,26 @@ class UserRepositoryImpl @Inject constructor(
     private val toDomainMapper: (UserDataModel) -> UserDomainModel
 ) : UserRepository {
 
-    override suspend fun login(loginRequestObject: LoginRequestObject): String {
-        val accessToken = remoteDataSource.login(loginRequestObject)
-        localDataSource.saveAccessToken(accessToken)
-        val userDetail = remoteDataSource.echoUserDetails(accessToken)
-        localDataSource.saveUserDetails(userDetail)
-        return remoteDataSource.login(loginRequestObject)
-    }
+    override suspend fun login(loginRequestObject: LoginRequestObject): String =
+        withContext(Dispatchers.IO) {
+            val accessToken = remoteDataSource.login(loginRequestObject)
+            localDataSource.saveAccessToken(accessToken)
+            val userDetail = remoteDataSource.echoUserDetails(accessToken)
+            localDataSource.saveUserDetails(userDetail)
+            return@withContext remoteDataSource.login(loginRequestObject)
+        }
 
-    override suspend fun signUp(signUpRequestObject: SignUpRequestObject): UserDomainModel {
-        return toDomainMapper.invoke(remoteDataSource.signUp(signUpRequestObject))
-    }
+    override suspend fun signUp(signUpRequestObject: SignUpRequestObject): UserDomainModel =
+        withContext(Dispatchers.IO) {
+            return@withContext toDomainMapper.invoke(remoteDataSource.signUp(signUpRequestObject))
+        }
 
     override suspend fun logout() {
         localDataSource.clear()
     }
 
-    override suspend fun yourProfileDetails(): UserDomainModel {
-        return localDataSource.getSavedUserDetails().let(toDomainMapper)
-    }
+    override suspend fun yourProfileDetails(): UserDomainModel =
+        withContext(Dispatchers.IO) {
+            return@withContext localDataSource.getSavedUserDetails().let(toDomainMapper)
+        }
 }

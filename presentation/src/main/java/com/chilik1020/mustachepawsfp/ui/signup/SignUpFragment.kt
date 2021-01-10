@@ -5,6 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.chilik1020.domain.models.SignUpRequestObject
+import com.chilik1020.mustachepawsfp.R
 import com.chilik1020.mustachepawsfp.databinding.FragmentSignUpBinding
 import com.chilik1020.mustachepawsfp.utils.hideKeyboard
 import com.google.android.material.snackbar.Snackbar
@@ -40,9 +43,15 @@ class SignUpFragment : DaggerFragment() {
             btnSignUp.setOnClickListener {
                 hideKeyboard()
                 viewModel.executeSignUp(
-                    tietUsernameSignUpF.text.toString(),
-                    tietEmailSignUpF.text.toString(),
-                    tietPasswordSignUpF.text.toString(),
+                    SignUpRequestObject(
+                        tietUsernameSignUpF.text.toString(),
+                        tietFirstnameSignUpF.text.toString(),
+                        tietLastnameSignUpF.text.toString(),
+                        tietEmailSignUpF.text.toString(),
+                        tietPhonenumberSignUpF.text.toString(),
+                        null,
+                        tietPasswordSignUpF.text.toString()
+                    ),
                     tietConfirmPasswordSignUpF.text.toString()
                 )
             }
@@ -92,14 +101,17 @@ class SignUpFragment : DaggerFragment() {
         with(binding) {
             pbSignUpLoading.visibility = View.GONE
             tilUsernameSignUpF.error = null
+            tilFirstnameSignUpF.error = null
+            tilLastnameSignUpF.error = null
             tilEmailSignUpF.error = null
+            tilPhonenumberSignUpF.error = null
             tilPasswordSignUpF.error = null
             tilConfirmPasswordSignUpF.error = null
         }
     }
 
     private fun navigateToPostListFragment() {
-
+        findNavController().navigate(R.id.action_signUp_to_postList)
     }
 
     private fun showSnackBarMessage(msg: String) {

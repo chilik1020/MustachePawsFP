@@ -8,7 +8,7 @@
     <string name="empty" />
     <string name="post_error">Cound not retrieve data</string>
 
-    <!--  Login/SignUp activities  -->
+    <!--  Login/SignUp fragments  -->
     <string name="username">логин</string>
     <string name="firstname">имя</string>
     <string name="lastname">фамилия</string>
@@ -28,13 +28,35 @@
     <string name="description">Описание</string>
     <string name="image_link">Ссылка</string>
 
-
-    <!--  Toolbar menu  -->
-    <string name="menu_logout">Выйти</string>
-
     <!-- TODO: Remove or change this placeholder text -->
     <string name="create_post">Coздать</string>
-    <string name="my_profile">Профиль</string>
     <string name="take_photo">Сделать фото</string>
+
+    <!--  CREATE POST  DIALOGS-->
+    <!--    DESCRIPTION    -->
+    <string name="type_description">Введите дополнительную информацию</string>
+    <string name="hint_description">контактные данные, точный адрес, возраст животного…</string>
+    <!--  SELECT LOCATION  -->
+    <string name="location_address">Введите адрес</string>
+    <!--  ANIMAL TYPE  -->
+    <string name="select_the_type_of_animal">Выберите вид животного</string>
+    <string name="type_cat">Кот</string>
+    <string name="type_dog">Собака</string>
+    <string name="type_bird">Птица</string>
+    <string name="type_rodent">Грызун</string>
+    <string name="enter_another_if_needed">Введите другой, если необходимо</string>
+    <!--  ASSIST TYPE  -->
+    <string name="select_help_you_need">Опишите необходимую помощь</string>
+    <string name="hint_enter_help">Ищет хозяев, медицинское обслуживание, транспортировка…</string>
+
+    <!--  PROFILE FRAGMENT  -->
+    <string name="registred_at">Зарегистрирован(а) </string>
+    <string name="edit_profile">Редактировать профиль</string>
+    <string name="log_out_profile_frag">Выйти</string>
+    <string name="save_profile">Сохранить</string>
+
+    <!--  POSTLIST FRAGMENT  -->
+    <string name="my_profile">Мой профиль</string>
+    <string name="log_out_postlist_frag">Выйти</string>
 
 </resources>

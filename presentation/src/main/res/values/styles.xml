@@ -6,7 +6,16 @@
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="colorPrimaryDark">@color/primaryDarkColor</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="fontFamily">sans-serif-light</item>
+        <!--        <item name="android:actionOverflowButtonStyle">@style/MyActionButtonOverflow</item>-->
     </style>
+    <!-- Style to replace actionbar overflow icon. set item 'android:actionOverflowButtonStyle' in AppTheme -->
+    <!--    <style name="MyActionButtonOverflow" parent="android:style/Widget.Holo.Light.ActionButton.Overflow">-->
+    <!--        <item name="android:src">@drawable/ic_setting</item>-->
+    <!--        <item name="android:background">?android:attr/actionBarItemBackground</item>-->
+    <!--        <item name="android:contentDescription">"Lala"</item>-->
+    <!--    </style>-->
+
 
     <style name="ToolbarStyle" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar">
         <item name="android:background">@drawable/toolbar</item>
@@ -18,15 +27,6 @@
         <item name="boxBackgroundColor">@color/primaryTextFieldColorLight</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-    </style>
-
-    <style name="SpinnerStyle">
-        <item name="android:spinnerMode">dropdown</item>
-        <item name="android:background">@drawable/background_spinner</item>
-        <item name="android:popupBackground">@drawable/background_spinner_opacity</item>
-        <item name="android:textColorHint">@color/primaryColor</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/spinner_height</item>
     </style>
 
 </resources>

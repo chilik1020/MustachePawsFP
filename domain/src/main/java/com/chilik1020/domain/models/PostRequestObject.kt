@@ -1,10 +1,16 @@
 package com.chilik1020.domain.models
 
 data class PostRequestObject(
-    val typeOfAnimal: String,
-    val ageOfAnimal: String,
-    val typeOfHelp: String,
+    val animalType: String,
+    val assistType: String,
     val description: String,
+    val location: PostLocation,
     val imageLink: String,
     val creatorUsername: String
+)
+
+data class PostLocation(
+    val lat: Double,
+    val lon: Double,
+    val description: String
 )

@@ -22,17 +22,8 @@ class SignUpViewModel @Inject constructor() : ViewModel() {
     val viewState: LiveData<SignUpViewState>
         get() = viewStateMutable
 
-    fun executeSignUp(username: String, email: String, password: String, confirmPassword: String) {
-        if (!isSignUpFormCorrect(username, email, password, confirmPassword)) return
-
-        val signUpRequestObject = SignUpRequestObject(
-            username,
-            "",
-            "",
-            email,
-            "",
-            password
-        )
+    fun executeSignUp(signUpRequestObject: SignUpRequestObject, confirmPassword: String) {
+        if (!isSignUpFormCorrect(signUpRequestObject, confirmPassword)) return
 
         viewStateMutable.value = SignUpViewState.SignUpLoadingState
         viewModelScope.launch {
@@ -46,31 +37,29 @@ class SignUpViewModel @Inject constructor() : ViewModel() {
     }
 
     private fun isSignUpFormCorrect(
-        username: String,
-        email: String,
-        password: String,
+        signUpRequestObject: SignUpRequestObject,
         confirmPassword: String
     ): Boolean {
-        val usernameErrorMessage = checkUsernameInSignUpForm(username)
+        val usernameErrorMessage = checkUsernameInSignUpForm(signUpRequestObject.username)
         if (usernameErrorMessage != null) {
             viewStateMutable.value = SignUpViewState.UsernameErrorState(usernameErrorMessage)
             return false
         }
 
-        val emailErrorMessage = checkEmailInSignUpForm(email)
+        val emailErrorMessage = checkEmailInSignUpForm(signUpRequestObject.email)
         if (emailErrorMessage != null) {
             viewStateMutable.value = SignUpViewState.EmailErrorState(emailErrorMessage)
             return false
         }
 
-        val passwordErrorMessage = checkPasswordInSignUpForm(password)
+        val passwordErrorMessage = checkPasswordInSignUpForm(signUpRequestObject.password)
         if (passwordErrorMessage != null) {
             viewStateMutable.value = SignUpViewState.PasswordErrorState(passwordErrorMessage)
             return false
         }
 
         val confirmPasswordErrorMessage =
-            checkConfirmPasswordInSignUpForm(password, confirmPassword)
+            checkConfirmPasswordInSignUpForm(signUpRequestObject.password, confirmPassword)
         if (confirmPasswordErrorMessage != null) {
             viewStateMutable.value =
                 SignUpViewState.ConfirmPasswordErrorState(confirmPasswordErrorMessage)

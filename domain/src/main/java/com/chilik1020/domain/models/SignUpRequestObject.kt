@@ -6,5 +6,6 @@ class SignUpRequestObject(
     val lastname: String,
     val email: String,
     val phonenumber: String,
+    val profileImage: String?,
     val password: String
 )

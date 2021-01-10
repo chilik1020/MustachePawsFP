@@ -26,7 +26,7 @@
         style="@style/MaterialTextInputLayout"
         android:hint="@string/username"
         app:errorEnabled="true"
-        app:layout_constraintBottom_toTopOf="@+id/tilEmailSignUpF"
+        app:layout_constraintBottom_toTopOf="@+id/tilFirstnameSignUpF"
         app:layout_constraintEnd_toEndOf="@id/glVerticalEnd"
         app:layout_constraintStart_toStartOf="@id/glVerticalStart"
         app:layout_constraintTop_toTopOf="parent"
@@ -39,41 +39,51 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
-    <!--        <com.google.android.material.textfield.TextInputLayout-->
-    <!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:hint="@string/firstname"-->
-    <!--            app:errorEnabled="true">-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilFirstnameSignUpF"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/firstname"
+        app:errorEnabled="true"
+        app:layout_constraintBottom_toTopOf="@+id/tilLastnameSignUpF"
+        app:layout_constraintEnd_toEndOf="@id/glVerticalEnd"
+        app:layout_constraintStart_toStartOf="@id/glVerticalStart"
+        app:layout_constraintTop_toBottomOf="@+id/tilUsernameSignUpF">
 
-    <!--            <com.google.android.material.textfield.TextInputEditText-->
-    <!--                android:id="@+id/tietFirstnameSignUpF"-->
-    <!--                android:layout_width="@dimen/default_input_field_width"-->
-    <!--                android:layout_height="@dimen/default_input_field_height"/>-->
-    <!--        </com.google.android.material.textfield.TextInputLayout>-->
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tietFirstnameSignUpF"
+            android:layout_width="@dimen/default_input_field_width"
+            android:layout_height="@dimen/default_input_field_height" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <!--        <com.google.android.material.textfield.TextInputLayout-->
-    <!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:hint="@string/lastname"-->
-    <!--            app:errorEnabled="true">-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilLastnameSignUpF"
+        style="@style/MaterialTextInputLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/lastname"
+        app:errorEnabled="true"
+        app:layout_constraintBottom_toTopOf="@+id/tilEmailSignUpF"
+        app:layout_constraintEnd_toEndOf="@id/glVerticalEnd"
+        app:layout_constraintStart_toStartOf="@id/glVerticalStart"
+        app:layout_constraintTop_toBottomOf="@+id/tilFirstnameSignUpF">
 
-    <!--            <com.google.android.material.textfield.TextInputEditText-->
-    <!--                android:id="@+id/tietLastnameSignUpF"-->
-    <!--                android:layout_width="@dimen/default_input_field_width"-->
-    <!--                android:layout_height="@dimen/default_input_field_height" />-->
-    <!--        </com.google.android.material.textfield.TextInputLayout>-->
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tietLastnameSignUpF"
+            android:layout_width="@dimen/default_input_field_width"
+            android:layout_height="@dimen/default_input_field_height" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilEmailSignUpF"
         style="@style/MaterialTextInputLayout"
         android:hint="@string/email"
         app:errorEnabled="true"
-        app:layout_constraintBottom_toTopOf="@+id/tilPasswordSignUpF"
+        app:layout_constraintBottom_toTopOf="@+id/tilPhonenumberSignUpF"
         app:layout_constraintEnd_toEndOf="@id/glVerticalEnd"
         app:layout_constraintStart_toStartOf="@id/glVerticalStart"
-        app:layout_constraintTop_toBottomOf="@+id/tilUsernameSignUpF">
+        app:layout_constraintTop_toBottomOf="@+id/tilLastnameSignUpF">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietEmailSignUpF"
@@ -81,18 +91,23 @@
             android:layout_height="@dimen/default_input_field_height" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!--        <com.google.android.material.textfield.TextInputLayout-->
-    <!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:hint="@string/phonenumber"-->
-    <!--            app:errorEnabled="true">-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilPhonenumberSignUpF"
+        style="@style/MaterialTextInputLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/phonenumber"
+        app:errorEnabled="true"
+        app:layout_constraintBottom_toTopOf="@+id/tilPasswordSignUpF"
+        app:layout_constraintEnd_toEndOf="@id/glVerticalEnd"
+        app:layout_constraintStart_toStartOf="@id/glVerticalStart"
+        app:layout_constraintTop_toBottomOf="@+id/tilEmailSignUpF">
 
-    <!--            <com.google.android.material.textfield.TextInputEditText-->
-    <!--                android:id="@+id/tietPhonenumberSignUpF"-->
-    <!--                android:layout_width="@dimen/default_input_field_width"-->
-    <!--                android:layout_height="@dimen/default_input_field_height" />-->
-    <!--        </com.google.android.material.textfield.TextInputLayout>-->
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tietPhonenumberSignUpF"
+            android:layout_width="@dimen/default_input_field_width"
+            android:layout_height="@dimen/default_input_field_height" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilPasswordSignUpF"
@@ -102,7 +117,7 @@
         app:layout_constraintBottom_toTopOf="@+id/tilConfirmPasswordSignUpF"
         app:layout_constraintEnd_toEndOf="@id/glVerticalEnd"
         app:layout_constraintStart_toStartOf="@id/glVerticalStart"
-        app:layout_constraintTop_toBottomOf="@+id/tilEmailSignUpF">
+        app:layout_constraintTop_toBottomOf="@+id/tilPhonenumberSignUpF">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietPasswordSignUpF"
@@ -132,8 +147,8 @@
         android:id="@+id/btnSignUp"
         android:layout_width="@dimen/default_input_field_width"
         android:layout_height="@dimen/default_input_field_height"
-        android:background="@color/colorPrimary"
         android:text="@string/sign_up"
+        app:cornerRadius="7dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/glVerticalEnd"
         app:layout_constraintStart_toStartOf="@id/glVerticalStart"
