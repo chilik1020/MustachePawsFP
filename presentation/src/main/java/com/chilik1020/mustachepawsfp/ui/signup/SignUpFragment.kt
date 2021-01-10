@@ -49,6 +49,7 @@ class SignUpFragment : DaggerFragment() {
                         tietLastnameSignUpF.text.toString(),
                         tietEmailSignUpF.text.toString(),
                         tietPhonenumberSignUpF.text.toString(),
+                        null,
                         tietPasswordSignUpF.text.toString()
                     ),
                     tietConfirmPasswordSignUpF.text.toString()

@@ -11,6 +11,7 @@ import com.chilik1020.framework.utils.PREFERENCE_USER_ID_KEY
 import com.chilik1020.framework.utils.PREFERENCE_USER_LASTNAME_KEY
 import com.chilik1020.framework.utils.PREFERENCE_USER_NAME_KEY
 import com.chilik1020.framework.utils.PREFERENCE_USER_PHONENUMBER_KEY
+import com.chilik1020.framework.utils.PREFERENCE_USER_PROFILE_IMAGE_KEY
 import javax.inject.Inject
 
 class UserLocalDataSourceImpl @Inject constructor(
@@ -34,6 +35,7 @@ class UserLocalDataSourceImpl @Inject constructor(
             putString(PREFERENCE_USER_LASTNAME_KEY, userDataModel.lastname).apply()
             putString(PREFERENCE_USER_EMAIL_KEY, userDataModel.email).apply()
             putString(PREFERENCE_USER_PHONENUMBER_KEY, userDataModel.phoneNumber).apply()
+            putString(PREFERENCE_USER_PROFILE_IMAGE_KEY, userDataModel.profileImage).apply()
             putString(PREFERENCE_USER_CREATED_AT_KEY, userDataModel.createdAt).apply()
         }
     }
@@ -47,6 +49,7 @@ class UserLocalDataSourceImpl @Inject constructor(
                 getString(PREFERENCE_USER_LASTNAME_KEY, null),
                 getString(PREFERENCE_USER_EMAIL_KEY, null),
                 getString(PREFERENCE_USER_PHONENUMBER_KEY, null),
+                getString(PREFERENCE_USER_PROFILE_IMAGE_KEY, null) ?: "",
                 getString(PREFERENCE_USER_CREATED_AT_KEY, null)
             )
         }

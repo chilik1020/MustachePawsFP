@@ -13,6 +13,7 @@ import com.bumptech.glide.load.model.LazyHeaders
 import com.chilik1020.framework.utils.MUSTACHE_BASE_URL_POST_IMAGE
 import com.chilik1020.framework.utils.PREFERENCE_FILE_NAME
 import com.chilik1020.framework.utils.PREFERENCE_TOKEN_KEY
+import com.chilik1020.mustachepawsfp.R
 import com.chilik1020.mustachepawsfp.databinding.ItemPostBinding
 import com.chilik1020.mustachepawsfp.models.PostPresentationModel
 import com.chilik1020.mustachepawsfp.utils.LOG_TAG
@@ -62,7 +63,8 @@ class PostListAdapter : RecyclerView.Adapter<PostListAdapter.PostViewHolder>() {
 
                 Glide.with(root.context).load(glideWithHeaders).into(ivPostImage)
 
-                Glide.with(root.context).load(link).circleCrop().into(ivCreatorAvatar)
+                Glide.with(root.context).load(R.drawable.default_user_avatar).circleCrop()
+                    .into(ivCreatorAvatar)
                 tvTypeOfAnimal.text = post.typeOfAnimal
                 tvTypeOfAssist.text = post.typeOfAssist
                 tvPlace.text = post.location.description

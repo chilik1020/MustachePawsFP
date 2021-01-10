@@ -13,6 +13,7 @@ class UserDomainToPresentationMapper @Inject constructor() :
             lastname = user.lastname,
             email = user.email,
             phoneNumber = user.phoneNumber,
+            profileImage = user.profileImage,
             createdAt = user.createdAt
         )
     }

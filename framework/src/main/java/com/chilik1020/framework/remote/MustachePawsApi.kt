@@ -50,7 +50,7 @@ interface MustachePawsApi {
     ): PostDataModel
 
     @Multipart
-    @POST("mustachepaws/posts/uploadImage")
+    @POST("mustachepaws/images/uploadImage")
     suspend fun uploadImage(
         @Header("Authorization") authorization: String,
         @Part file: MultipartBody.Part

@@ -13,6 +13,7 @@ class UserDomainToDataMapper @Inject constructor() : (UserDomainModel) -> UserDa
             lastname = user.lastname,
             email = user.email,
             phoneNumber = user.phoneNumber,
+            profileImage = user.profileImage,
             createdAt = user.createdAt
         )
     }
