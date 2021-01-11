@@ -17,6 +17,7 @@ import com.chilik1020.mustachepawsfp.R
 import com.chilik1020.mustachepawsfp.databinding.ItemPostBinding
 import com.chilik1020.mustachepawsfp.models.PostPresentationModel
 import com.chilik1020.mustachepawsfp.utils.LOG_TAG
+import com.chilik1020.mustachepawsfp.utils.timeFromStamp
 
 
 class PostListAdapter : RecyclerView.Adapter<PostListAdapter.PostViewHolder>() {
@@ -68,7 +69,7 @@ class PostListAdapter : RecyclerView.Adapter<PostListAdapter.PostViewHolder>() {
                 tvTypeOfAnimal.text = post.typeOfAnimal
                 etvTypeOfAssist.text = post.typeOfAssist
                 tvPlace.text = post.location.description
-                tvCreatedAt.text = post.createdAt.toString()
+                tvCreatedAt.text = post.createdAt.timeFromStamp()
                 tvCreatorUsername.text = post.creatorUsername
 //                tvPostStatus.text = if (post.closed) "[Закрыто]" else "[Актуально]"
                 etvPostDescription.text = post.description
