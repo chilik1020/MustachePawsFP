@@ -49,7 +49,7 @@ class SignUpFragment : DaggerFragment() {
                         tietLastnameSignUpF.text.toString(),
                         tietEmailSignUpF.text.toString(),
                         tietPhonenumberSignUpF.text.toString(),
-                        null,
+                        "not defined",
                         tietPasswordSignUpF.text.toString()
                     ),
                     tietConfirmPasswordSignUpF.text.toString()
