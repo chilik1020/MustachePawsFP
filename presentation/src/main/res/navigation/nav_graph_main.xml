@@ -99,7 +99,7 @@
         android:label="EditProfileFragment"
         tools:layout="@layout/fragment_edit_profile" />
 
-    <fragment
+    <dialog
         android:id="@+id/imageCapture"
         android:name="com.chilik1020.mustachepawsfp.ui.postcreate.ImageCaptureFragment"
         android:label="ImageCapture"
@@ -116,7 +116,7 @@
                 android:defaultValue="null"
                 app:argType="string" />
         </action>
-    </fragment>
+    </dialog>
 
     <fragment
         android:id="@+id/createPost"

@@ -10,7 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.FileProvider
-import androidx.fragment.app.Fragment
+import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.findNavController
 import com.chilik1020.mustachepawsfp.BuildConfig
 import com.chilik1020.mustachepawsfp.R
@@ -21,7 +21,7 @@ import com.chilik1020.mustachepawsfp.utils.createImageFile
 import com.yalantis.ucrop.UCrop
 import java.io.File
 
-class ImageCaptureFragment : Fragment() {
+class ImageCaptureFragment : DialogFragment() {
     lateinit var binding: FragmentImageCaptureBinding
 
     lateinit var photoOriginalFile: File
@@ -45,6 +45,8 @@ class ImageCaptureFragment : Fragment() {
 
     private fun initViews() {
         onClickImageCapture()
+//        binding.btnCapturedImage.setOnClickListener { onClickImageCapture() }
+//        binding.btnGalleryImage.setOnClickListener { Log.d(LOG_TAG, "NOT IMPLEMENTED YET") }
     }
 
     private fun onClickImageCapture() {
@@ -53,7 +55,6 @@ class ImageCaptureFragment : Fragment() {
     }
 
     private fun createImageFiles() {
-        binding.ivCapturedImage.setImageResource(android.R.color.transparent)
 
         photoOriginalFile = createImageFile(requireContext(), "original")
         photoCroppedFile = createImageFile(requireContext(), "cropped")
