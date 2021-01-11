@@ -7,14 +7,15 @@ import com.chilik1020.domain.models.LoginRequestObject
 import com.chilik1020.domain.models.SignUpRequestObject
 import com.chilik1020.domain.models.UserDomainModel
 import com.chilik1020.domain.repositories.UserRepository
-import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(
     private val localDataSource: UserLocalDataSource,
     private val remoteDataSource: UserRemoteDataSource,
-    private val toDomainMapper: (UserDataModel) -> UserDomainModel
+    private val toDomainMapper: (UserDataModel) -> UserDomainModel,
+    private val toDataMapper: (UserDomainModel) -> UserDataModel
 ) : UserRepository {
 
     override suspend fun login(loginRequestObject: LoginRequestObject): String =
@@ -38,5 +39,20 @@ class UserRepositoryImpl @Inject constructor(
     override suspend fun yourProfileDetails(): UserDomainModel =
         withContext(Dispatchers.IO) {
             return@withContext localDataSource.getSavedUserDetails().let(toDomainMapper)
+        }
+
+    override suspend fun saveProfile(user: UserDomainModel): UserDomainModel =
+        withContext(Dispatchers.IO) {
+            val accessToken = localDataSource.getSavedToken()
+            val updatedUser = remoteDataSource.saveProfileData(accessToken, toDataMapper(user))
+            localDataSource.saveUserDetails(updatedUser)
+            return@withContext toDomainMapper(updatedUser)
+        }
+
+    override suspend fun getUserById(id: Long): UserDomainModel =
+        withContext(Dispatchers.IO) {
+            val accessToken = localDataSource.getSavedToken()
+            val user = remoteDataSource.getUserById(accessToken, id)
+            return@withContext toDomainMapper(user)
         }
 }

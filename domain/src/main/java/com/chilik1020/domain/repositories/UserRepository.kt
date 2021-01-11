@@ -9,4 +9,6 @@ interface UserRepository {
     suspend fun signUp(signUpRequestObject: SignUpRequestObject): UserDomainModel
     suspend fun logout()
     suspend fun yourProfileDetails(): UserDomainModel
+    suspend fun saveProfile(user: UserDomainModel): UserDomainModel
+    suspend fun getUserById(id: Long): UserDomainModel
 }

@@ -9,12 +9,7 @@ import com.chilik1020.data.sources.UserLocalDataSource
 import com.chilik1020.data.sources.UserRemoteDataSource
 import com.chilik1020.domain.models.UserDomainModel
 import com.chilik1020.domain.repositories.UserRepository
-import com.chilik1020.domain.usecases.LoginUseCase
-import com.chilik1020.domain.usecases.LoginUseCaseImpl
-import com.chilik1020.domain.usecases.SignUpUseCase
-import com.chilik1020.domain.usecases.SignUpUseCaseImpl
-import com.chilik1020.domain.usecases.YourProfileDetailsUseCase
-import com.chilik1020.domain.usecases.YourProfileDetailsUseCaseImpl
+import com.chilik1020.domain.usecases.*
 import com.chilik1020.framework.local.UserLocalDataSourceImpl
 import com.chilik1020.framework.remote.MustachePawsApi
 import com.chilik1020.framework.remote.UserRemoteDataSourceImpl
@@ -39,12 +34,21 @@ class UserModule {
         YourProfileDetailsUseCaseImpl(userRepository)
 
     @Provides
+    fun provideSaveProfileUseCase(userRepository: UserRepository): SaveProfileUseCase =
+        SaveProfileUseCaseImpl(userRepository)
+
+    @Provides
+    fun provideUserProfileByIdUseCase(userRepository: UserRepository): UserProfileByIdUseCase =
+        UserProfileByIdUseCaseImpl(userRepository)
+
+    @Provides
     fun provideUserRepository(
         userLocalDataSource: UserLocalDataSource,
         userRemoteDataSource: UserRemoteDataSource,
-        toDomainMapper: UserDataToDomainMapper
+        toDomainMapper: UserDataToDomainMapper,
+        toDataMapper: UserDomainToDataMapper
     ): UserRepository = UserRepositoryImpl(
-        userLocalDataSource, userRemoteDataSource, toDomainMapper
+        userLocalDataSource, userRemoteDataSource, toDomainMapper, toDataMapper
     )
 
     @Provides

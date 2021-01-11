@@ -22,4 +22,15 @@ class UserRemoteDataSourceImpl @Inject constructor(
     override suspend fun signUp(signUpRequestObject: SignUpRequestObject): UserDataModel {
         return api.signUp(signUpRequestObject)
     }
+
+    override suspend fun saveProfileData(
+        token: String,
+        userDataModel: UserDataModel
+    ): UserDataModel {
+        return api.saveProfileData(token, userDataModel)
+    }
+
+    override suspend fun getUserById(token: String, id: Long): UserDataModel {
+        return api.getUserById(token, id)
+    }
 }
