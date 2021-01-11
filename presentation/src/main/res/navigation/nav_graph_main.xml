@@ -36,8 +36,8 @@
         android:label="SignUpFragment"
         tools:layout="@layout/fragment_sign_up">
         <action
-            android:id="@+id/action_signUp_to_postList"
-            app:destination="@id/postList"
+            android:id="@+id/action_signUp_to_Login"
+            app:destination="@id/login"
             app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/slide_in_left"

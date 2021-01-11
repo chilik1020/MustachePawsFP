@@ -56,8 +56,6 @@ dependencies {
     implementation expendableTextView
     implementation circleImageView
 
-    implementation yandexMaps
-
     implementation navigation.fragmentKtx
     implementation navigation.uiKtx
 

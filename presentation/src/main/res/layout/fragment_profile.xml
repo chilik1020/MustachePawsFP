@@ -126,7 +126,8 @@
             android:id="@+id/tvRegisteredLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/default_half_margin"
+            android:layout_marginTop="@dimen/default_half_margin"
+            android:layout_marginEnd="@dimen/default_half_margin"
             android:layout_marginBottom="@dimen/default_margin"
             android:drawablePadding="@dimen/default_padding"
             android:gravity="start"
@@ -134,9 +135,10 @@
             android:textColor="@color/defaultTextColor"
             android:textSize="15sp"
             app:drawableStartCompat="@drawable/ic_time"
+            app:layout_constraintEnd_toStartOf="@id/tvRegistered"
             app:layout_constraintStart_toStartOf="@id/glVerticalStart"
             app:layout_constraintTop_toBottomOf="@id/tvEmail"
-            tools:text="Registered at: " />
+            tools:text="Registered" />
 
         <TextView
             android:id="@+id/tvRegistered"
@@ -156,8 +158,8 @@
             android:id="@+id/viewSeparator"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="@dimen/default_margin"
             android:layout_margin="@dimen/margin_1dp"
+            android:layout_marginTop="@dimen/default_margin"
             android:background="@color/qu_grey_600"
             app:layout_constraintEnd_toEndOf="@id/glVerticalEnd"
             app:layout_constraintStart_toStartOf="@id/glVerticalStart"
