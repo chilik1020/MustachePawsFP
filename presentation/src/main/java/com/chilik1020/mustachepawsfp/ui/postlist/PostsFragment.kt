@@ -9,10 +9,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.chilik1020.mustachepawsfp.R
 import com.chilik1020.mustachepawsfp.databinding.FragmentPostsBinding
+import com.chilik1020.mustachepawsfp.utils.ARGUMENT_VALUE_CAMERA
+import com.chilik1020.mustachepawsfp.utils.ARGUMENT_VALUE_GALLERY
+import com.chilik1020.mustachepawsfp.utils.EXTRA_KEY_IMAGE_SOURCE
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -92,11 +95,11 @@ class PostsFragment : DaggerFragment() {
             }
             fabCameraImage.setOnClickListener {
                 collapseFabMenu()
-                navigateToPostCreate()
+                navigateToPostCreate(ARGUMENT_VALUE_CAMERA)
             }
             fabGalleryImage.setOnClickListener {
                 collapseFabMenu()
-                navigateToPostCreate()
+                navigateToPostCreate(ARGUMENT_VALUE_GALLERY)
             }
         }
 
@@ -141,13 +144,17 @@ class PostsFragment : DaggerFragment() {
     }
 
 
-    private fun navigateToPostCreate() {
-        Navigation.findNavController(binding.root)
-            .navigate(R.id.action_postList_to_ImageCapture)
+    private fun navigateToPostCreate(argValue: String) {
+        val bundle = Bundle().apply {
+            putString(EXTRA_KEY_IMAGE_SOURCE, argValue)
+        }
+        findNavController().navigate(R.id.action_postList_to_ImageCapture, bundle)
+//        findNavController()
+//            .navigate(R.id.action_postList_to_ImageCapture)
     }
 
     private fun navigateToProfileFragment() {
-        Navigation.findNavController(binding.root)
+        findNavController()
             .navigate(R.id.action_postList_to_profile)
     }
 

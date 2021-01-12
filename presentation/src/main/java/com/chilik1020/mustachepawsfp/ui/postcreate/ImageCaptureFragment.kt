@@ -15,9 +15,7 @@ import androidx.navigation.fragment.findNavController
 import com.chilik1020.mustachepawsfp.BuildConfig
 import com.chilik1020.mustachepawsfp.R
 import com.chilik1020.mustachepawsfp.databinding.FragmentImageCaptureBinding
-import com.chilik1020.mustachepawsfp.utils.EXTRA_KEY_IMAGE_URI_PATH
-import com.chilik1020.mustachepawsfp.utils.LOG_TAG
-import com.chilik1020.mustachepawsfp.utils.createImageFile
+import com.chilik1020.mustachepawsfp.utils.*
 import com.yalantis.ucrop.UCrop
 import java.io.File
 
@@ -44,14 +42,19 @@ class ImageCaptureFragment : DialogFragment() {
     }
 
     private fun initViews() {
-        onClickImageCapture()
-//        binding.btnCapturedImage.setOnClickListener { onClickImageCapture() }
-//        binding.btnGalleryImage.setOnClickListener { Log.d(LOG_TAG, "NOT IMPLEMENTED YET") }
-    }
+        val source = arguments?.getString(EXTRA_KEY_IMAGE_SOURCE) ?: ARGUMENT_VALUE_CAMERA
+        Log.d(LOG_TAG, "ARGUMENT SOURCE $source")
 
-    private fun onClickImageCapture() {
         createImageFiles()
-        startImageCapture()
+        when (source) {
+            ARGUMENT_VALUE_GALLERY -> {
+                startActionPick()
+            }
+            ARGUMENT_VALUE_CAMERA -> {
+                startImageCapture()
+            }
+            else -> Log.d(LOG_TAG, "ARGUMENT SOURCE : unknown argument")
+        }
     }
 
     private fun createImageFiles() {
@@ -69,10 +72,17 @@ class ImageCaptureFragment : DialogFragment() {
             photoOriginalFile
         )
 
-        Log.d(LOG_TAG, "ORIGINAL PATH: ${photoOriginalFile.absolutePath}")
-        Log.d(LOG_TAG, "CROPPED PATH: ${photoCroppedFile.absolutePath}")
-        Log.d(LOG_TAG, "ORIGINAL URI: $photoOriginalUri")
-        Log.d(LOG_TAG, "CROPPED URI: $photoCroppedUri")
+//        Log.d(LOG_TAG, "ORIGINAL PATH: ${photoOriginalFile.absolutePath}")
+//        Log.d(LOG_TAG, "CROPPED PATH: ${photoCroppedFile.absolutePath}")
+//        Log.d(LOG_TAG, "ORIGINAL URI: $photoOriginalUri")
+//        Log.d(LOG_TAG, "CROPPED URI: $photoCroppedUri")
+    }
+
+    private fun startActionPick() {
+        val intent = Intent(Intent.ACTION_PICK).apply {
+            type = "image/*"
+        }
+        startActivityForResult(intent, REQUEST_IMAGE_GALLERY)
     }
 
     private fun startImageCapture() {
@@ -93,13 +103,16 @@ class ImageCaptureFragment : DialogFragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
+                REQUEST_IMAGE_GALLERY -> {
+                    data?.data?.let { photoOriginalUri = it }
+                    startUCropActivity()
+                }
+
                 REQUEST_IMAGE_CAPTURE -> {
-//                    Glide.with(this).load(photoOriginalUri).into(binding.ivCapturedImage)
                     startUCropActivity()
                 }
 
                 UCrop.REQUEST_CROP -> {
-//                    Glide.with(this).load(photoCroppedUri).into(binding.ivCapturedImage)
                     navigateToPostCreate()
                 }
             }
@@ -118,5 +131,6 @@ class ImageCaptureFragment : DialogFragment() {
 
     companion object {
         const val REQUEST_IMAGE_CAPTURE = 4201
+        const val REQUEST_IMAGE_GALLERY = 4202
     }
 }
