@@ -24,10 +24,10 @@
             app:destination="@id/postList"
             app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/fade_out"
-            app:launchSingleTop="true"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
-            app:popUpTo="@id/postList" />
+            app:popUpTo="@id/navGraphMain"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">УсыЛапыФП</string>
+    <string name="app_name">Усы Лапы</string>
 
     <string name="string_ad">Объявления</string>
     <string name="string_filter">Фильтры</string>
@@ -33,6 +33,7 @@
     <string name="take_photo">Сделать фото</string>
 
     <!--  CREATE POST  DIALOGS-->
+    <string name="btn_publish">Создать</string>
     <!--    DESCRIPTION    -->
     <string name="type_description">Введите дополнительную информацию</string>
     <string name="hint_description">контактные данные, точный адрес, возраст животного…</string>
