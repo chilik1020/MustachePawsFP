@@ -6,4 +6,8 @@ sealed class PostCreateViewState {
     object Loading : PostCreateViewState()
     class Success(val post: PostPresentationModel) : PostCreateViewState()
     class Error(val msg: String) : PostCreateViewState()
+    object FieldTypeAnimalNotSet : PostCreateViewState()
+    object FieldTypeAssistNotSet : PostCreateViewState()
+    object FieldLocationNotSet : PostCreateViewState()
+    object FieldDescriptionNotSet : PostCreateViewState()
 }

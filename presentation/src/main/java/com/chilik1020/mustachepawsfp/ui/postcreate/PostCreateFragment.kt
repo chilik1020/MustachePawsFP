@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.OvershootInterpolator
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import at.blogc.android.views.ExpandableTextView
@@ -15,12 +16,7 @@ import com.bumptech.glide.Glide
 import com.chilik1020.mustachepawsfp.R
 import com.chilik1020.mustachepawsfp.databinding.FragmentPostCreateBinding
 import com.chilik1020.mustachepawsfp.models.LocationPresentationModel
-import com.chilik1020.mustachepawsfp.utils.EXTRA_KEY_ANIMAL_TYPE
-import com.chilik1020.mustachepawsfp.utils.EXTRA_KEY_ASSIST_TYPE
-import com.chilik1020.mustachepawsfp.utils.EXTRA_KEY_DESCRIPTION
-import com.chilik1020.mustachepawsfp.utils.EXTRA_KEY_IMAGE_URI_PATH
-import com.chilik1020.mustachepawsfp.utils.EXTRA_KEY_LOCATION
-import com.chilik1020.mustachepawsfp.utils.LOG_TAG
+import com.chilik1020.mustachepawsfp.utils.*
 import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
@@ -58,12 +54,22 @@ class PostCreateFragment : DaggerFragment() {
                 .load(it)
                 .into(binding.ivCapturedImage)
         }
-        viewModel.typeOfAnimal.observe(viewLifecycleOwner) { binding.tvTypeOfAnimal.text = it }
-        viewModel.typeOfAssist.observe(viewLifecycleOwner) { binding.etvTypeOfAssist.text = it }
+        viewModel.typeOfAnimal.observe(viewLifecycleOwner) {
+            setBackgroundForSetField(binding.tvTypeOfAnimal)
+            binding.tvTypeOfAnimal.text = it
+        }
+        viewModel.typeOfAssist.observe(viewLifecycleOwner) {
+            setBackgroundForSetField(binding.etvTypeOfAssist)
+            binding.etvTypeOfAssist.text = it
+        }
         viewModel.location.observe(viewLifecycleOwner) {
+            setBackgroundForSetField(binding.tvPlace)
             binding.tvPlace.text = it.description
         }
-        viewModel.description.observe(viewLifecycleOwner) { binding.etvPostDescription.text = it }
+        viewModel.description.observe(viewLifecycleOwner) {
+            setBackgroundForSetField(binding.etvPostDescription)
+            binding.etvPostDescription.text = it
+        }
         viewModel.viewState.observe(viewLifecycleOwner) { render(it) }
 
         binding.etvPostDescription.setInterpolator(OvershootInterpolator())
@@ -150,8 +156,9 @@ class PostCreateFragment : DaggerFragment() {
     private fun render(state: PostCreateViewState) {
         when (state) {
             PostCreateViewState.Loading -> {
-                binding.btnPublishPost.isActivated = false
+                binding.btnPublishPost.isClickable = false
                 binding.pbPostCreating.visibility = View.VISIBLE
+                setBackgroundForSetFields()
             }
             is PostCreateViewState.Success -> {
                 binding.pbPostCreating.visibility = View.GONE
@@ -159,9 +166,50 @@ class PostCreateFragment : DaggerFragment() {
             }
             is PostCreateViewState.Error -> {
                 binding.pbPostCreating.visibility = View.GONE
-                binding.btnPublishPost.isActivated = true
+                binding.btnPublishPost.isClickable = true
                 Snackbar.make(binding.root, state.msg, Snackbar.LENGTH_SHORT).show()
             }
+            PostCreateViewState.FieldTypeAnimalNotSet -> {
+                binding.pbPostCreating.visibility = View.GONE
+                setBackgroundForNotSetField(binding.tvTypeOfAnimal)
+            }
+            PostCreateViewState.FieldTypeAssistNotSet -> {
+                binding.pbPostCreating.visibility = View.GONE
+                setBackgroundForNotSetField(binding.etvTypeOfAssist)
+            }
+            PostCreateViewState.FieldLocationNotSet -> {
+                binding.pbPostCreating.visibility = View.GONE
+                setBackgroundForNotSetField(binding.tvPlace)
+            }
+            PostCreateViewState.FieldDescriptionNotSet -> {
+                binding.pbPostCreating.visibility = View.GONE
+                setBackgroundForNotSetField(binding.etvPostDescription)
+            }
+        }
+    }
+
+    private fun setBackgroundForNotSetField(view: View) {
+        view.background =
+            ContextCompat.getDrawable(
+                requireContext(),
+                R.drawable.background_text_view_not_set
+            )
+    }
+
+    private fun setBackgroundForSetField(view: View) {
+        view.background =
+            ContextCompat.getDrawable(
+                requireContext(),
+                R.drawable.background_text_view_set
+            )
+    }
+
+    private fun setBackgroundForSetFields() {
+        with(binding) {
+            setBackgroundForSetField(tvTypeOfAnimal)
+            setBackgroundForSetField(etvTypeOfAssist)
+            setBackgroundForSetField(tvPlace)
+            setBackgroundForSetField(etvPostDescription)
         }
     }
 
