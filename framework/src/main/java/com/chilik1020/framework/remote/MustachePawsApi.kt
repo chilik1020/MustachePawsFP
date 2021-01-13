@@ -8,14 +8,7 @@ import com.chilik1020.domain.models.SignUpRequestObject
 import okhttp3.MultipartBody
 import okhttp3.ResponseBody
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.Headers
-import retrofit2.http.Multipart
-import retrofit2.http.POST
-import retrofit2.http.Part
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface MustachePawsApi {
     @POST("mustachepaws/login")
@@ -27,6 +20,18 @@ interface MustachePawsApi {
 
     @GET("mustachepaws/users/details")
     suspend fun echoDetails(@Header("Authorization") authorization: String): UserDataModel
+
+    @GET("mustachepaws/users/save")
+    suspend fun saveProfileData(
+        @Header("Authorization") authorization: String,
+        @Body user: UserDataModel
+    ): UserDataModel
+
+    @GET("mustachepaws/users/{id}")
+    suspend fun getUserById(
+        @Header("Authorization") authorization: String,
+        @Path("id") id: Long
+    ): UserDataModel
 
     @GET("mustachepaws/posts/all")
     suspend fun fetchPosts(@Header("Authorization") authorization: String): List<PostDataModel>

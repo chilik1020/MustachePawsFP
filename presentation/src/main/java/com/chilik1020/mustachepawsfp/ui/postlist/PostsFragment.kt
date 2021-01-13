@@ -1,20 +1,21 @@
 package com.chilik1020.mustachepawsfp.ui.postlist
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import android.view.animation.OvershootInterpolator
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.chilik1020.mustachepawsfp.R
 import com.chilik1020.mustachepawsfp.databinding.FragmentPostsBinding
+import com.chilik1020.mustachepawsfp.utils.ARGUMENT_VALUE_CAMERA
+import com.chilik1020.mustachepawsfp.utils.ARGUMENT_VALUE_GALLERY
+import com.chilik1020.mustachepawsfp.utils.EXTRA_KEY_IMAGE_SOURCE
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -33,6 +34,10 @@ class PostsFragment : DaggerFragment() {
     private val mapFrag = PostMapFragment()
 
     private val tabIcons = arrayOf(R.drawable.ic_list_black, R.drawable.ic_map_black)
+
+    private var isFabExpanded = false
+    private lateinit var animationFabOpen: Animation
+    private lateinit var animationFabClose: Animation
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,6 +58,13 @@ class PostsFragment : DaggerFragment() {
         initViews()
     }
 
+    override fun onPause() {
+        super.onPause()
+        if (isFabExpanded) {
+            collapseFabMenu()
+        }
+    }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         menu.clear()
         inflater.inflate(R.menu.menu_toolbar_postlist_frag, menu)
@@ -65,15 +77,33 @@ class PostsFragment : DaggerFragment() {
                 navigateToProfileFragment()
                 true
             }
-
-//            R.id.miLogOutPostListMenu -> {
-//                navigateToLoginFragment()
-//                true
-//            }
             else -> super.onOptionsItemSelected(item)
         }
 
     private fun initViews() {
+        animationFabOpen = AnimationUtils.loadAnimation(requireContext(), R.anim.fab_open_animation)
+        animationFabClose =
+            AnimationUtils.loadAnimation(requireContext(), R.anim.fab_close_animation)
+
+        with(binding) {
+            fabGoToPostCreate.setOnClickListener {
+                if (isFabExpanded) {
+                    collapseFabMenu()
+                } else {
+                    expandFabMenu()
+                }
+            }
+            fabCameraImage.setOnClickListener {
+                collapseFabMenu()
+                navigateToPostCreate(ARGUMENT_VALUE_CAMERA)
+            }
+            fabGalleryImage.setOnClickListener {
+                collapseFabMenu()
+                navigateToPostCreate(ARGUMENT_VALUE_GALLERY)
+            }
+        }
+
+
         if (activity is AppCompatActivity) {
             (activity as AppCompatActivity).setSupportActionBar(binding.toolbarPostListFragment)
         }
@@ -84,8 +114,6 @@ class PostsFragment : DaggerFragment() {
             if (mapFrag.isAdded) mapFrag.render(it)
         }
         viewModel.fetchPosts()
-
-        binding.fabGoToPostCreate.setOnClickListener { navigateToPostCreate() }
 
         pagerAdapter = PostsViewPagerAdapter(this)
         pagerAdapter.setFragments(mutableListOf<Fragment>().apply {
@@ -115,21 +143,54 @@ class PostsFragment : DaggerFragment() {
         }
     }
 
-    private fun navigateToPostCreate() {
-        Navigation.findNavController(binding.root)
-            .navigate(R.id.action_postList_to_ImageCapture)
+
+    private fun navigateToPostCreate(argValue: String) {
+        val bundle = Bundle().apply {
+            putString(EXTRA_KEY_IMAGE_SOURCE, argValue)
+        }
+        findNavController().navigate(R.id.action_postList_to_ImageCapture, bundle)
+//        findNavController()
+//            .navigate(R.id.action_postList_to_ImageCapture)
     }
 
     private fun navigateToProfileFragment() {
-        Navigation.findNavController(binding.root)
+        findNavController()
             .navigate(R.id.action_postList_to_profile)
     }
-
-//    private fun navigateToLoginFragment() {
-//        findNavController().navigate(R.id.action_postList_to_Login)
-//    }
 
     private fun showSnackBarMessage(msg: String) {
         Snackbar.make(binding.root, msg, Snackbar.LENGTH_SHORT).show()
     }
+
+    private fun expandFabMenu() {
+        rotateMainFab(45.0f)
+        with(binding) {
+            fabCameraImage.startAnimation(animationFabOpen)
+            fabGalleryImage.startAnimation(animationFabOpen)
+            fabCameraImage.isClickable = true
+            fabGalleryImage.isClickable = true
+        }
+        isFabExpanded = true
+    }
+
+    private fun collapseFabMenu() {
+        rotateMainFab(0.0f)
+        with(binding) {
+            fabCameraImage.startAnimation(animationFabClose)
+            fabGalleryImage.startAnimation(animationFabClose)
+            fabCameraImage.isClickable = false
+            fabGalleryImage.isClickable = false
+        }
+        isFabExpanded = false
+    }
+
+    private fun rotateMainFab(angle: Float) {
+        ViewCompat.animate(binding.fabGoToPostCreate)
+            .rotation(angle)
+            .withLayer()
+            .setDuration(300)
+            .setInterpolator(OvershootInterpolator(10.0F))
+            .start()
+    }
+
 }

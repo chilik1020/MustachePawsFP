@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide
 import com.chilik1020.mustachepawsfp.R
 import com.chilik1020.mustachepawsfp.databinding.FragmentProfileBinding
 import com.chilik1020.mustachepawsfp.models.UserPresentationModel
+import com.chilik1020.mustachepawsfp.utils.dateFromStamp
 import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
@@ -105,7 +106,7 @@ class ProfileFragment : DaggerFragment() {
             tvUsername.text = user.username
             tvPhonenumber.text = user.phoneNumber
             tvEmail.text = user.email
-            tvRegistered.text = user.createdAt
+            tvRegistered.text = user.createdAt.dateFromStamp()
             Glide.with(root)
                 .load(R.drawable.default_user_avatar)
                 .into(ivProfilePhoto)

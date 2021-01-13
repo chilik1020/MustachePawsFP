@@ -49,7 +49,7 @@ class SignUpFragment : DaggerFragment() {
                         tietLastnameSignUpF.text.toString(),
                         tietEmailSignUpF.text.toString(),
                         tietPhonenumberSignUpF.text.toString(),
-                        null,
+                        "not defined",
                         tietPasswordSignUpF.text.toString()
                     ),
                     tietConfirmPasswordSignUpF.text.toString()
@@ -68,7 +68,7 @@ class SignUpFragment : DaggerFragment() {
 
             is SignUpViewState.SignUpFinishedState -> {
                 showSnackBarMessage("You have successfully registered!")
-                navigateToPostListFragment()
+                navigateToLoginFragment()
             }
 
             is SignUpViewState.SignUpErrorState -> {
@@ -110,8 +110,8 @@ class SignUpFragment : DaggerFragment() {
         }
     }
 
-    private fun navigateToPostListFragment() {
-        findNavController().navigate(R.id.action_signUp_to_postList)
+    private fun navigateToLoginFragment() {
+        findNavController().navigate(R.id.action_signUp_to_Login)
     }
 
     private fun showSnackBarMessage(msg: String) {

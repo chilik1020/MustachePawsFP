@@ -36,7 +36,7 @@ class UserLocalDataSourceImpl @Inject constructor(
             putString(PREFERENCE_USER_EMAIL_KEY, userDataModel.email).apply()
             putString(PREFERENCE_USER_PHONENUMBER_KEY, userDataModel.phoneNumber).apply()
             putString(PREFERENCE_USER_PROFILE_IMAGE_KEY, userDataModel.profileImage).apply()
-            putString(PREFERENCE_USER_CREATED_AT_KEY, userDataModel.createdAt).apply()
+            putLong(PREFERENCE_USER_CREATED_AT_KEY, userDataModel.createdAt).apply()
         }
     }
 
@@ -50,7 +50,7 @@ class UserLocalDataSourceImpl @Inject constructor(
                 getString(PREFERENCE_USER_EMAIL_KEY, null),
                 getString(PREFERENCE_USER_PHONENUMBER_KEY, null),
                 getString(PREFERENCE_USER_PROFILE_IMAGE_KEY, null) ?: "",
-                getString(PREFERENCE_USER_CREATED_AT_KEY, null)
+                getLong(PREFERENCE_USER_CREATED_AT_KEY, 0) ?:0
             )
         }
     }

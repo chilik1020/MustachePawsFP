@@ -8,8 +8,8 @@ import androidx.lifecycle.viewModelScope
 import com.chilik1020.domain.usecases.FetchPostsUseCase
 import com.chilik1020.mustachepawsfp.mappers.PostDomainToPresentationMapper
 import com.chilik1020.mustachepawsfp.utils.LOG_TAG
-import javax.inject.Inject
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class PostsViewModel @Inject constructor() : ViewModel() {
 
@@ -30,7 +30,6 @@ class PostsViewModel @Inject constructor() : ViewModel() {
                 val posts = fetchPostUseCase.fetchPosts().map {
                     toPresentationMapper.invoke(it)
                 }
-                Log.d(LOG_TAG, "ViewModel: ${posts.toString()}")
                 viewStateMutable.value = PostsViewState.Success(posts)
             } catch (ex: Exception) {
                 Log.d(LOG_TAG, "ViewModelError: ${ex.message.toString()}")

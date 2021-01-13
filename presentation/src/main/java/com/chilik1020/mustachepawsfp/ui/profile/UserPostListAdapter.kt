@@ -1,7 +1,6 @@
 package com.chilik1020.mustachepawsfp.ui.profile
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -13,7 +12,6 @@ import com.chilik1020.framework.utils.PREFERENCE_FILE_NAME
 import com.chilik1020.framework.utils.PREFERENCE_TOKEN_KEY
 import com.chilik1020.mustachepawsfp.databinding.ItemUserPostBinding
 import com.chilik1020.mustachepawsfp.models.PostPresentationModel
-import com.chilik1020.mustachepawsfp.utils.LOG_TAG
 
 class UserPostListAdapter : RecyclerView.Adapter<UserPostListAdapter.UserPostViewHolder>() {
 
@@ -43,14 +41,12 @@ class UserPostListAdapter : RecyclerView.Adapter<UserPostListAdapter.UserPostVie
         fun bind(post: PostPresentationModel) {
             with(binding) {
                 val link = "$MUSTACHE_BASE_URL_POST_IMAGE${post.imageLink}"
-                Log.d(LOG_TAG, link)
                 val token = binding.root.context.getSharedPreferences(
                     PREFERENCE_FILE_NAME,
                     Context.MODE_PRIVATE
                 ).getString(
                     PREFERENCE_TOKEN_KEY, ""
                 ) ?: ""
-                Log.d(LOG_TAG, token)
                 val glideWithHeaders = GlideUrl(
                     link,
                     LazyHeaders.Builder()

@@ -24,10 +24,10 @@
             app:destination="@id/postList"
             app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/fade_out"
-            app:launchSingleTop="true"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
-            app:popUpTo="@id/postList" />
+            app:popUpTo="@id/navGraphMain"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -36,8 +36,8 @@
         android:label="SignUpFragment"
         tools:layout="@layout/fragment_sign_up">
         <action
-            android:id="@+id/action_signUp_to_postList"
-            app:destination="@id/postList"
+            android:id="@+id/action_signUp_to_Login"
+            app:destination="@id/login"
             app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/slide_in_left"
@@ -65,13 +65,12 @@
             app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
-
-        <!--        <action-->
-        <!--            android:id="@+id/action_postList_to_Login"-->
-        <!--            app:destination="@id/login"-->
-        <!--            app:launchSingleTop="true"-->
-        <!--            app:popUpTo="@id/login" />-->
+            app:popExitAnim="@anim/slide_out_right">
+            <argument
+                android:name="argImageSource"
+                android:defaultValue="CAMERA"
+                app:argType="string" />
+        </action>
     </fragment>
 
     <fragment
@@ -99,11 +98,15 @@
         android:label="EditProfileFragment"
         tools:layout="@layout/fragment_edit_profile" />
 
-    <fragment
+    <dialog
         android:id="@+id/imageCapture"
         android:name="com.chilik1020.mustachepawsfp.ui.postcreate.ImageCaptureFragment"
         android:label="ImageCapture"
         tools:layout="@layout/fragment_image_capture">
+        <argument
+            android:name="argImageSource"
+            android:defaultValue="CAMERA"
+            app:argType="string" />
         <action
             android:id="@+id/action_imageCapture_to_PostCreate"
             app:destination="@id/createPost"
@@ -116,7 +119,7 @@
                 android:defaultValue="null"
                 app:argType="string" />
         </action>
-    </fragment>
+    </dialog>
 
     <fragment
         android:id="@+id/createPost"

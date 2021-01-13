@@ -49,46 +49,54 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!--    <com.google.android.material.bottomappbar.BottomAppBar-->
-    <!--        android:id="@+id/bottomAppBar"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="48dp"-->
-    <!--        android:layout_gravity="bottom"-->
-    <!--        android:backgroundTint="@color/primaryColor"-->
-    <!--        app:fabCradleMargin="10dp"-->
-    <!--        app:fabCradleRoundedCornerRadius="5dp"-->
-    <!--        app:fabCradleVerticalOffset="5dp">-->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabCameraImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="@dimen/fab_mini_margin"
+        android:layout_marginBottom="130dp"
+        android:background="@color/colorAccent"
+        android:clickable="true"
+        android:focusable="true"
+        android:tint="@android:color/white"
+        android:visibility="invisible"
+        app:backgroundTint="@color/colorAccent"
+        app:fabSize="mini"
+        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
+        app:srcCompat="@drawable/ic_add_photo"
+        app:tint="@android:color/white" />
 
-    <!--        <ImageView-->
-    <!--            android:id="@+id/ivReFetchPosts"-->
-    <!--            android:layout_width="45dp"-->
-    <!--            android:layout_height="45dp"-->
-    <!--            android:layout_gravity="center_vertical"-->
-    <!--            android:layout_marginStart="@dimen/ico_on_banner_margin"-->
-    <!--            android:padding="@dimen/default_padding"-->
-    <!--            android:src="@drawable/ic_list_black" />-->
-
-    <!--        <ImageView-->
-    <!--            android:id="@+id/ivGoToProfile"-->
-    <!--            android:layout_width="45dp"-->
-    <!--            android:layout_height="45dp"-->
-    <!--            android:layout_gravity="center_vertical|end"-->
-    <!--            android:layout_marginEnd="@dimen/ico_on_banner_margin"-->
-    <!--            android:contentDescription="@string/my_profile"-->
-    <!--            android:padding="@dimen/default_padding"-->
-    <!--            android:src="@drawable/ic_map_black" />-->
-
-    <!--    </com.google.android.material.bottomappbar.BottomAppBar>-->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabGalleryImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="@dimen/fab_mini_margin"
+        android:layout_marginBottom="80dp"
+        android:background="@color/colorAccent"
+        android:clickable="true"
+        android:focusable="true"
+        android:tint="@android:color/white"
+        android:visibility="invisible"
+        app:backgroundTint="@color/colorAccent"
+        app:fabSize="mini"
+        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
+        app:srcCompat="@drawable/ic_image_placeholder"
+        app:tint="@android:color/white" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabGoToPostCreate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/default_margin"
+        android:layout_marginEnd="@dimen/default_margin"
+        android:layout_marginBottom="@dimen/default_margin"
         android:clickable="true"
         android:focusable="true"
         android:src="@drawable/ic_add"
         app:backgroundTint="@color/colorAccent"
-        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior" />
+        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
+        app:tint="@android:color/white" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

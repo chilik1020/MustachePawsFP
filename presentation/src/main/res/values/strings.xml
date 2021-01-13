@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MustachePawsFP</string>
+    <string name="app_name">Paws Whiskers</string>
     <string name="maps_api_key" translatable="false"></string>
 
     <string name="string_ad">Announcements</string>
@@ -34,6 +34,7 @@
     <string name="take_photo">Take photo</string>
 
     <!--  CREATE POST  DIALOGS-->
+    <string name="btn_publish">Publish</string>
     <!--    DESCRIPTION    -->
     <string name="type_description">Enter additional information</string>
     <string name="hint_description">contact details, exact address, animal age…</string>

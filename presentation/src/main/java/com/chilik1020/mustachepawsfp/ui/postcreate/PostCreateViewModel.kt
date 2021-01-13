@@ -13,8 +13,8 @@ import com.chilik1020.domain.usecases.YourProfileDetailsUseCase
 import com.chilik1020.mustachepawsfp.mappers.PostDomainToPresentationMapper
 import com.chilik1020.mustachepawsfp.models.LocationPresentationModel
 import com.chilik1020.mustachepawsfp.utils.LOG_TAG
-import javax.inject.Inject
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class PostCreateViewModel @Inject constructor() : ViewModel() {
 
@@ -41,7 +41,10 @@ class PostCreateViewModel @Inject constructor() : ViewModel() {
     val description = MutableLiveData<String>()
 
     fun createPost() {
+        if (!checkIfFieldsSet()) return
+
         viewStateMutable.value = PostCreateViewState.Loading
+
         viewModelScope.launch {
 
             val locationPost = PostLocation(
@@ -76,4 +79,26 @@ class PostCreateViewModel @Inject constructor() : ViewModel() {
             }
         }
     }
+
+    private fun checkIfFieldsSet(): Boolean =
+        when {
+            typeOfAnimal.value.isNullOrEmpty() -> {
+                viewStateMutable.value = PostCreateViewState.FieldTypeAnimalNotSet
+                false
+            }
+            typeOfAssist.value.isNullOrEmpty() -> {
+                viewStateMutable.value = PostCreateViewState.FieldTypeAssistNotSet
+                false
+            }
+            location.value == null -> {
+                viewStateMutable.value = PostCreateViewState.FieldLocationNotSet
+                false
+            }
+            description.value.isNullOrEmpty() -> {
+                viewStateMutable.value = PostCreateViewState.FieldDescriptionNotSet
+                false
+            }
+            else -> true
+        }
+
 }
