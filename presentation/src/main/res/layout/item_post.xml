@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/materialCardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/default_half_margin"
+    android:background="@drawable/ic_background">
+
+    <!--    <androidx.constraintlayout.widget.Guideline-->
+    <!--        android:id="@+id/glVerticalStart"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:orientation="vertical"-->
+    <!--        app:layout_constraintGuide_percent="0.04" />-->
+
+    <!--    <androidx.constraintlayout.widget.Guideline-->
+    <!--        android:id="@+id/glVerticalEnd"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:orientation="vertical"-->
+    <!--        app:layout_constraintGuide_percent="0.96" />-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/default_half_margin"
+            android:layout_marginTop="@dimen/default_half_margin"
+            android:layout_marginBottom="@dimen/default_half_margin"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ivCreatorAvatar"
+                android:layout_width="24dp"
+                android:layout_height="24dp" />
+
+            <TextView
+                android:id="@+id/tvCreatorUsername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_margin"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/ivPostImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_image_placeholder" />
+
+        <TextView
+            android:id="@+id/tvTypeOfAnimal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/default_half_margin"
+            android:layout_marginTop="@dimen/default_half_margin"
+            android:drawablePadding="@dimen/default_padding"
+            android:textColor="@color/defaultTextColor"
+            android:textSize="16sp"
+            app:drawableStartCompat="@drawable/ic_pawprint"
+            tools:text="type of animal" />
+
+        <at.blogc.android.views.ExpandableTextView
+            android:id="@+id/etvTypeOfAssist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/default_half_margin"
+            android:layout_marginTop="@dimen/default_half_margin"
+            android:drawableStart="@drawable/ic_type_help"
+            android:drawablePadding="@dimen/default_padding"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif-light"
+            android:maxLines="2"
+            android:textColor="@color/defaultTextColor"
+            android:textSize="16sp"
+            app:animation_duration="750"
+            tools:text="Type help you needed." />
+
+        <TextView
+            android:id="@+id/tvPlace"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/default_half_margin"
+            android:layout_marginTop="@dimen/default_half_margin"
+            android:drawablePadding="@dimen/default_padding"
+            android:textColor="@color/defaultTextColor"
+            android:textSize="16sp"
+            app:drawableStartCompat="@drawable/ic_placeholder"
+            tools:text="Minsk,Belarus" />
+
+        <at.blogc.android.views.ExpandableTextView
+            android:id="@+id/etvPostDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/default_half_margin"
+            android:layout_marginTop="@dimen/default_half_margin"
+            android:drawableStart="@drawable/ic_edit"
+            android:drawablePadding="@dimen/default_padding"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif-light"
+            android:maxLines="2"
+            android:textColor="@color/defaultTextColor"
+            android:textSize="16sp"
+            app:animation_duration="750"
+            app:layout_constraintEnd_toEndOf="@id/glVerticalEnd"
+            app:layout_constraintStart_toStartOf="@id/glVerticalStart"
+            app:layout_constraintTop_toBottomOf="@id/tvPlace"
+            tools:text="Please, help find the dog." />
+
+        <TextView
+            android:id="@+id/tvCreatedAt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_margin="@dimen/default_half_margin"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etvPostDescription"
+            tools:text="29 02 2020 friday" />
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

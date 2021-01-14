@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/miMyProfilePostListMenu"
+        android:title="@string/my_profile" />
+
+<!--    <item-->
+    <!--        android:id="@+id/miLogOutPostListMenu"-->
+    <!--        android:title="@string/log_out_postlist_frag" />-->
+</menu>

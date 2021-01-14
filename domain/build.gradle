@@ -1,0 +1,20 @@
+plugins {
+    id 'java-library'
+    id 'kotlin'
+    id 'kotlin-kapt'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+dependencies {
+    //Local libs
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation kotlinDeps.kotlinStdlib
+
+    api dagger.runtime
+    kapt dagger.compiler
+}

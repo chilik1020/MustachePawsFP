@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_background"
+    tools:context=".ui.MainActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarPostListFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbaEditProfileFragment"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/primaryColor"
+            android:elevation="10dp"
+            app:title=" " />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glVerticalStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.04" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glVerticalEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.96" />
+
+    <FrameLayout
+        android:id="@+id/flImageAvatar"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="@dimen/default_half_margin"
+        app:layout_constraintBottom_toTopOf="@id/tilFirstnameEditF"
+        app:layout_constraintEnd_toEndOf="@id/glVerticalEnd"
+        app:layout_constraintStart_toStartOf="@id/glVerticalStart"
+        app:layout_constraintTop_toBottomOf="@id/appBarPostListFragment">
+
+        <ImageView
+            android:id="@+id/ivProfilePhoto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/default_user_avatar" />
+
+        <ImageView
+            android:id="@+id/ivAddPhoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:elevation="10dp"
+            android:src="@drawable/ic_add_photo" />
+    </FrameLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilFirstnameEditF"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/firstname"
+        app:errorEnabled="true"
+        app:layout_constraintBottom_toTopOf="@+id/tilLastnameEditF"
+        app:layout_constraintEnd_toEndOf="@id/glVerticalEnd"
+        app:layout_constraintStart_toStartOf="@id/glVerticalStart"
+        app:layout_constraintTop_toBottomOf="@id/flImageAvatar"
+        app:layout_constraintVertical_chainStyle="packed">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tietFirstnameEditF"
+            android:layout_width="@dimen/default_input_field_width"
+            android:layout_height="@dimen/default_input_field_height" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilLastnameEditF"
+        style="@style/MaterialTextInputLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/lastname"
+        app:errorEnabled="true"
+        app:layout_constraintBottom_toTopOf="@+id/tilEmailEditF"
+        app:layout_constraintEnd_toEndOf="@id/glVerticalEnd"
+        app:layout_constraintStart_toStartOf="@id/glVerticalStart"
+        app:layout_constraintTop_toBottomOf="@+id/tilFirstnameEditF">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tietLastnameEditF"
+            android:layout_width="@dimen/default_input_field_width"
+            android:layout_height="@dimen/default_input_field_height" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilEmailEditF"
+        style="@style/MaterialTextInputLayout"
+        android:hint="@string/email"
+        app:errorEnabled="true"
+        app:layout_constraintBottom_toTopOf="@+id/tilPhonenumberEditF"
+        app:layout_constraintEnd_toEndOf="@id/glVerticalEnd"
+        app:layout_constraintStart_toStartOf="@id/glVerticalStart"
+        app:layout_constraintTop_toBottomOf="@+id/tilLastnameEditF">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tietEmailEditF"
+            android:layout_width="@dimen/default_input_field_width"
+            android:layout_height="@dimen/default_input_field_height" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilPhonenumberEditF"
+        style="@style/MaterialTextInputLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/phonenumber"
+        app:errorEnabled="true"
+        app:layout_constraintBottom_toTopOf="@id/btnSaveProfile"
+        app:layout_constraintEnd_toEndOf="@id/glVerticalEnd"
+        app:layout_constraintStart_toStartOf="@id/glVerticalStart"
+        app:layout_constraintTop_toBottomOf="@+id/tilEmailEditF">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tietPhonenumberEditF"
+            android:layout_width="@dimen/default_input_field_width"
+            android:layout_height="@dimen/default_input_field_height" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSaveProfile"
+        android:layout_width="@dimen/default_input_field_width"
+        android:layout_height="@dimen/default_input_field_height"
+        android:text="@string/save_profile"
+        app:cornerRadius="7dp"
+
+        app:layout_constraintEnd_toEndOf="@id/glVerticalEnd"
+        app:layout_constraintStart_toStartOf="@id/glVerticalStart"
+        app:layout_constraintTop_toBottomOf="@+id/tilPhonenumberEditF" />
+
+    <androidx.core.widget.ContentLoadingProgressBar
+        android:id="@+id/pbEditProfileLoading"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:elevation="10dp"
+        android:indeterminate="true"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/glVerticalEnd"
+        app:layout_constraintStart_toStartOf="@id/glVerticalStart"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

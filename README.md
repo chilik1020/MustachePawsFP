@@ -1,27 +1,14 @@
-MustchePaws Android application
+Whiskers&Paws Android application
 in progress....
 =======================
-
-(a few words about the project)
 
 
 Built with
 ============
-* Android Jetpack(Room,ViewModel,ViewBinding,LiveData,NavigationComponent)
+* Android Jetpack(NavigationComponent,ViewModel,ViewBinding,LiveData)
 * Kotlin
 * Coroutines
 * Dagger 2
-* OkHttp
 * Retorfit
 * Gson
 * Glide
-
-UML Diagram
-============
-
-![img0](https://lh3.googleusercontent.com/2ge55dETcCSEFblQZlOeAtVUTCKQ8orR_q3PAlXZ3kNAFYLUi8ywFPyTB8fFi-Vunqe699zl6PhS9yJpSKjSZ1tmPMiUA5eshs5KpE0MHZs5i7BG_rV81ftbBpQ6Fa5nRw_EQnMJmZaT3KhXVYd74z444FUhqVkFw01giCSPangq_3x_SMVqeJ5bjQI5yHHyBzTX2pWljtpJ4UUN7I8hEbyS69c1h6-GZ5kSPugR7rN9ObR0cWifnJ7Vp6oN5YdQFI8kjzrTu54PW_1Zc5UrpeX6olsvtYL2v-Bn5m5-B-4afsUB-g6iBrnLMObsADQLvG7AMWPfiqjMoKhZ_MmSFQa8TtuvkASLCNKFXGepkyJDbQBnJwQWo-I_1eJyrUcHGl0hUkJ2z7OS_6xgVASKv-_3lGJK9m3S5rPi-dtfPFwXqkWIGs9OUeVzKv7GFGBiTY86fZWWpwhZwPj36JTIGn4koM-wS6Ibyo6HpttcwtX3zVOM7KQOjsUvKtNoTEGAOoy00AZdumxsuOJFHnXxTd4yLSjjygApWyieCiV5qXtN-b8eR1ZfPGDtB87_3PUUarQWaortEZgp09LykF050y4hQZOCJrtvkstDVPHYx6uR3A-mDPHQJl0BydLoGqFPCoCjvSf8iXaQnFUeZ2wjHuNtWlRi6kPF2T3oetc9Gn1sQGmUXv_lS5Dbc_MpRw=w1920-h540-no?authuser=0)
-
-Screenshots
-============
-<img src="https://lh3.googleusercontent.com/wBr1A_dt0Y0xtI2NFRyxPR2BUnxIWMWxnMAbNbK4oqCSitVEbw5emDNE_uiSd8EKZX4eH1TNrrCi_yj-6C_o3On3iNSP6dH1uHZSIXyuitF99_dEk9s0c9jVwcK0wTWNDhYeNR7H_DpU03wPjXxE91KWhlnr3ZJ21s6pvQIIl1cdUOlrlY5Qdo_-I7eWixF_dlavtF5CgnXbnt1KZaWDWoD9mG_-c0XGxkj74RpVcjZMBTmgeCXYZuZJNStG7RsJFxFko1XNDmNB-N3L-0HzDtcrjAW4AFpaLXlS20MrgS8Ya0eZRercRW2_nGccsQmcT-flSRCeWtPUnzfeIspQBw9HqR7AiqM3lWO1dzQ7KOB84qAp0W2J6rZ_r0lDvmdBzey6CdbCqTx4ZzIQd0HuBxwHJpJCRMtSPKjyzmQV62gMJejPMnDq1bpw-eHH_y1lvl_k4wxb2iHus2yyvrluDI-6yHb8jXJthi0hluPFWyi8WIz8pRpLzlrrcd-8YRmmYebUWudBtFNgVxUS2j-XZUgGlvcVyvDB1Hr6kafyv0YRmDfHFQgVCKwsDpbx6zjLrO5rHCPSZxMJ6fQ_SMV8McQJnNY39rJ4SRyPaZmfFv4COsr9qoMPS0hjovABcp1W-E0lWdmGoAGGysUZPv_cxk9kmYhoBlESSAJ_PpN8bE9CjiqGG8tA-LAFYflAOg=w599-h1089-no?authuser=0" alt="alt text" width="180" height="320">
-<img src="https://lh3.googleusercontent.com/Hj38bfn6AcvQdJmW_ZJBFp7oysnkRJgm8r9S6R04glmlWw-7C_Kj_GFVM74QBMoP494sUtgWEALamV9G-N2QWHAXf8W0E3NODVBcuHiEtiVSq8ClmpeZ24oIu5tVhlfIItIsUQemkCiew_SjWxUxlpOktAIckyRysxGTAZrbN2nOWPDHYjCEQ2zjqZ5s3sm9HySVDGb86GEcluWigJ0b7NGpe3guHmVYbb95Kn2HqLYgZsY7IKLwxH3AE00z3L38jjkfiqiGG9fhIt8QN-CpEhVNCbGO2uvmfRBN3fZ7vP-aoBmMq5WsV2weBs_wO74GhrJyhcICPJkykEXoD-2wFsMiks4MCB__OwTGyB8bP6ODslQbhy5EoHtCqfIwDWKiDvTJWH8hFovXv4l8vw7CiQyvQJtqV7znSJ0PbLNSTkVboatVtdld6_C73haw8h6xdmClzdVNbBXClIrgFFqCwk66KsGNkbybliF1fswOv7aA-eG5UV_H19dWnToCtsvD-ebXcDwZ99cyUG2GHy5aihtr8Qb_scDdPhIMTrGXFhOW6MCpNmErEVdxbWei50jVkjq9SbePiVlb76fe0jb4K_A6N4XB2tNTbR7kmiV_pkkkPk-O36IkpJjjxfoOHHzNTMH6SlLxnPli4mzdT8oteXeZrw2xioOPq8KwduHutPXzuwmo7VrTVGN9wQUNCg=w599-h1089-no?authuser=0" alt="alt text" width="180" height="320">

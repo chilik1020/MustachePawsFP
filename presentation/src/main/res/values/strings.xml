@@ -1,0 +1,64 @@
+<resources>
+    <string name="app_name">Paws Whiskers</string>
+    <string name="maps_api_key" translatable="false"></string>
+
+    <string name="string_ad">Announcements</string>
+    <string name="string_filter">Filters</string>
+
+    <string name="empty" />
+    <string name="post_error">Could not retrieve data</string>
+
+    <!--  Login/SignUp activities  -->
+    <string name="username">username</string>
+    <string name="firstname">Firstname</string>
+    <string name="lastname">Lastname</string>
+    <string name="email">Email</string>
+    <string name="phonenumber">Phonenumber</string>
+    <string name="password">Password</string>
+    <string name="password_confirm">Confirm password</string>
+    <string name="login">Sign in</string>
+    <string name="sign_up">Sign up</string>
+    <string name="no_account">No account?</string>
+    <string name="register">Registration!</string>
+    <string name="login_error_msg">Error in username-password</string>
+    <string name="signup_error_msg">Error while registration</string>
+    <string name="username_empty_error">Username cannot be empty</string>
+
+    <string name="public_post">Publish</string>
+    <string name="description">Description</string>
+    <string name="image_link">Link</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="create_post">Create post</string>
+    <string name="take_photo">Take photo</string>
+
+    <!--  CREATE POST  DIALOGS-->
+    <string name="btn_publish">Publish</string>
+    <!--    DESCRIPTION    -->
+    <string name="type_description">Enter additional information</string>
+    <string name="hint_description">contact details, exact address, animal age…</string>
+    <!--  SELECT LOCATION  -->
+    <string name="location_address">Enter address</string>
+    <!--  ANIMAL TYPE  -->
+    <string name="select_the_type_of_animal">Select the type of animal</string>
+    <string name="type_cat">Cat</string>
+    <string name="type_dog">Dog</string>
+    <string name="type_bird">Bird</string>
+    <string name="type_rodent">Rodent</string>
+    <string name="enter_another_if_needed">Enter another if necessary</string>
+    <!--  ASSIST TYPE  -->
+    <string name="select_help_you_need">Enter the help you need</string>
+    <string name="hint_enter_help">Looking for a family, veterinary service, transportation</string>
+    <!--  PROFILE FRAGMENT  -->
+    <string name="registred_at">Registred </string>
+    <string name="edit_profile">Edit profile</string>
+    <string name="log_out_profile_frag">Log out</string>
+    <string name="save_profile">Save</string>
+
+    <!--  POSTLIST FRAGMENT  -->
+    <string name="my_profile">My profile</string>
+    <string name="log_out_postlist_frag">Log out</string>
+
+
+</resources>
