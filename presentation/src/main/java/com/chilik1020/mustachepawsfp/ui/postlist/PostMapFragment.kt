@@ -1,6 +1,7 @@
 package com.chilik1020.mustachepawsfp.ui.postlist
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.chilik1020.mustachepawsfp.R
 import com.chilik1020.mustachepawsfp.databinding.FragmentPostMapBinding
 import com.chilik1020.mustachepawsfp.models.PostPresentationModel
+import com.chilik1020.mustachepawsfp.utils.LOG_TAG
 import com.google.android.libraries.maps.CameraUpdateFactory
 import com.google.android.libraries.maps.GoogleMap
 import com.google.android.libraries.maps.OnMapReadyCallback
@@ -78,6 +80,10 @@ class PostMapFragment : Fragment(), OnMapReadyCallback {
             markerOptions.title(it.location.description)
             markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA))
             googleMap?.addMarker(markerOptions)
+        }
+        googleMap?.setOnMarkerClickListener {
+            Log.d(LOG_TAG, "${it.id} ${it.tag}")
+            false
         }
     }
 
