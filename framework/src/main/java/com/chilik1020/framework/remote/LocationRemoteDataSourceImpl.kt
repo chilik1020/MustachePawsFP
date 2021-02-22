@@ -17,5 +17,4 @@ class LocationRemoteDataSourceImpl(
         if (response.results[0].locations.isEmpty()) throw IndexOutOfBoundsException()
         return response
     }
-
 }

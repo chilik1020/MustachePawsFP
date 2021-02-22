@@ -22,7 +22,6 @@ import com.google.android.libraries.maps.model.MarkerOptions
 import dagger.android.support.DaggerDialogFragment
 import javax.inject.Inject
 
-
 class SelectLocationDialogFragment : DaggerDialogFragment(), OnMapReadyCallback {
 
     @Inject
